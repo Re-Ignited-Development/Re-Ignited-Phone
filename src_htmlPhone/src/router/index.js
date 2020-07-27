@@ -19,6 +19,9 @@ import TchatSplashScreen from '@/components/Tchat/TchatSplashScreen'
 import TchatChannel from '@/components/Tchat/TchatChannel'
 import TchatMessage from '@/components/Tchat/TchatMessage'
 
+import NotesChannel from '@/components/Notes/NotesChannel'
+import NotesMessage from '@/components/Notes/NotesMessage'
+
 import TwitterSpashScreen from '@/components/twitter/TwitterSpashScreen'
 import TwitterScreen from '@/components/twitter/TwitterScreen'
 
@@ -107,6 +110,14 @@ export default new Router({
       path: '/tchat/:channel',
       name: 'tchat.channel.show',
       component: TchatMessage
+    }, {
+      path: '/notes',
+      name: 'notes',
+      component: NotesChannel
+    }, {
+      path: '/notes/:channel',
+      name: 'notes.channel.show',
+      component: NotesMessage
     }, {
       path: '/twitter/splash',
       name: 'twitter.splash',

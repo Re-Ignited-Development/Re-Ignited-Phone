@@ -11,12 +11,16 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+-- ENABLE THE BELOW LINE FOR ESX 1.2
+-- USE `es_extended`;
+
+-- DISABLE THE BELOW LINE AND ENABLE THE ABOVE LINE FOR ESX 1.2
 USE `essentialmode`;
 
 CREATE TABLE IF NOT EXISTS `twitter_accounts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT '0',
-  `password` varchar(50) COLLATE utf8mb4_bin NOT NULL DEFAULT '0',
+  `password` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '0',
   `avatar_url` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)

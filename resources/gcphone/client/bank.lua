@@ -10,6 +10,7 @@
 -- ES / ESX Implementation
 
 local bank = 0
+local firstname = ''
 function setBankBalance (value)
       bank = value
       SendNUIMessage({event = 'updateBankbalance', banking = bank})
@@ -47,3 +48,20 @@ RegisterNetEvent('es:displayBank')
 AddEventHandler('es:displayBank', function(bank)
       setBankBalance(bank)
 end)
+
+
+
+--===============================================
+--==         Transfer Event                    ==
+--===============================================
+AddEventHandler('gcphone:bankTransfer', function(data)
+      TriggerServerEvent('bank:transfer', data.id, data.amount)
+    TriggerServerEvent('bank:balance')
+end)
+
+
+
+
+
+
+

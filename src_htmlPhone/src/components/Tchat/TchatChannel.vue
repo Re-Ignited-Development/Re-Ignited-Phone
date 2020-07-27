@@ -174,21 +174,22 @@ export default {
   transition: .15s;
 }
 .elem-title .diese {
-  color: #60ac39;
+  color: #0079d3;
   font-size: 22px;
   font-weight: 700;
   line-height: 40px;
 }
 
 .element.select, .element:hover{
-   background-color: #FFC629;
-   color: black;
+   background-color: white;
+   color: #0079d3;
+
 }
 .element.select .elem-title, .element:hover .elem-title {
    margin-left: 12px;
 }
 .element.select .elem-title .diese, .element:hover .elem-title .diese {
-   color:#5e0576;
+   color:#0079d3;
 }
  .elements::-webkit-scrollbar-track
     {
@@ -202,6 +203,6 @@ export default {
     }
   .elements::-webkit-scrollbar-thumb
     {
-        background-color: #FFC629;
+        background-color: #0079d3;
     }
 </style>

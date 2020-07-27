@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "babel-preset-es2017": "^6.24.1",
-    "node-sass": "^4.9.0",
+    "howler": "^2.2.0",
+    "node-sass": "^4.13.0",
     "sass-loader": "^6.0.7",
     "vue": "^2.5.16",
     "vue-router": "^2.8.1",
@@ -36,7 +37,7 @@
     "eslint-config-standard": "^6.2.1",
     "eslint-friendly-formatter": "^2.0.7",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-html": "^2.0.0",
+    "eslint-plugin-html": "^2.0.3",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^2.0.1",
     "eventsource-polyfill": "^0.9.6",
@@ -57,7 +58,7 @@
     "vue-style-loader": "^3.1.2",
     "vue-template-compiler": "^2.5.16",
     "webpack": "^2.6.1",
-    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-dev-middleware": "^1.12.2",
     "webpack-hot-middleware": "^2.22.2",
     "webpack-merge": "^4.1.2"

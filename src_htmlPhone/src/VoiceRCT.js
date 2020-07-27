@@ -114,7 +114,7 @@ class VoiceRTC {
     }
   }
 
-  onaddstream (event) {
+  onaddstream(event) {
     this.audio.srcObject = event.stream
     this.audio.play()
   }

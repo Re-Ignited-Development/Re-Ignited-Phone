@@ -35,7 +35,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['IntlString', 'useMouse', 'myPhoneNumber', 'backgroundLabel', 'coqueLabel', 'zoom', 'config', 'volume', 'availableLanguages']),
+    ...mapGetters(['IntlString', 'useMouse', 'myPhoneNumber', 'backgroundLabel', 'coqueLabel', 'sonidoLabel', 'zoom', 'config', 'volume', 'availableLanguages']),
     paramList () {
       const cancelStr = this.IntlString('CANCEL')
       const confirmResetStr = this.IntlString('APP_CONFIG_RESET_CONFIRM')
@@ -50,7 +50,7 @@ export default {
           value: this.myPhoneNumber
         },
         {
-          icons: 'fa-image',
+          icons: 'fa-picture-o',
           title: this.IntlString('APP_CONFIG_WALLPAPER'),
           value: this.backgroundLabel,
           onValid: 'onChangeBackground',
@@ -62,6 +62,13 @@ export default {
           value: this.coqueLabel,
           onValid: 'onChangeCoque',
           values: this.config.coque
+        },
+        {
+          icons: 'fa-bell-o',
+          title: this.IntlString('APP_CONFIG_SOUND'),
+          value: this.sonidoLabel,
+          onValid: 'onChangeSonido',
+          values: this.config.sonido
         },
         {
           icons: 'fa-search',
@@ -80,7 +87,7 @@ export default {
           }
         },
         {
-          icons: 'fa-volume-up',
+          icons: 'fa-volume-down',
           title: this.IntlString('APP_CONFIG_VOLUME'),
           value: this.valumeDisplay,
           onValid: 'setPhoneVolume',
@@ -131,7 +138,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getIntlString', 'setZoon', 'setBackground', 'setCoque', 'setVolume', 'setLanguage', 'setMouseSupport']),
+    ...mapActions(['getIntlString', 'setZoon', 'setBackground', 'setCoque', 'setSonido', 'setVolume', 'setLanguage', 'setMouseSupport']),
     scrollIntoViewIfNeeded: function () {
       this.$nextTick(() => {
         document.querySelector('.select').scrollIntoViewIfNeeded()
@@ -214,6 +221,14 @@ export default {
         value: data.value
       })
     },
+
+    onChangeSonido: function (param, data) {
+      this.setSonido({
+        label: data.title,
+        value: data.value
+      })
+    },
+
     setZoom: function (param, data) {
       this.setZoon(data.value)
     },
@@ -280,7 +295,6 @@ export default {
     this.$bus.$off('keyUpBackspace', this.onBackspace)
   }
 }
-
 </script>
 
 <style scoped>
@@ -292,7 +306,7 @@ export default {
   position: relative;
 }
 .element .fa{
-  color: #2c3e50;
+  color: #0b81ff;
   font-size: 28px;
   margin-left: 6px;
   height: 52px;

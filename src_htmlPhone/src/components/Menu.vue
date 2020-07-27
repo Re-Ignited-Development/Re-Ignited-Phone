@@ -171,7 +171,7 @@ button{
   background-size: 30px 30px;
   background-position: center 15px;
   background-repeat: no-repeat;
-  background-color: #2980b9;
+  background-color: #d08335;
   font-size: 14px;
   padding-top: 60px;
   font-weight: 700;

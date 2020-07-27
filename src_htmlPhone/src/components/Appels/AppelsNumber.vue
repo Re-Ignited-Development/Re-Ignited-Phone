@@ -56,7 +56,7 @@ export default {
         {primary: '7', secondary: 'pqrs'},
         {primary: '8', secondary: 'tuv'},
         {primary: '9', secondary: 'wxyz'},
-        {primary: '✲', secondary: '', isNotNumber: true},
+        {primary: '-', secondary: '', isNotNumber: true},
         {primary: '0', secondary: '+'},
         {primary: '#', secondary: '', isNotNumber: true}
       ],
@@ -198,7 +198,7 @@ export default {
 .key-primary {
   display: block;
   font-size: 36px;
-  color: blue;
+  color: rgb(255, 123, 0);
   line-height: 22px;
   padding-top: 36px;
 }
@@ -225,7 +225,7 @@ export default {
   height: 70px;
   width: 70px;
   border-radius: 50%;
-  background-color: rgba(67, 160, 71, 0.7);
+  background-color: rgb(51, 202, 58);
 }
 .call-btn.active, .call-btn:hover {
   background-color: #43a047;

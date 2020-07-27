@@ -539,14 +539,14 @@ input:focus ~ .highlight {
 }
 
 .group .btn.btn-red{
-  border: 1px solid #e0245e;
-  color: #e0245e;
+  border: 1px solid #ee3838;
+  color: #ee3838;
   background-color: white;
   font-weight: 500;
   border-radius: 10px;
 }
 .group.select .btn.btn-red, .group:hover .btn.btn-red{
-  background-color: #e0245e;
+  background-color: #ee3838;
   color: white;
   border: none;
 }
@@ -566,15 +566,15 @@ input:focus ~ .highlight {
 
 /* ANIMATIONS ================ */
 @-webkit-keyframes inputHighlighter {
-	from { background:#5264AE; }
+	from { background:#007aff; }
   to 	{ width:0; background:transparent; }
 }
 @-moz-keyframes inputHighlighter {
-	from { background:#5264AE; }
+	from { background:#007aff; }
   to 	{ width:0; background:transparent; }
 }
 @keyframes inputHighlighter {
-	from { background:#5264AE; }
+	from { background:#007aff; }
   to 	{ width:0; background:transparent; }
 }
 </style>

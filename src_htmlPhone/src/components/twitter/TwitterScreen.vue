@@ -51,7 +51,7 @@ export default {
         {
           title: this.IntlString('APP_TWITTER_VIEW_TWEETER'),
           component: TwitterPostTweet,
-          icon: 'fa-comment'
+          icon: 'fa-comment-o'
         },
         {
           title: this.IntlString('APP_TWITTER_VIEW_SETTING'),
@@ -117,12 +117,12 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #303030;
+  color: #959595;
 }
 .twitter_menu-item.select {
   color: #1da1f2;
 }
 .twitter_menu-item:hover {
-  color: #0084b4;
+  color: #1da1f2;
 }
 </style>

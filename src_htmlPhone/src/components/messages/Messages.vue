@@ -368,6 +368,23 @@ export default {
     padding-bottom: 8px;
 }
 
+  .name_other_sms_other{
+    margin-bottom: -9px;
+    margin-left: 42px;
+    font-size: 14px;
+    font-weight: 500;
+    color: lightgrey;
+  }
+
+ .name_other_sms_me{
+  display: none;
+}
+
+.name_other_sms_other.sms_me{
+  display: none;
+
+}
+
 .sms{
   overflow: auto;
   zoom: 1;
@@ -403,13 +420,12 @@ export default {
   max-width: 90%;
   margin-right: 5%;
   border-radius: 50px;
-  color: #fff;
   margin-top: 10px;
 }
 
 .sms_other{
-    background-color: #ddd;
-    color: #000;
+    background-color: #0b81ff;
+    color: #ffffff;
     float: left;
     padding: 5px 20px;
     border-radius: 50px;
@@ -425,11 +441,13 @@ export default {
 }
 
 .sms_me .sms_time{
-    color: #fff;
+    color: #AAA;
 }
 .sms_other .sms_time{
-    color: #555;
+    color: #ffffff;
 }
+
+
 .messages{
   position: relative;
   left: 0;
@@ -437,12 +455,13 @@ export default {
   width: 100%;
   height: 100%;
 }
-.sms.select .sms_message, .sms:hover .sms_message{
+.sms.select .sms_message, .sms_message:hover{
   background-color: #7f8c8d !important;
 }
 
-.sms.select .sms_message .sms_time, .sms:hover .sms_message .sms_time{
+.sms.select .sms_message, .sms_message:hover{
   background-color: #7f8c8d !important;
+  color: white !important;
 }
 
 .sms_message{

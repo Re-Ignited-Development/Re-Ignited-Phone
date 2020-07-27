@@ -13,16 +13,16 @@
                     class="elem-histo-pico" 
                     :class="{'reject': hc.accept === false}" 
                     v-for="(hc, i) in histo.lastCall" :key="i">
-                    <svg @click.stop="selectItem(histo)" v-if="hc.accepts === 1 && hc.incoming === 1" viewBox="0 0 24 24" fill="#43a047">
+                    <svg @click.stop="selectItem(histo)" v-if="hc.accepts === 1 && hc.incoming === 1" viewBox="0 0 24 24" fill="#c5c5c7">
                       <path d="M9,5v2h6.59L4,18.59L5.41,20L17,8.41V15h2V5H9z"/>
                     </svg>
-                    <svg @click.stop="selectItem(histo)" v-else-if="hc.accepts === 1 && hc.incoming === 0" viewBox="0 0 24 24" fill="#43a047">
+                    <svg @click.stop="selectItem(histo)" v-else-if="hc.accepts === 1 && hc.incoming === 0" viewBox="0 0 24 24" fill="#c5c5c7">
                       <path d="M20,5.41L18.59,4L7,15.59V9H5v10h10v-2H8.41L20,5.41z"/>
                     </svg>
-                    <svg @click.stop="selectItem(histo)" v-else-if="hc.accepts === 0 && hc.incoming === 1" viewBox="0 0 24 24" fill="#D32F2F">
+                    <svg @click.stop="selectItem(histo)" v-else-if="hc.accepts === 0 && hc.incoming === 1" viewBox="0 0 24 24" fill="#c5c5c7">
                       <path @click.stop="selectItem(histo)" d="M3,8.41l9,9l7-7V15h2V7h-8v2h4.59L12,14.59L4.41,7L3,8.41z"/>
                     </svg>
-                    <svg @click.stop="selectItem(histo)" v-else-if="hc.accepts === 0 && hc.incoming === 0" viewBox="0 0 24 24" fill="#D32F2F">
+                    <svg @click.stop="selectItem(histo)" v-else-if="hc.accepts === 0 && hc.incoming === 0" viewBox="0 0 24 24" fill="#c5c5c7">
                       <path d="M19.59,7L12,14.59L6.41,9H11V7H3v8h2v-4.59l7,7l9-9L19.59,7z"/>
                     </svg>
                 </div>
@@ -55,7 +55,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['startCall', 'appelsDeleteHistorique', 'appelsDeleteAllHistorique']),
+    ...mapActions(['startCall', 'appelsDeleteHistorique', 'appelsDeleteAllHistorique', 'addContact']),
     getContact (num) {
       const find = this.contacts.find(e => e.number === num)
       return find
@@ -82,7 +82,8 @@ export default {
       let choix = [
         {id: 1, title: this.IntlString('APP_PHONE_DELETE'), icons: 'fa-trash', color: 'orange'},
         {id: 2, title: this.IntlString('APP_PHONE_DELETE_ALL'), icons: 'fa-trash', color: 'red'},
-        {id: 3, title: this.IntlString('CANCEL'), icons: 'fa-undo'}
+        {id: 3, title: this.IntlString('APP_PHONE_CANCEL'), icons: 'fa-undo'},
+        {id: 4, title: this.IntlString('APP_PHONE_ADD'), icons: 'fa-undo'}
       ]
       if (isValid === true) {
         choix = [{id: 0, title: this.IntlString('APP_PHONE_CALL'), icons: 'fa-phone'}, ...choix]
@@ -98,11 +99,24 @@ export default {
           break
         case 2 :
           this.appelsDeleteAllHistorique()
+          break
+        case 4 :
+          this.save(numero)
       }
     },
     async onEnter () {
       if (this.ignoreControls === true) return
       this.selectItem(this.historique[this.selectIndex])
+    },
+    save (numero) {
+      if (this.id !== -1) {
+        this.addContact({
+          number: numero
+        })
+      } else {
+        console.log('No añadido')
+      }
+      history.back()
     },
     stylePuce (data) {
       data = data || {}

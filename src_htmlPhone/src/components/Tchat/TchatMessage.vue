@@ -161,13 +161,13 @@ export default {
 
 .message{
   width: 100%;
-  color: #FFC629;
+  color: black;
 }
 
 .tchat_write{
     height: 56px;
     widows: 100%;
-    background: #20201d;
+    background: #dae0e6;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -181,8 +181,8 @@ export default {
     padding: 3px 5px;
     float: left;
     height: 36px;
-    background-color: #00071c;
-    color: white;
+    background-color: white;
+    color: black;
 }
 .tchat_write input::placeholder {
   color: #ccc;
@@ -192,7 +192,7 @@ export default {
     height: 32px;
     float: right;
     border-radius: 50%;
-    background-color: #5e0576;
+    background-color: #ff4500;
     margin-right: 12px;
     margin-bottom: 2px;
     color: white;

@@ -151,9 +151,9 @@ if (process.env.NODE_ENV !== 'production') {
     isLikes: 60
   }, {
     id: 2,
-    message: 'Borderlands 3 arrives on Xbox One, PS4, and PC on September 13, 2019! Tune in to the Gameplay Reveal Event on May 1st, where we’ll debut the first hands-on looks! Pre-order now to get the Gold Weapon Skins Pack! ➜ https://borderlands.com  ',
-    author: 'Gearbox Official',
-    authorIcon: 'https://pbs.twimg.com/profile_images/702982240184107008/tUKxvkcs_400x400.jpg',
+    message: 'Re-Ignited Roleplay finally in development, Something that needed to be done AGES ago is finally happening, Check out the updates as they exceed expectations ➜ https://discord.gg/K2pR3UC  ',
+    author: 'Re-Ignited Developers',
+    authorIcon: 'https://i.imgur.com/Ms2M5g4.png',
     time: new Date(),
     likes: 65
   }, {

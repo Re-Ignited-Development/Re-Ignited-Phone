@@ -171,11 +171,6 @@ export default {
 </script>
 
 <style scoped>
-
-* {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 .contact{
   position: relative;
   left: 0;
@@ -230,7 +225,7 @@ label 				 {
 input:focus ~ label, input:valid ~ label 		{
   top:-24px;
   font-size:18px;
-  color:#5264AE;
+  color:gray;
 }
 
 /* BOTTOM BARS ================================= */
@@ -241,7 +236,6 @@ input:focus ~ label, input:valid ~ label 		{
   width:0;
   bottom:1px; 
   position:absolute;
-  background:#5264AE; 
   transition:0.2s ease all; 
   -moz-transition:0.2s ease all; 
   -webkit-transition:0.2s ease all;
@@ -302,13 +296,13 @@ input:focus ~ .highlight {
   border-radius: 10px;
 }
 .group.select .btn.btn-green, .group:hover .btn.btn-green{
-  background-color: #2ecc70;
+  background-image: linear-gradient(to right, #62A3FF, #4994FF , #0b81ff); 
   color: white;
   border: none;
 }
 .group .btn.btn-orange{
-  border: 1px solid #e67e2280;
-  color: #e67e22;
+  border: 1px solid #B6B6B6;
+  color: #B6B6B6;
   background-color: white;
   font-weight: 500;
   border-radius: 10px;
@@ -316,7 +310,7 @@ input:focus ~ .highlight {
 .group.select .btn.btn-orange, .group:hover .btn.btn-orange{
   background-color: #e67e22;
   color: white;
-  border: none;
+  border: #B6B6B6;
 }
 
 .group .btn.btn-red{
@@ -327,7 +321,7 @@ input:focus ~ .highlight {
   border-radius: 10px;
 }
 .group.select .btn.btn-red, .group:hover .btn.btn-red{
-  background-color: #e74c3c;
+  background-image: linear-gradient(to right, #FF5B5B, #FF4B4B , #FE3C3C); 
   color: white;
   border: none;
 }
@@ -346,3 +340,4 @@ input:focus ~ .highlight {
   to 	{ width:0; background:transparent; }
 }
 </style>
+

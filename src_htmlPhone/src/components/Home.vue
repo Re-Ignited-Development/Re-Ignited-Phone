@@ -168,7 +168,7 @@ export default {
   border-radius: 10px;
   color: white;
   background-size: 30px 30px;
-  background-color: #2980b9;
+  background-color: #d08335;
   background-position: center 15px;
   background-repeat: no-repeat;
   font-size: 14px;

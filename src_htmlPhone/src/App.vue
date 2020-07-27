@@ -3,7 +3,8 @@
     <notification />
     <div v-if="show === true && tempoHide === false" :style="{zoom: zoom}" @contextmenu.stop>
       <div class="phone_wrapper">
-        <div class="phone_coque" :style="{backgroundImage: 'url(/html/static/img/coque/' + coque.value + ')'}"></div>
+        <div v-if="coque" class="phone_coque" :style="{backgroundImage: 'url(/html/static/img/coque/' + coque.value + ')'}"></div>
+
         <div id="app" class="phone_screen">
           <router-view></router-view>
         </div>
@@ -13,10 +14,11 @@
 </template>
 
 <script>
+
 import './PhoneBaseStyle.scss'
 import './assets/css/fontawesome.min.css'
 import { mapGetters, mapActions } from 'vuex'
-
+import {Howl} from 'howler'
 export default {
   name: 'app',
   components: {
@@ -33,7 +35,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['show', 'zoom', 'coque', 'appelsInfo', 'myPhoneNumber', 'volume', 'tempoHide'])
+    ...mapGetters(['show', 'zoom', 'coque', 'sonido', 'appelsInfo', 'myPhoneNumber', 'volume', 'tempoHide'])
   },
   watch: {
     appelsInfo (newValue, oldValue) {
@@ -41,10 +43,23 @@ export default {
         if (this.soundCall !== null) {
           this.soundCall.pause()
         }
+        var path = null
         if (this.appelsInfo.initiator === true) {
-          this.soundCall = new Audio('/html/static/sound/Phone_Call_Sound_Effect.ogg')
+          path = '/html/static/sound/Phone_Call_Sound_Effect.ogg'
+          this.soundCall = new Howl({
+            src: path,
+            onend: function () {
+              console.log('Finished!')
+            }
+          })
         } else {
-          this.soundCall = new Audio('/html/static/sound/ring.ogg')
+          path = '/html/static/sound/' + this.sonido.value
+          this.soundCall = new Howl({
+            src: path,
+            onend: function () {
+              console.log('Finished!')
+            }
+          })
         }
         this.soundCall.loop = true
         this.soundCall.volume = this.volume

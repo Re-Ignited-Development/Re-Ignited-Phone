@@ -7,12 +7,13 @@ const state = {
   myPhoneNumber: '###-####',
   background: JSON.parse(window.localStorage['gc_background'] || null),
   coque: JSON.parse(window.localStorage['gc_coque'] || null),
+  sonido: JSON.parse(window.localStorage['gc_sonido'] || null),
   zoom: window.localStorage['gc_zoom'] || '100%',
   volume: parseFloat(window.localStorage['gc_volume']) || 1,
   mouse: window.localStorage['gc_mouse'] === 'true',
   lang: window.localStorage['gc_language'],
   config: {
-    reseau: 'Gannon',
+    reseau: 'ReIgnited Mobile',
     useFormatNumberFrance: false,
     apps: [],
     themeColor: '#2A56C6',
@@ -60,7 +61,20 @@ const getters = {
     }
     return coque
   },
+  sonido: ({ sonido, config }) => {
+    if (sonido === null) {
+      if (config && config.sonido_default !== undefined) {
+        return config.sonido_default
+      }
+      return {
+        label: 'Panters',
+        value: 'ring.ogg'
+      }
+    }
+    return sonido
+  },
   coqueLabel: (state, getters) => getters.coque.label,
+  sonidoLabel: (state, getters) => getters.sonido.label,
   zoom: ({ zoom }) => zoom,
   useMouse: ({ mouse }) => mouse,
   config: ({ config }) => config,
@@ -133,6 +147,10 @@ const actions = {
     window.localStorage['gc_coque'] = JSON.stringify(coque)
     commit('SET_COQUE', coque)
   },
+  setSonido ({ commit }, sonido) {
+    window.localStorage['gc_sonido'] = JSON.stringify(sonido)
+    commit('SET_SONIDO', sonido)
+  },
   setVolume ({ commit }, volume) {
     window.localStorage['gc_volume'] = volume
     commit('SET_VOLUME', volume)
@@ -155,6 +173,7 @@ const actions = {
     dispatch('setVolume', 1)
     dispatch('setBackground', getters.config.background_default)
     dispatch('setCoque', getters.config.coque_default)
+    dispatch('setSonido', getters.config.sonido_default)
     dispatch('setLanguage', 'fr_FR')
   }
 }
@@ -184,6 +203,9 @@ const mutations = {
   },
   SET_COQUE (state, coque) {
     state.coque = coque
+  },
+  SET_SONIDO (state, sonido) {
+    state.sonido = sonido
   },
   SET_ZOOM (state, zoom) {
     state.zoom = zoom

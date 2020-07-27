@@ -1,6 +1,7 @@
 import store from '@/store'
 import VoiceRTC from './VoiceRCT'
 import Vue from 'vue'
+import {Howl} from 'howler'
 
 import emoji from './emoji.json'
 const keyEmoji = Object.keys(emoji)
@@ -115,6 +116,7 @@ class PhoneAPI {
   async deleteALL () {
     localStorage.clear()
     store.dispatch('tchatReset')
+    store.dispatch('notesReset')
     store.dispatch('resetPhone')
     store.dispatch('resetMessage')
     store.dispatch('resetContact')
@@ -154,6 +156,14 @@ class PhoneAPI {
   }
   async tchatSendMessage (channel, message) {
     this.post('tchat_addMessage', { channel, message })
+  }
+
+  // === App Notes
+  async notesGetMessagesChannel (channel) {
+    window.localStorage.setItem('gc_notas_locales', channel)
+  }
+  async notesSendMessage (channel, message) {
+    this.post('notes_addMessage', { channel, message })
   }
 
   // ==========================================================================
@@ -239,6 +249,14 @@ class PhoneAPI {
     store.commit('TCHAT_SET_MESSAGES', data)
   }
 
+  // Notes Event
+  onnotes_receive (data) {
+    store.dispatch('notesAddMessage', data)
+  }
+  onnotes_channel (data) {
+    store.commit('NOTES_SET_MESSAGES', data)
+  }
+
   // =====================
   onautoStartCall (data) {
     this.startCall(data.number, data.extraData)
@@ -311,11 +329,17 @@ class PhoneAPI {
   }
 
   onplaySound ({ sound, volume = 1 }) {
+    var path = '/html/static/sound/' + sound
     if (!sound) return
     if (this.soundList[sound] !== undefined) {
       this.soundList[sound].volume = volume
     } else {
-      this.soundList[sound] = new Audio('/html/static/sound/' + sound)
+      this.soundList[sound] = new Howl({
+        src: path,
+        onend: function () {
+          console.log('Finished!')
+        }
+      })
       this.soundList[sound].loop = true
       this.soundList[sound].volume = volume
       this.soundList[sound].play()

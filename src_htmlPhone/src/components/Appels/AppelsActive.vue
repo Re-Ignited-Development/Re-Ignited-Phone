@@ -16,7 +16,7 @@
     </div>
 
     <div class="actionbox">
-      <div class="action raccrocher" :class="{disable: status === 0 && select !== 0}"
+      <div class="action raccrocher" :class="{disableTrue: status === 0 && select !== 0}"
         @click.stop="raccrocher"
       >
         <svg viewBox="0 0 24 24" @click.stop="raccrocher">
@@ -26,7 +26,7 @@
         </svg>
       </div>
 
-      <div class="action deccrocher" v-if="status === 0" :class="{disable: status === 0 && select !== 1}"
+      <div class="action deccrocher" v-if="status === 0" :class="{disableFalse: status === 0 && select !== 1}"
         @click.stop="deccrocher"
       >
         <svg viewBox="0 0 24 24" @click.stop="deccrocher">
@@ -256,6 +256,9 @@ export default {
   background-color: #43a047 !important;
 }
 
+.disableTrue { 
+  background-color: #fd3d2e;
+}
 .disable {
   background-color: #4d4d4d;
 }

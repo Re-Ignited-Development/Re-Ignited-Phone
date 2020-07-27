@@ -69,7 +69,8 @@ export default {
 
 <style scoped>
 .phone_content {
-  background: #c0deed;
+  background: #DBF0F4;
+  
 }
 
 .tweet_write{
