@@ -9,16 +9,17 @@
       </span>
     </span>
     <div class='home_buttons'>
-      <button class="app_btn"
-          v-for="(but, key) of AppsHome" 
-          v-bind:key="but.name" 
-          v-bind:class="{ select: key === currentSelect}"
-          v-bind:style="{backgroundImage: 'url(' + but.icons +')'}"
-          @click="openApp(but)"
-         >
-        
-          <span class="puce" v-if="but.puce !== undefined && but.puce !== 0">{{but.puce}}</span>
-      </button>
+        <button class="app_btn"
+            v-for="(but, key) of AppsHome" 
+            v-bind:key="but.name" 
+            v-bind:class="{ select: key === currentSelect}"
+            @click="openApp(but)"
+           >
+            <div class='app_btn_img'
+            v-bind:style="{backgroundImage: 'url(' + but.icons +')'}"
+            ></div>
+            <span class="puce" v-if="but.puce !== undefined && but.puce !== 0">{{but.puce}}</span>
+        </button>
       <div class="btn_menu_ctn">
         <button 
           class="btn_menu"
@@ -96,6 +97,8 @@ export default {
 </script>
 
 <style scoped="true">
+
+
 .home{
   background-size: cover !important;
   background-position: center !important;
@@ -158,6 +161,8 @@ export default {
   justify-content: space-between;
   transition: all 0.5s ease-in-out;
 }
+
+
 .app_btn{
   outline: none;
   position: relative;
@@ -168,8 +173,8 @@ export default {
   border-radius: 10px;
   color: white;
   background-size: 30px 30px;
-  background-color: #d08335;
-  background-position: center 15px;
+  background-image: linear-gradient(to bottom, #e67e22, #e74c3c, #c0392b);
+  background-size: cover;
   background-repeat: no-repeat;
   font-size: 14px;
   padding-top: 60px;
@@ -181,11 +186,22 @@ export default {
   text-align: center;
 }
 
+.app_btn_img {
+  width: 60px;
+  height: 10px;
+  padding-top: 60px;
+  background-position: 9px 16px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+
+  margin-top: -60px
+}
 
 button .puce{
   position: absolute;
   display: block;
-  background-color: #1450b8;
+  background-color: #2c3e50;
   font-size: 14px;
   width: 28px;
   height: 28px;
@@ -197,7 +213,6 @@ button .puce{
   right: -10px;
 }
 button.select, button:hover{
-  background-color: rgba(255,255,255, 0.7);
   border-radius: 12px;
 }
 
