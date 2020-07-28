@@ -417,18 +417,17 @@ export default {
   float: right;
   background-color: #3498db;
   padding: 5px 20px;
+  color: #Fff;
   max-width: 90%;
   margin-right: 5%;
-  border-radius: 50px;
   margin-top: 10px;
 }
 
 .sms_other{
-    background-color: #0b81ff;
-    color: #ffffff;
+    background-color: #d8d8d8;
+    color: #000;
     float: left;
     padding: 5px 20px;
-    border-radius: 50px;
     max-width: 90%;
     margin-left: 5%;
     margin-top: 10px;
@@ -441,10 +440,10 @@ export default {
 }
 
 .sms_me .sms_time{
-    color: #AAA;
+    color: #fff;
 }
 .sms_other .sms_time{
-    color: #ffffff;
+    color: #000;
 }
 
 
