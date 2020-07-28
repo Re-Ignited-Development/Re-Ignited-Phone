@@ -7,14 +7,20 @@
   
           <div class='menu_buttons'>
             
-            <button 
+            <button class='app_btn'
                 v-for="(but, key) of Apps" 
                 v-bind:key="but.name" 
                 v-bind:class="{ select: key === currentSelect}"
-                v-bind:style="{backgroundImage: 'url(' + but.icons +')'}"
                 @click.stop="openApp(but)"
               >
-              {{but.intlName}}
+              <div class='app_btn_img'
+              v-bind:style="{backgroundImage: 'url(' + but.icons +')'}"
+              >
+              </div>
+              <span class='app_btn_name'>
+                {{but.intlName}}
+              </span>
+              
                 <span class="puce" v-if="but.puce !== undefined && but.puce !== 0">{{but.puce}}</span>
             </button>
           </div>
@@ -156,22 +162,25 @@ export default {
 }
 
 
-button{
+.app_btn_name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app_btn {
+
   outline: none;
   position: relative;
   border: none;
   width: 60px;
   height: 10px;
-  display: flex;
-  align-content: center;
-  justify-content: center;
   margin: 18px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(to bottom, #e67e22, #e74c3c, #c0392b);
   border-radius: 10px;
   color: white;
-  background-size: 30px 30px;
-  background-position: center 15px;
-  background-repeat: no-repeat;
-  background-color: #d08335;
   font-size: 14px;
   padding-top: 60px;
   font-weight: 700;
@@ -181,10 +190,21 @@ button{
              0 1px 0 rgba(0,0,0, 0.8);
   text-align: center;
 }
+
+.app_btn_img {
+  padding-top: 60px;
+  background-position: 9px 16px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  margin-top: -60px
+}
+
+
 button .puce{
   position: absolute;
   display: block;
-  background-color: #1450b8;
+  background-color: #2c3e50;
   font-size: 14px;
   width: 28px;
   height: 28px;
