@@ -165,6 +165,7 @@ export default {
 
 .app_btn{
   outline: none;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
   position: relative;
   margin: 10px;
   border: none;
@@ -187,14 +188,11 @@ export default {
 }
 
 .app_btn_img {
-  width: 60px;
-  height: 10px;
   padding-top: 60px;
   background-position: 9px 16px;
   position: relative;
   background-repeat: no-repeat;
   background-size: 30px 30px;
-
   margin-top: -60px
 }
 
