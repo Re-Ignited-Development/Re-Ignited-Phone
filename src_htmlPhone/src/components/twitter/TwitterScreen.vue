@@ -51,7 +51,7 @@ export default {
         {
           title: this.IntlString('APP_TWITTER_VIEW_TWEETER'),
           component: TwitterPostTweet,
-          icon: 'fa-comment-o'
+          icon: 'fa-comment'
         },
         {
           title: this.IntlString('APP_TWITTER_VIEW_SETTING'),
