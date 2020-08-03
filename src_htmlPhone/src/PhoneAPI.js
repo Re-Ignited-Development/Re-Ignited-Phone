@@ -336,6 +336,8 @@ class PhoneAPI {
     } else {
       this.soundList[sound] = new Howl({
         src: path,
+        volume: volume,
+        loop: true,
         onend: function () {
           console.log('Finished!')
         }
