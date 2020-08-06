@@ -1,5 +1,6 @@
 --====================================================================================
 -- #Author: Jonathan D @ Gannon
+-- Redesign and modified by BTNGaming & chip @ 
 --====================================================================================
  
 -- Configuration
@@ -30,21 +31,21 @@ local soundDistanceMax = 8.0
 
 
 --====================================================================================
---  Check si le joueurs poséde un téléphone
---  Callback true or false
+-- Check if the players have a phone
+-- Callback true or false
 --====================================================================================
 function hasPhone (cb)
   cb(true)
 end
 --====================================================================================
---  Que faire si le joueurs veut ouvrir sont téléphone n'est qu'il en a pas ?
+--  What if the players want to open their phone that they don't have?
 --====================================================================================
 function ShowNoPhoneWarning ()
 end
 
 --[[
-  Ouverture du téphone lié a un item
-  Un solution ESC basé sur la solution donnée par HalCroves
+Opening of the phone linked to an item.
+Based on the solution given by HalCroves
   https://forum.fivem.net/t/tutorial-for-gcphone-with-call-and-job-message-other/177904
 ]]--
 --[[
@@ -127,7 +128,7 @@ end)
 
 
 --====================================================================================
---  Active ou Deactive une application (appName => config.json)
+--  Activate or Deactivate an application (appName => config.json)
 --====================================================================================
 RegisterNetEvent('gcPhone:setEnableApp')
 AddEventHandler('gcPhone:setEnableApp', function(appName, enable)
@@ -135,7 +136,7 @@ AddEventHandler('gcPhone:setEnableApp', function(appName, enable)
 end)
 
 --====================================================================================
---  Gestion des appels fixe
+--  Fixed call management
 --====================================================================================
 function startFixeCall (fixeNumber)
   local number = ''
@@ -165,10 +166,10 @@ AddEventHandler("gcPhone:notifyFixePhoneChange", function(_PhoneInCall)
 end)
 
 --[[
-  Affiche les imformations quant le joueurs est proche d'un fixe
+  Displays information when the player is near a fixed phone (Static location phone like MRPD Desk Phone)
 --]]
 function showFixePhoneHelper (coords)
-  for number, data in pairs(Config.FixePhone) do
+  for number, data in pairs(FixePhone) do
     local dist = GetDistanceBetweenCoords(
       data.coords.x, data.coords.y, data.coords.z,
       coords.x, coords.y, coords.z, 1)
@@ -522,7 +523,7 @@ AddEventHandler('gcphone:autoAcceptCall', function(infoCall)
 end)
 
 --====================================================================================
---  Gestion des evenements NUI
+--  Management of NUI events
 --==================================================================================== 
 RegisterNUICallback('log', function(data, cb)
   print(data)
