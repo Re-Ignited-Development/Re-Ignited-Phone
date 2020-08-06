@@ -65,8 +65,6 @@ export default {
             }
           })
         }
-        //this.soundCall.loop = true
-        //this.soundCall.volume = this.volume
         this.soundCall.play()
       } else if (this.soundCall !== null) {
         this.soundCall.pause()
