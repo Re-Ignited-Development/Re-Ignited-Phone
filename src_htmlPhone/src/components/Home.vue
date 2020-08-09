@@ -14,6 +14,7 @@
             v-bind:key="but.name" 
             v-bind:class="{ select: key === currentSelect}"
             @click="openApp(but)"
+            v-bind:style="{background: but.color}"
            >
             <div class='app_btn_img'
             v-bind:style="{backgroundImage: 'url(' + but.icons +')'}"
@@ -165,7 +166,6 @@ export default {
 
 .app_btn{
   outline: none;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
   position: relative;
   margin: 10px;
   border: none;
@@ -180,10 +180,6 @@ export default {
   font-size: 14px;
   padding-top: 60px;
   font-weight: 700;
-  text-shadow: -1px 0 0 rgba(0,0,0, 0.8), 
-             1px 0 0 rgba(0,0,0, 0.8),
-             0 -1px 0 rgba(0,0,0, 0.8),
-             0 1px 0 rgba(0,0,0, 0.8);
   text-align: center;
 }
 
@@ -209,9 +205,6 @@ button .puce{
   border: 1px solid white;
   bottom: -5px;
   right: -10px;
-}
-button.select, button:hover{
-  border-radius: 12px;
 }
 
 .btn_menu_ctn{

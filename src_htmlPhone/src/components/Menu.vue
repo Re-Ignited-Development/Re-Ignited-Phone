@@ -12,6 +12,7 @@
                 v-bind:key="but.name" 
                 v-bind:class="{ select: key === currentSelect}"
                 @click.stop="openApp(but)"
+                v-bind:style="{background: but.color}"
               >
               <div class='app_btn_img'
               v-bind:style="{backgroundImage: 'url(' + but.icons +')'}"
@@ -169,7 +170,6 @@ export default {
 }
 
 .app_btn {
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
   outline: none;
   position: relative;
   border: none;

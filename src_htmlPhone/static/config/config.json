@@ -137,6 +137,7 @@
       "pl_PL__name": "Telefon",
       "es_ES__name": "Teléfono",
       "icons": "/html/static/img/icons_app/call.png",
+      "color": "#5BC236",
       "routeName": "appels",
       "inHomePage": true
     },
@@ -150,6 +151,7 @@
       "es_ES__name": "Mensajes",
       "icons": "/html/static/img/icons_app/sms.png",
       "routeName": "messages",
+      "color": "#5BC236",
       "inHomePage": true,
       "puceRef": "nbMessagesUnread"
     },
@@ -163,6 +165,7 @@
       "es_ES__name": "Contactos",
       "icons": "/html/static/img/icons_app/contacts.png",
       "routeName": "contacts",
+      "color": "#1180FF",
       "inHomePage": true
     },
     {
@@ -174,6 +177,7 @@
       "es_ES__name": "Twitter",
       "icons": "/html/static/img/icons_app/twitter.png",
       "routeName": "twitter.splash",
+      "color":"#61c5ec",
       "inHomePage": true
     },
     {
@@ -186,6 +190,7 @@
       "es_ES__name": "Ajustes",
       "icons": "/html/static/img/icons_app/settings.png",
       "routeName": "parametre",
+      "color": "#95a5a6",
       "inHomePage": false
     },
     {
@@ -198,6 +203,7 @@
       "es_ES__name": "Banquillo",
       "icons": "/html/static/img/icons_app/bank.png",
       "routeName": "bank",
+      "color": "#ff3f34",
       "inHomePage": false
     },
     {
@@ -209,6 +215,7 @@
       "es_ES__name": "Bolsa",
       "icons": "/html/static/img/icons_app/bourse.png",
       "routeName": "bourse",
+      "color": "#3c40c6",
       "enabled": true
     },
     {
@@ -220,6 +227,7 @@
       "pl_PL__name": "Kamera",
       "es_ES__name": "Cámara",
       "icons": "/html/static/img/icons_app/photo.png",
+      "color": "#2c3e50",
       "routeName": "photo"
     },
     {
@@ -230,6 +238,7 @@
       "pl_PL__name": "Czat czarny",
       "es_ES__name": "Chat Oscuro",
       "icons": "/html/static/img/icons_app/tchat.png",
+      "color": "#1e272e",
       "routeName": "tchat"
     },
     {
@@ -240,13 +249,15 @@
       "pl_PL__name": "Notatki ",
       "es_ES__name": "Notas ",
       "routeName": "notes",
+      "color": "#feca57",
       "icons": "/html/static/img/icons_app/notes.png"
 
     },
     {
       "name": "9GAG",
       "icons": "/html/static/img/icons_app/9gag.png",
-      "routeName": "9gag"
+      "routeName": "9gag",
+      "color": "#000"
     }
   ],
   "defaultLanguage": "en_US",
