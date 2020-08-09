@@ -2,7 +2,7 @@
   <div class="screen" @click="onBackspace">
     <div class='elements'>
       <InfoBare style="width: 100%;top: 100%;margin-left: -17px;"/>
-      <img class="logo_maze" src="/html/static/img/app_bank/logo_mazebank.png">
+      <img class="logo_maze" src="/html/static/img/app_bank/FleecaBank.png">
       <div class="num-tarj" >
         <span  class="moneyTitle">{{ IntlString('APP_BANK_TITLE_BALANCE') }}</span>
         <span class="moneyTitle">{{ bankAmontFormat }}$</span>
@@ -134,22 +134,39 @@ export default {
   width: 100%;
   height: 100%;
   padding: 18px;
-  background-color: white;
+  background-color: #1e272e;
+}
+.logo_maze {
+  width: 100%; 
+  height: auto;
+  flex-shrink: 0;
+  
+  width: 113%;
+  margin-left: -18px;
+  margin-top: -12em;
+}
+
+input {
+  outline: none;
+}
+
+button {
+  outline: none;
 }
 
 .num-tarj{
- margin-top: -88px; 
- margin-left: 50px
+ margin-top: 1em; 
+ display: flex;
+ justify-content: center;
+ font-weight: bold;
 }
 
 .moneyTitle{
-      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-weight: 200;
-    color: white;
-        font-size: 16px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-weight: 600;
+  color: white;
+  font-size: 16px;
 }
-
-
 
 .title{
   padding-left: 16px;
@@ -170,24 +187,14 @@ export default {
 .hr{
   width: 100;
   height: 4px;
-  margin-top: 73px;
-  background-image: linear-gradient(to right, #a9cc2e, #7cb732, #3a5d0d);  
-}
-.logo_maze {
-  width: 100%; 
-  height: auto;
-  flex-shrink: 0;
-  
-  width: 113%;
-  margin-left: -18px;
-  margin-top: -207px
+  margin-top: 40px;
+  background-color: rgb(76, 175, 80);
 }
 
 .logo_tarj_end {
   width: 100%; 
   height: auto;
   flex-shrink: 0;
-  
   width: 113%;
   margin-left: -18px;
   margin-top: -57px
@@ -204,37 +211,40 @@ export default {
   
 }
 .paragonder{
-    display: block;
-       
-    width: 100%;
-    height: calc(1.5em + .75rem + 2px);
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-weight: 300;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  display: block;
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .buton-transfer{
   border: none;
   width: 220px;
   color: #fff;
-   background-image: linear-gradient(to right, #a9cc2e, #7cb732, #3a5d0d); 
-    padding: .5rem 1rem;
-    font-size: 17px;
-    line-height: 1.5;
-    margin-top: 1.25rem;
-    font-weight: 300;
-    margin-bottom: .25rem;
-    cursor: pointer;
-    border-radius: 1.3rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    text-transform: none;
+  background-color: rgb(76, 175, 80);
+  padding: .5rem 1rem;
+  font-size: 17px;
+  line-height: 1.5;
+  margin-top: 1.25rem;
+  font-weight: 300;
+  margin-bottom: .25rem;
+  cursor: pointer;
+  border-radius: 1.3rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  text-transform: none;
+}
+
+.buton-transfer:hover {
+  background: #7cb732;
 }
 
 .buton-cancel{
