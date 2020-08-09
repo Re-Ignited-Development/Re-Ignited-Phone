@@ -50,7 +50,7 @@ export default {
           value: this.myPhoneNumber
         },
         {
-          icons: 'fa-picture-o',
+          icons: 'fa-image',
           title: this.IntlString('APP_CONFIG_WALLPAPER'),
           value: this.backgroundLabel,
           onValid: 'onChangeBackground',
@@ -64,7 +64,7 @@ export default {
           values: this.config.coque
         },
         {
-          icons: 'fa-bell-o',
+          icons: 'fa-bell',
           title: this.IntlString('APP_CONFIG_SOUND'),
           value: this.sonidoLabel,
           onValid: 'onChangeSonido',
@@ -306,8 +306,8 @@ export default {
   position: relative;
 }
 .element .fa{
-  color: #0b81ff;
-  font-size: 28px;
+  color: #485460;
+  font-size: 24px;
   margin-left: 6px;
   height: 52px;
   width: 52px;

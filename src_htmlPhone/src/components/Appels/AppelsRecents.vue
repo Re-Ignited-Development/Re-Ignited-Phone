@@ -187,6 +187,9 @@ export default {
   .elements {
     overflow-y: auto;
   }
+  .fa-phone {
+    color: #485460;
+  }
   .element{
     height: 58px;
     line-height: 58px;
