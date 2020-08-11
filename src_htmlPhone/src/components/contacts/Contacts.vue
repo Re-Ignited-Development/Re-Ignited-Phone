@@ -6,7 +6,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { generateColorForStr } from '@/Utils'
+
 import List from './../List.vue'
 import Modal from '@/components/Modal/index.js'
 
@@ -24,7 +24,7 @@ export default {
     lcontacts () {
       let addContact = {display: this.IntlString('APP_CONTACT_NEW'), letter: '+', num: '', id: -1}
       return [addContact, ...this.contacts.map(e => {
-        e.backgroundColor = e.backgroundColor || generateColorForStr(e.number)
+        e.backgroundColor = '#2c3e50'
         return e
       })]
     }

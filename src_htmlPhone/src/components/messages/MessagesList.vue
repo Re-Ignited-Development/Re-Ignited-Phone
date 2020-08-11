@@ -6,10 +6,8 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { generateColorForStr } from '@/Utils'
 import Modal from '@/components/Modal/index.js'
 import List from '@/components/List'
-
 export default {
   components: {
     List
@@ -81,11 +79,11 @@ export default {
           data.unknowContact = contact === undefined
           if (contact !== undefined) {
             data.display = contact.display
-            data.backgroundColor = contact.backgroundColor || generateColorForStr(x.transmitter)
+            data.backgroundColor = '#2c3e50'
             data.letter = contact.letter
             data.icon = contact.icon
           } else {
-            data.backgroundColor = generateColorForStr(x.transmitter)
+            data.backgroundColor = '#2c3e50'
           }
           rv[x['transmitter']] = data
         }

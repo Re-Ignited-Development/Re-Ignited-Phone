@@ -18,7 +18,9 @@
               v-bind:style="{backgroundImage: 'url(' + but.icons +')'}"
               >
               </div>
-              <span class='app_btn_name'>
+              <span class='app_btn_name' 
+                  v-bind:style="{visibility: but.menuTitle}"
+                >
                 {{but.intlName}}
               </span>
               

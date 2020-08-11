@@ -54,7 +54,6 @@
     "value": "Reignited.jpg"
   },
 
-
   "coque": {
     "Samsung S8": "s8.png",
     "Iphone X": "iphonex.png",
@@ -130,6 +129,7 @@
   "apps": [
     {
       "name": "Phone",
+      "menuTitle": "hidden",
       "fr_FR__name": "Téléphone",
       "cs_CZ__name": "Telefon",
       "en_US__name": "Phone",
@@ -143,6 +143,7 @@
     },
     {
       "name": "Messages",
+      "menuTitle": "hidden",
       "fr_FR__name": "Messages",
       "en_US__name": "Messages",
       "cs_CZ__name": "Zprávy",
@@ -157,6 +158,7 @@
     },
     {
       "name": "Contacts",
+      "menuTitle": "hidden",
       "fr_FR__name": "Contacts",
       "en_US__name": "Contacts",
       "cs_CZ__name": "Kontakty",
@@ -170,6 +172,7 @@
     },
     {
       "name": "Twitter",
+      "menuTitle": "hidden",
       "fr_FR__name": "Twitter",
       "en_US__name": "Twitter",
       "de_DE__name": "Twitter",
@@ -182,6 +185,7 @@
     },
     {
       "name": "Settings",
+      "menuTitle": "hidden",
       "fr_FR__name": "Paramètres",
       "en_US__name": "Settings",
       "cs_CZ__name": "Nastavení",
@@ -195,6 +199,7 @@
     },
     {
       "name": "Bank",
+      "menuTitle": "hidden",
       "fr_FR__name": "Banque",
       "en_US__name": "Bank",
       "cs_CZ__name": "Banka",
@@ -208,41 +213,45 @@
     },
     {
       "name": "Bourse",
+      "menuTitle": "hidden",
       "fr_FR__name": "Bourse",
       "cs_CZ__name": "Burza",
       "en_US__name": "Stock Market",
       "de_DE__name": "Börse",
       "es_ES__name": "Bolsa",
-      "icons": "/html/static/img/icons_app/bourse.png",
+      "icons": "/html/static/img/icons_app/stockmarket.png",
       "routeName": "bourse",
       "color": "#3c40c6",
       "enabled": true
     },
     {
       "name": "Camera",
+      "menuTitle": "hidden",
       "fr_FR__name": "Photo",
       "cs_CZ__name": "Fotoaparát",
       "en_US__name": "Camera",
       "de_DE__name": "Kamera",
       "pl_PL__name": "Kamera",
       "es_ES__name": "Cámara",
-      "icons": "/html/static/img/icons_app/photo.png",
+      "icons": "/html/static/img/icons_app/camera.png",
       "color": "#2c3e50",
       "routeName": "photo"
     },
     {
       "name": "Dark Chat",
+      "menuTitle": "hidden",
       "fr_FR__name": "Dark Chat",
       "en_US__name": "Dark Chat",
       "de_DE__name": "Dark Net",
       "pl_PL__name": "Czat czarny",
       "es_ES__name": "Chat Oscuro",
-      "icons": "/html/static/img/icons_app/tchat.png",
+      "icons": "/html/static/img/icons_app/darkchat.png",
       "color": "#1e272e",
       "routeName": "tchat"
     },
     {
       "name": "Notes",
+      "menuTitle": "hidden",
       "fr_FR__name": "Notes ",
       "en_US__name": "Notes ",
       "de_DE__name": "Notizen ",
@@ -255,6 +264,7 @@
     },
     {
       "name": "9GAG",
+      "menuTitle": "hidden",
       "icons": "/html/static/img/icons_app/9gag.png",
       "routeName": "9gag",
       "color": "#000"
