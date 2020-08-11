@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 334px; height: 742px; color: white" class="phone_app">
+  <div style="width: 100%; height: 742px; color: white" class="phone_app">
     <PhoneTitle :title="IntlString('APP_NOTES')" backgroundColor="#f8d344" color="white" @back="onBack" />
     <div  style="backgroundColor: white;" class="elements" @contextmenu.prevent="addChannelOption">
         <div  
