@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 3234px; height: 742px; background: white" class="phone_app">
+  <div style="width: 334px; height: 742px; background: white" class="phone_app">
     <PhoneTitle :title="channelName" backgroundColor="#f8d344" @back="onQuit"/>
     <div class="phone_content">
       <div class="elements" ref="elementsDiv">
