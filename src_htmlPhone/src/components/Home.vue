@@ -190,8 +190,15 @@ export default {
   position: relative;
   background-repeat: no-repeat;
   background-size: 30px 30px;
-  margin-top: -60px
+  margin-top: -60px;
+  transition: .1s;
 }
+
+button:hover {
+  transform: scale(1.15);
+  transition: .1s;
+}
+
 
 button .puce{
   position: absolute;

@@ -185,6 +185,12 @@ export default {
   padding-top: 60px;
   font-weight: 500;
   text-align: center;
+  transition: .1s;
+}
+
+button:hover {
+  transform: scale(1.15);
+  transition: .1s;
 }
 
 .app_btn_img {
