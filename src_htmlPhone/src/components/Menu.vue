@@ -190,7 +190,7 @@ export default {
   transition: .1s;
 }
 
-button:hover {
+button:hover, button.select {
   transform: scale(1.15);
   transition: .1s;
 }
