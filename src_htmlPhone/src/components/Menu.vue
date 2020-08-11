@@ -183,11 +183,7 @@ export default {
   color: white;
   font-size: 14px;
   padding-top: 60px;
-  font-weight: 700;
-  text-shadow: -1px 0 0 rgba(0,0,0, 0.8), 
-             1px 0 0 rgba(0,0,0, 0.8),
-             0 -1px 0 rgba(0,0,0, 0.8),
-             0 1px 0 rgba(0,0,0, 0.8);
+  font-weight: 500;
   text-align: center;
 }
 
@@ -215,9 +211,6 @@ button .puce{
   bottom: 45px;
   right: -10px;
 }
-button.select, button:hover{
-  background-color: rgba(255,255,255, 0.7);
-  border-radius: 12px;
-}
+
 
 </style>

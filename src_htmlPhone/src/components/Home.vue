@@ -183,6 +183,7 @@ export default {
   text-align: center;
 }
 
+
 .app_btn_img {
   padding-top: 60px;
   background-position: 9px 16px;
