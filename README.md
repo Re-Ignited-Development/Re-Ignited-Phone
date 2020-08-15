@@ -7,6 +7,7 @@
 <h2 align="center">GCPhone Redesign for FiveM</h2>
 
 ## Features
+   - ZERO Database changes needed to replace gcphone v3 or any other public versions.
    - Full contacts list.
    - Sending text messages.
    - Voice calls.
