@@ -9,7 +9,7 @@
 
 ALTER TABLE `users` ADD COLUMN `phone_number` VARCHAR(10) NULL;
 
--- Export the table structure for Messages
+-- Export the table structure
 CREATE TABLE IF NOT EXISTS `phone_app_chat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `channel` varchar(20) NOT NULL,
@@ -21,15 +21,14 @@ CREATE TABLE IF NOT EXISTS `phone_app_chat` (
 -- Export the table structure for Phone Calls
 CREATE TABLE IF NOT EXISTS `phone_calls` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `owner` varchar(10) NOT NULL COMMENT 'Own phone number',
-  `num` varchar(10) NOT NULL COMMENT 'Contact reference number',
+  `owner` varchar(10) NOT NULL COMMENT 'Phone number owner',
+  `num` varchar(10) NOT NULL COMMENT 'Contact number',
   `incoming` int(11) NOT NULL COMMENT 'Define if we are the origin of the call',
   `time` timestamp NOT NULL DEFAULT current_timestamp(),
-  `accepts` int(11) NOT NULL COMMENT 'Calls Acepted or not',
+  `accepts` int(11) NOT NULL COMMENT 'Calls Accepted or not',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8;
 
--- Les données exportées n'étaient pas sélectionnées.
 -- Export de la structure de la table gtarp. phone_messages
 CREATE TABLE IF NOT EXISTS `phone_messages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
