@@ -58,7 +58,7 @@ export default {
           path = '/html/static/sound/' + this.sonido.value
           this.soundCall = new Howl({
             src: path,
-            volue: this.volume,
+            volume: this.volume,
             loop: true,
             onend: function () {
               console.log('Finished!')

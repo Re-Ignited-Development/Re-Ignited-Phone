@@ -197,50 +197,9 @@ export default {
 button:hover, button.select {
   transform: scale(1.15);
   transition: .1s;
-  -webkit-animation-name: hvr-pulse-shrink;
-  animation-name: hvr-pulse-shrink;
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-  -webkit-animation-direction: alternate;
-  animation-direction: alternate;
 }
 
-/* Pulse Shrink */
-@-webkit-keyframes hvr-pulse-shrink {
-  to {
-    -webkit-transform: scale(0.9);
-    transform: scale(0.9);
-  }
-}
-@keyframes hvr-pulse-shrink {
-  to {
-    -webkit-transform: scale(0.9);
-    transform: scale(0.9);
-  }
-}
-.hvr-pulse-shrink {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-}
-.hvr-pulse-shrink:hover, .hvr-pulse-shrink:focus, .hvr-pulse-shrink:active {
-  -webkit-animation-name: hvr-pulse-shrink;
-  animation-name: hvr-pulse-shrink;
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-  -webkit-animation-direction: alternate;
-  animation-direction: alternate;
-}
+
 button .puce{
   position: absolute;
   display: block;

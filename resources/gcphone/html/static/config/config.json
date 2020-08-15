@@ -25,9 +25,6 @@
 
   "useFormatNumberFrance": false,
 
-  "/Sentry/": "Enabling this option can help us to discover new bugs and solve them ASAP! (We beg you to keep this enabled, so we can help us each other as a community)",
-  "useSentryErroTracking": true,
-
   "useWebRTCVocal": false,
   "RTCConfig": {
     "iceServers": [{
@@ -37,39 +34,51 @@
     }]
   },
 
-  "//": "REQUIRES https://github.com/citizenfx/screenshot-basic otherwise set enableTakePhoto to false",
+  "//": "REQUIRES https://github.com/citizenfx/screenshot-basic otherwise set enableTakePhoto to false. Thanks to @GLDmACK for his Upload Service!!!", 
   "enableTakePhoto": true,
-  "fileUploadService_Url": "https://wew.wtf/upload.php",
-  "fileUploadService_Field": "files[]",
+  "fileUploadService_Url": "https://gcphone.herokuapp.com/uploads/upload",
+  "fileUploadService_Field": "image",
 
   "background": {
-    "Re-Ignited": "Reignited.jpg",
+    "Re-Ignited ESX": "rrp.jpg",
     "Calvin & Hobbes": "back001.jpg",
     "Destiny": "back002.jpg",
     "Stormtrooper": "back003.jpg",
+    "Re-Ignited": "Reignited.jpg",
+    "Hot vs Cold Fists": "fists.jpg",
+    "Dragon": "dragon.jpg",
     "Custom URL": "URL"
   },
   "background_default": {
-    "label": "Re-Ignited",
-    "value": "Reignited.jpg"
+    "label": "Re-Ignited ESX",
+    "value": "rrp.jpg"
   },
 
-
   "coque": {
-    "Samsung S8": "s8.png",
+    "Samsung Galaxy S8": "s8.png",
+    "Samsung Galaxy S9 Black": "s9black.png",
+    "Samsung Galaxy S9 White": "s9white.png",
+    "Samsung Galaxy S10": "s10.png",
     "Iphone X": "iphonex.png",
+    "Iphone X2": "iphonex2.png",
+    "Iphone X3": "iphonex3.png",
+    "Iphone 11 Green": "iphone11green.png",
+    "Google Pixel 3a XL": "pixel3axl.png",
+    "Google Top Cam": "op.png",
     "Brick Base": "base.png",
     "Transparent": "transparent.png"
   },
   
   "sonido": {
     "Astronomia": "ring.ogg",
-    "Safaera": "safaera.ogg",
-    "Bella Ciao": "bella_ciao.ogg",
-    "Casa Papel": "casa_papel.ogg",
+    "Crystallize": "Crystallize.ogg",
     "Iphone 11": "iphone_11.ogg",
-    "Tusa": "tusa.ogg",
-    "XXXTentacion": "xtentacion.ogg"
+    "XXXTentacion": "xtentacion.ogg",
+    "Dance Monkey": "dance_monkey.ogg",
+    "Don't Look Now": "dont-look-now",
+    "I'm a Gummy Bear": "gummybear.ogg",
+    "Non Copyright - Spectre": "Alan-Walker-Spectre.ogg",
+    "Non Copyright 2 - Mortals": "Warriyo-Mortals.ogg"
   },
 
   "coque_default": {
@@ -78,8 +87,8 @@
   },
 
   "sonido_default": {
-    "label": "Casa Papel",
-    "value": "casa_papel.ogg"
+    "label": "Crystallize",
+    "value": "crystallize.ogg"
   },
 
   "serviceCall": [{
@@ -130,6 +139,7 @@
   "apps": [
     {
       "name": "Phone",
+      "menuTitle": "visible",
       "fr_FR__name": "Téléphone",
       "cs_CZ__name": "Telefon",
       "en_US__name": "Phone",
@@ -137,11 +147,13 @@
       "pl_PL__name": "Telefon",
       "es_ES__name": "Teléfono",
       "icons": "/html/static/img/icons_app/call.png",
+      "color": "#5BC236",
       "routeName": "appels",
       "inHomePage": true
     },
     {
       "name": "Messages",
+      "menuTitle": "visible",
       "fr_FR__name": "Messages",
       "en_US__name": "Messages",
       "cs_CZ__name": "Zprávy",
@@ -150,11 +162,13 @@
       "es_ES__name": "Mensajes",
       "icons": "/html/static/img/icons_app/sms.png",
       "routeName": "messages",
+      "color": "#5BC236",
       "inHomePage": true,
       "puceRef": "nbMessagesUnread"
     },
     {
       "name": "Contacts",
+      "menuTitle": "visible",
       "fr_FR__name": "Contacts",
       "en_US__name": "Contacts",
       "cs_CZ__name": "Kontakty",
@@ -163,10 +177,12 @@
       "es_ES__name": "Contactos",
       "icons": "/html/static/img/icons_app/contacts.png",
       "routeName": "contacts",
+      "color": "#1180FF",
       "inHomePage": true
     },
     {
       "name": "Twitter",
+      "menuTitle": "visible",
       "fr_FR__name": "Twitter",
       "en_US__name": "Twitter",
       "de_DE__name": "Twitter",
@@ -174,10 +190,12 @@
       "es_ES__name": "Twitter",
       "icons": "/html/static/img/icons_app/twitter.png",
       "routeName": "twitter.splash",
+      "color":"#61c5ec",
       "inHomePage": true
     },
     {
       "name": "Settings",
+      "menuTitle": "visible",
       "fr_FR__name": "Paramètres",
       "en_US__name": "Settings",
       "cs_CZ__name": "Nastavení",
@@ -186,10 +204,12 @@
       "es_ES__name": "Ajustes",
       "icons": "/html/static/img/icons_app/settings.png",
       "routeName": "parametre",
+      "color": "#95a5a6",
       "inHomePage": false
     },
     {
       "name": "Bank",
+      "menuTitle": "visible",
       "fr_FR__name": "Banque",
       "en_US__name": "Bank",
       "cs_CZ__name": "Banka",
@@ -198,55 +218,66 @@
       "es_ES__name": "Banquillo",
       "icons": "/html/static/img/icons_app/bank.png",
       "routeName": "bank",
+      "color": "#ff3f34",
       "inHomePage": false
     },
     {
       "name": "Bourse",
+      "menuTitle": "visible",
       "fr_FR__name": "Bourse",
       "cs_CZ__name": "Burza",
       "en_US__name": "Stock Market",
       "de_DE__name": "Börse",
       "es_ES__name": "Bolsa",
-      "icons": "/html/static/img/icons_app/bourse.png",
+      "icons": "/html/static/img/icons_app/stockmarket.png",
       "routeName": "bourse",
+      "color": "#3c40c6",
       "enabled": true
     },
     {
       "name": "Camera",
+      "menuTitle": "visible",
       "fr_FR__name": "Photo",
       "cs_CZ__name": "Fotoaparát",
       "en_US__name": "Camera",
       "de_DE__name": "Kamera",
       "pl_PL__name": "Kamera",
       "es_ES__name": "Cámara",
-      "icons": "/html/static/img/icons_app/photo.png",
+      "icons": "/html/static/img/icons_app/camera.png",
+      "color": "#2c3e50",
       "routeName": "photo"
     },
     {
       "name": "Dark Chat",
+      "menuTitle": "visible",
       "fr_FR__name": "Dark Chat",
       "en_US__name": "Dark Chat",
       "de_DE__name": "Dark Net",
       "pl_PL__name": "Czat czarny",
       "es_ES__name": "Chat Oscuro",
-      "icons": "/html/static/img/icons_app/tchat.png",
+      "icons": "/html/static/img/icons_app/darkchat.png",
+      "color": "#1e272e",
       "routeName": "tchat"
     },
     {
       "name": "Notes",
+      "menuTitle": "visible",
       "fr_FR__name": "Notes ",
       "en_US__name": "Notes ",
       "de_DE__name": "Notizen ",
       "pl_PL__name": "Notatki ",
       "es_ES__name": "Notas ",
       "routeName": "notes",
+      "color": "#feca57",
       "icons": "/html/static/img/icons_app/notes.png"
 
     },
     {
       "name": "9GAG",
+      "menuTitle": "visible",
       "icons": "/html/static/img/icons_app/9gag.png",
-      "routeName": "9gag"
+      "routeName": "9gag",
+      "color": "#000"
     }
   ],
   "defaultLanguage": "en_US",
@@ -388,6 +419,8 @@
       "APP_CONFIG_VOLUME": "Volume",
       "APP_CONFIG_LANGUAGE": "Language",
       "APP_PHONE_CALL_ANONYMOUS": "Anonymous Call",
+      "APP_PHONE_NUMBER_HIDDEN": "Hidden Number",
+      "APP_PHONE_NUMBER_UNKNOWN": "Unknown",
       "APP_CONFIG_MOUSE_SUPPORT": "Mouse Control",
       "APP_CONFIG_RESET": "Format",
       "APP_CONFIG_RESET_CONFIRM": "ERASE EVERYTHING",

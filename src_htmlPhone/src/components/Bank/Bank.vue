@@ -5,7 +5,7 @@
       <img class="logo_maze" src="/html/static/img/app_bank/FleecaBank.png">
       <div class="num-tarj" >
         <span  class="moneyTitle">{{ IntlString('APP_BANK_TITLE_BALANCE') }}</span>
-        <span class="moneyTitle">{{ bankAmontFormat }}$</span>
+        <span class="moneyTitle">: ${{ bankAmontFormat }}</span>
       </div>
 
       <div class="hr"></div>

@@ -5,7 +5,7 @@
       <div class="hr"></div>
       <div class='element'>
         <div class="element-content">
-          <span>$ {{ bankAmontFormat }}</span>
+          <span>: ${{ bankAmontFormat }}</span>
         </div>
       </div>
     </div>

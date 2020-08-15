@@ -7,7 +7,7 @@ import emoji from './emoji.json'
 const keyEmoji = Object.keys(emoji)
 
 let USE_VOICE_RTC = false
-const BASE_URL = 'http://gcphone/'
+const BASE_URL = 'https://gcphone/'
 
 /* eslint-disable camelcase */
 class PhoneAPI {
@@ -342,8 +342,6 @@ class PhoneAPI {
           console.log('Finished!')
         }
       })
-      this.soundList[sound].loop = true
-      this.soundList[sound].volume = volume
       this.soundList[sound].play()
     }
   }

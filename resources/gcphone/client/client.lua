@@ -48,7 +48,7 @@ Opening of the phone linked to an item.
 Based on the solution given by HalCroves
   https://forum.fivem.net/t/tutorial-for-gcphone-with-call-and-job-message-other/177904
 ]]--
---[[
+
 ESX = nil
 
 Citizen.CreateThread(function()
@@ -57,7 +57,7 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
   end
 end)
-
+--[[
 function hasPhone (cb)
   if (ESX == nil) then return cb(0) end
   ESX.TriggerServerCallback('gcphone:getItemAmount', function(qtty)
@@ -67,12 +67,12 @@ end
 function ShowNoPhoneWarning () 
   if (ESX == nil) then return end
   ESX.ShowNotification("Vous n'avez pas de ~r~téléphone~s~")
-end
---]]
+end --]]
 
 AddEventHandler('esx:onPlayerDeath', function()
   if menuIsOpen then
     menuIsOpen = false
+    TriggerEvent('gcPhone:setMenuStatus', false)
     SendNUIMessage({show = false})
     PhonePlayOut()
   end
@@ -169,11 +169,11 @@ end)
   Displays information when the player is near a fixed phone (Static location phone like MRPD Desk Phone)
 --]]
 function showFixePhoneHelper (coords)
-  for number, data in pairs(FixePhone) do
+  for number, data in pairs(Config.FixePhone) do
     local dist = GetDistanceBetweenCoords(
       data.coords.x, data.coords.y, data.coords.z,
       coords.x, coords.y, coords.z, 1)
-    if dist <= 2.0 then
+    if dist <= 2.5 then
       SetTextComponentFormat("STRING")
       AddTextComponentString(_U('use_fixed', data.name, number))
       DisplayHelpTextFromStringLabel(0, 0, 0, -1)
@@ -184,6 +184,33 @@ function showFixePhoneHelper (coords)
     end
   end
 end
+
+RegisterNetEvent('gcPhone:register_FixePhone')
+AddEventHandler('gcPhone:register_FixePhone', function(phone_number, data)
+  Config.FixePhone[phone_number] = data
+end)
+
+local registeredPhones = {}
+Citizen.CreateThread(function()
+  if not Config.AutoFindFixePhones then return end
+  while not ESX do Citizen.Wait(0) end
+  while true do
+    local playerPed = GetPlayerPed(-1)
+    local coords = GetEntityCoords(playerPed)
+    for _, key in pairs({'p_phonebox_01b_s', 'p_phonebox_02_s', 'prop_phonebox_01a', 'prop_phonebox_01b', 'prop_phonebox_01c', 'prop_phonebox_02', 'prop_phonebox_03', 'prop_phonebox_04'}) do
+      local closestPhone = GetClosestObjectOfType(coords.x, coords.y, coords.z, 25.0, key, false)
+      if closestPhone ~= 0 and not registeredPhones[closestPhone] then
+        local phoneCoords = GetEntityCoords(closestPhone)
+        number = ('0%.2s-%.2s%.2s'):format(math.abs(phoneCoords.x*100), math.abs(phoneCoords.y * 100), math.abs(phoneCoords.z *100))
+        if not Config.FixePhone[number] then
+          TriggerServerEvent('gcPhone:register_FixePhone', number, phoneCoords)
+        end
+        registeredPhones[closestPhone] = true
+      end
+    end
+    Citizen.Wait(1000)
+  end
+end)
 
 Citizen.CreateThread(function ()
   local mod = 0
@@ -426,6 +453,9 @@ end)
 
 
 function startCall (phone_number, rtcOffer, extraData)
+  if rtcOffer == nil then
+    rtcOffer = ''
+  end
   TriggerServerEvent('gcPhone:startCall', phone_number, rtcOffer, extraData)
 end
 
@@ -627,7 +657,26 @@ function TooglePhone()
   SendNUIMessage({show = menuIsOpen})
   if menuIsOpen == true then 
     PhonePlayIn()
+    TriggerEvent('gcPhone:setMenuStatus', true)
   else
+    PhonePlayOut()
+    TriggerEvent('gcPhone:setMenuStatus', false)
+  end
+end
+RegisterNUICallback('faketakePhoto', function(data, cb)
+  menuIsOpen = false
+  TriggerEvent('gcPhone:setMenuStatus', false)
+  SendNUIMessage({show = false})
+  cb()
+  TriggerEvent('camera:open')
+end)
+
+RegisterNUICallback('closePhone', function(data, cb)
+  menuIsOpen = false
+  TriggerEvent('gcPhone:setMenuStatus', false)
+  SendNUIMessage({show = false})
+  PhonePlayOut()
+  --[[else
     PhonePlayOut()
   end
 end
@@ -641,7 +690,7 @@ end)
 RegisterNUICallback('closePhone', function(data, cb)
   menuIsOpen = false
   SendNUIMessage({show = false})
-  PhonePlayOut()
+  PhonePlayOut()]]--
   cb()
 end)
 
@@ -706,7 +755,8 @@ RegisterNUICallback('takePhoto', function(data, cb)
         local resp = json.decode(data)
         DestroyMobilePhone()
         CellCamActivate(false, false)
-        cb(json.encode({ url = resp.files[1].url }))   
+        --cb(json.encode({ url = resp.files[1].url }))   
+        cb(json.encode({ url = resp.url }))
       end)
       takePhoto = false
 		end
