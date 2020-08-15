@@ -6,6 +6,8 @@
 
 ### [Downloads page](https://github.com/btngaming/Re-Ignited-Phone)
 
+### [Patreon Per Request](https://www.patreon.com/reignited)
+
 <h2 align="center">GCPhone Redesign for FiveM</h2>
 
 ## Features
