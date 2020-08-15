@@ -1,5 +1,7 @@
 # ReDesign & Functionality project by BTNGaming#7728 and chip#9999!
 
+# UPDATE: If you're on ESX 1.1 or older, please use the server.lua in resources/server 1-1 folder. If you're on ESX 1.2, please use the server.lua in resources/server 1-2 folder!!!
+
 ## Full Support on the Re-Ignited ESX Support Discord @ [This Link](https://discord.gg/9uRJv5v) or https://discord.gg/9uRJv5v
 
 ### [Downloads page](https://github.com/btngaming/Re-Ignited-Phone)
