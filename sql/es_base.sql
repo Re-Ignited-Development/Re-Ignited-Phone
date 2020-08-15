@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `phone_app_chat` (
 CREATE TABLE IF NOT EXISTS `phone_calls` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `owner` varchar(10) NOT NULL COMMENT 'Nombre del contacto',
-  `num` varchar(10) NOT NULL COMMENT 'Numero de referencia del contact',
+  `num` varchar(10) NOT NULL COMMENT 'Numero de referencia del contacto',
   `incoming` int(11) NOT NULL COMMENT 'Define el origen de la llamada',
   `time` timestamp NOT NULL DEFAULT current_timestamp(),
   `accepts` int(11) NOT NULL COMMENT 'Llamadas permitida o no',
