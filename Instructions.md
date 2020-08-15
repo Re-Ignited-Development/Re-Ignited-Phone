@@ -1,7 +1,7 @@
 # Installation (ESX 1.1)
 > 1. Navigate to Re-Ignited-Phone-master > resources
 > 2. Copy/Drag the gcphone Folder into your server resources folder. (You no longer need esx_addons_gcphone as it was merged with the phone)
-> 3. Import the following SQL's: `base.sql` and `twitter.sql` **(This is the same as the other versions.)**
+> 3. Import the following SQL's: `base.sql` and `twitter.sql` **(This is the same as the other versions.)** (Locales available in the sql folder.)
 > 4. Add the following to server.cfg **AFTER es_extended** & **BEFORE any jobs**. (Such as esx_ambulancejob, esx_policejob etc...)
 
 ``` 
