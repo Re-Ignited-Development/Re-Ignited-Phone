@@ -20,7 +20,7 @@
    - Custom Ringtones with working Volume system in settings.
    - Mouse control is back at 100% functionality.
    - Screenshots/Selfies with already working upload server.
-   - Easy installation instructions.
+   - Easy installation instructions. Created for us by @Rocky_southpaw#7777
 
 
 ## Configuration
