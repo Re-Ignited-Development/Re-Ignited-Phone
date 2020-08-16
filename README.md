@@ -6,6 +6,8 @@
 
 ### [Downloads page](https://github.com/btngaming/Re-Ignited-Phone)
 
+### [Patreon Per Request](https://www.patreon.com/reignited)
+
 <h2 align="center">GCPhone Redesign for FiveM</h2>
 
 ## Features
@@ -48,12 +50,13 @@ ensure essentialmode (For esx 1.1)
 ensure esplugin_mysql
 ensure es_extended
 
-ensure esx_addons_gcphone
 ensure gcphone
+ensure screenshot-basic
 
-ensure esx_mecanojob
-ensure esx_job2
+ensure esx_policejob
+ensure esx_ambulancejob
 ensure esx_job3
+ensure esx_job4
 ```
 
 ## License
