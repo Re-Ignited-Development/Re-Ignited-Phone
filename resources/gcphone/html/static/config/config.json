@@ -222,7 +222,7 @@
       "inHomePage": false
     },
     {
-      "name": "Bourse",
+      "name": "Stock Market",
       "menuTitle": "visible",
       "fr_FR__name": "Bourse",
       "cs_CZ__name": "Burza",
@@ -357,7 +357,8 @@
       "APP_TWITTER_ACCOUNT_LOGIN": "Se connecter",
       "APP_TWITTER_ACCOUNT_LOGOUT": "Se déconnecter",
       "APP_TWITTER_ACCOUNT_PARAM": "Mon compte",
-      "APP_TWITTER_ACCOUNT_AVATAR": "Changer l'avatar",
+      "APP_TWITTER_ACCOUNT_AVATAR": "Changer l'avatar(URL)",
+      "APP_TWITTER_ACCOUNT_AVATAR_TAKE": "Change Avatar (Camera)",
       "APP_TWITTER_ACCOUNT_CHANGE_PASSWORD": "Changer Mot de passe",
       "APP_TWITTER_ACCOUNT_NEW": "Nouveau compte",
       "APP_TWIITER_ACCOUNT_SAVE": "Enregistrer",
@@ -479,7 +480,8 @@
       "APP_TWITTER_ACCOUNT_LOGIN": "Login",
       "APP_TWITTER_ACCOUNT_LOGOUT": "Logout",
       "APP_TWITTER_ACCOUNT_PARAM": "My Account",
-      "APP_TWITTER_ACCOUNT_AVATAR": "Changing Avatar",
+      "APP_TWITTER_ACCOUNT_AVATAR": "Change Avatar(URL)",
+      "APP_TWITTER_ACCOUNT_AVATAR_TAKE": "Change Avatar (Camera)",
       "APP_TWITTER_ACCOUNT_CHANGE_PASSWORD": "Change Password",
       "APP_TWITTER_ACCOUNT_NEW": "New Account",
       "APP_TWIITER_ACCOUNT_SAVE": "Registration",

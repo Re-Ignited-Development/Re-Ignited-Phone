@@ -284,30 +284,37 @@ end)
 --]]
 AddEventHandler('gcPhone:twitter_newTweets', function (tweet)
   -- print(json.encode(tweet))
-  local discord_webhook = GetConvar('discord_webhook', '')
+  local discord_webhook = Config.Discord_Webhook
   if discord_webhook == '' then
     return
   end
   local headers = {
     ['Content-Type'] = 'application/json'
   }
-  local data = {
-    ["username"] = tweet.author,
-    ["embeds"] = {{
-      ["thumbnail"] = {
-        ["url"] = tweet.authorIcon
-      },
-      ["color"] = 1942002,
-      ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%SZ", tweet.time / 1000 )
-    }}
-  }
+
+
+  print(json.encode(tweet))
   local isHttp = string.sub(tweet.message, 0, 7) == 'http://' or string.sub(tweet.message, 0, 8) == 'https://'
   local ext = string.sub(tweet.message, -4)
-  local isImg = ext == '.png' or ext == '.pjg' or ext == '.gif' or string.sub(tweet.message, -5) == '.jpeg'
+  print(ext)
+  local isImg = ext == '.png' or ext == '.jpg' or ext == '.gif' or string.sub(tweet.message, -5) == '.jpeg'
+
+  local data = {
+    {
+      ["color"] = "1942002",
+      ["title"] = _U('new_tweet'),
+      ["footer"] = {
+          ["text"] = tweet.author,
+          ["icon_url"] = tweet.authorIcon,
+      },
+    }
+  }
+
   if (isHttp and isImg) and true then
-    data['embeds'][1]['image'] = { ['url'] = tweet.message }
+    data[1]['image'] = { ['url'] = tweet.message }
   else
-    data['embeds'][1]['description'] = tweet.message
+    data[1]['description'] = tweet.message
   end
-  PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', json.encode(data), headers)
+
+  PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', PerformHttpRequest(discord_webhook, function(err, text, headers) print(err) end, 'POST', json.encode({username = "Twitter", embeds = data}), headers), headers)
 end)

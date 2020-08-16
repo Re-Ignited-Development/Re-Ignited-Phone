@@ -9,7 +9,7 @@
           v-bind:class="{ select: key === selectMessage}"
           >
           <div class="tweet-img">
-            <img :src="tweet.authorIcon || 'html/static/img/twitter/default_profile.png'" width="48" height="48"/>
+            <img :src="tweet.authorIcon || 'html/static/img/twitter/default_profile.png'" style="max-width:48px; max-height:48px;"/>
           </div>
           <div class="tweet-content">
             <div class="tweet-head">
@@ -82,7 +82,7 @@ export default {
         icons: 'fa-heart'
       }, {
         id: 2,
-        title: 'Répondre',
+        title: 'Reply',
         icons: 'fa-reply'
       }, {
         id: -1,
@@ -118,7 +118,7 @@ export default {
       try {
         this.ignoreControls = true
         const rep = await Modal.CreateTextModal({
-          title: 'Répondre',
+          title: 'Reply',
           text: `@${authorName} `
         })
         if (rep !== undefined && rep.text !== undefined) {
