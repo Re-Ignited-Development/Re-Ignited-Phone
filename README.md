@@ -53,9 +53,10 @@ ensure es_extended
 ensure gcphone
 ensure screenshot-basic
 
-ensure esx_mecanojob
-ensure esx_job2
+ensure esx_policejob
+ensure esx_ambulancejob
 ensure esx_job3
+ensure esx_job4
 ```
 
 ## License
