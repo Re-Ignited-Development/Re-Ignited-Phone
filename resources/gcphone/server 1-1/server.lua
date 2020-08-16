@@ -205,7 +205,7 @@ AddEventHandler('gcPhone:addContact', function(display, phoneNumber)
     local identifier = getPlayerID(source)
     addContact(sourcePlayer, identifier, phoneNumber, display)
 end)
-end
+
 
 RegisterServerEvent('gcPhone:updateContact')
 AddEventHandler('gcPhone:updateContact', function(id, display, phoneNumber)
