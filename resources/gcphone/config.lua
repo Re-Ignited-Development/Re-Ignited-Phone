@@ -27,3 +27,5 @@ Config.UseMumbleVoIP = true -- Use Frazzle's Mumble-VoIP Resource (Recommended!)
 Config.UseTokoVoIP   = false
 
 Config.ShowNumberNotification = false -- Show Number or Contact Name when you receive new SMS
+
+Config.PhoneAsItem = false -- Make Phone as a Item
