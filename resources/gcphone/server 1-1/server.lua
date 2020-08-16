@@ -25,7 +25,7 @@ end
 --[[
   Make the phone an item
   Solution base from HalCroves
-  Just remove the brackets before and after the "ESX.ReigisterServerCallback" line and "end)""
+  Just remove the brackets before and after the "ESX.RegisterServerCallback" line and "end)""
   https://forum.fivem.net/t/tutorial-for-gcphone-with-call-and-job-message-other/177904
 --]]
 --[[
