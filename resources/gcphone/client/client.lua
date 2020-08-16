@@ -568,16 +568,19 @@ end)
 RegisterNUICallback('reponseText', function(data, cb)
   local limit = data.limit or 255
   local text = data.text or ''
-  
-  DisplayOnscreenKeyboard(1, "FMMC_MPM_NA", "", text, "", "", "", limit)
-  while (UpdateOnscreenKeyboard() == 0) do
-      DisableAllControlActions(0);
-      Wait(0);
-  end
-  if (GetOnscreenKeyboardResult()) then
-      text = GetOnscreenKeyboardResult()
-  end
-  cb(json.encode({text = text}))
+
+  ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'menuDiag',{
+    title = 'Messages',
+    type  = 'big'
+    },
+    function(data, menu)
+    local text = data.value
+    menu.close()
+    cb(json.encode({text = text}))
+    end,
+  function(data, menu)
+    menu.close()
+  end)
 end)
 --====================================================================================
 --  Event - Messages
