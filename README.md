@@ -50,8 +50,8 @@ ensure essentialmode (For esx 1.1)
 ensure esplugin_mysql
 ensure es_extended
 
-ensure esx_addons_gcphone
 ensure gcphone
+ensure screenshot-basic
 
 ensure esx_mecanojob
 ensure esx_job2
