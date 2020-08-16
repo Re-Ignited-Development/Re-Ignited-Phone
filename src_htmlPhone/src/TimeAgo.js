@@ -27,7 +27,7 @@ function formatTime(time) {
 
 const defaultLocales = {
   'en_US': [
-    "à l'instant",
+    "Just Now",
     ["%s second ago", "%s seconds ago"],
     ["%s minute",  "%s minutes ago"],
     ["%s hour ago",   "%s hours ago"],
