@@ -122,3 +122,28 @@ cs_CZ (Čeština)
 > `"defaultContacts": [{` Default contacts
 
 > `"defaultLanguage": "en_US",` Default Language
+
+## Configuration (Default Contacts)
+> 1. Navigate to `gcphone > html > static > config > config.json`
+> 2. Search for `serviceCall` This is where you add new contacts/prompts. See below for details:
+```lua
+"display": "CONTACT NAME",
+      "icon": "/html/static/img/icons_app/ICONNAME.png",
+      "subMenu": [{ --https://i.imgur.com/6Qb07pN.png Sub menu's are what you see when you click on the contact under favorites.
+          "title": "Send Message",
+          "eventName": "esx_addons_gcphone:call", --This is for text
+          "type": {
+            "number": "JOBNAME" --If its a job, use the job name. Example, taxi,police,ambulance
+          }
+        },
+        {
+          "title": "Call Business",
+          "eventName": "gcphone:autoCallNumber", --This is a fixed location. You specify this in the config.lua
+          "type": {
+            "number": "NUMBER" --Use the number you put in the config.lua
+          }
+        }
+      ]
+    },
+```
+> 3. You will need to edit the config.lua if you would like to add aditional preset locations like payphones/pick up locations similiar to PD.
