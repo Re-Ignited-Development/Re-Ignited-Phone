@@ -34,7 +34,7 @@ local soundDistanceMax = 8.0
 -- Check if the players have a phone
 -- Callback true or false
 --====================================================================================
-function hasPhone (cb)
+function hasPhone2 (cb)
   cb(true)
 end
 --====================================================================================
@@ -57,7 +57,7 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
   end
 end)
---[[
+
 function hasPhone (cb)
   if (ESX == nil) then return cb(0) end
   ESX.TriggerServerCallback('gcphone:getItemAmount', function(qtty)
@@ -67,7 +67,7 @@ end
 function ShowNoPhoneWarning () 
   if (ESX == nil) then return end
   ESX.ShowNotification("You do not have a ~r~phone~s~.")
-end --]]
+end
 
 AddEventHandler('esx:onPlayerDeath', function()
   if menuIsOpen then
@@ -93,13 +93,23 @@ Citizen.CreateThread(function()
     end
     if takePhoto ~= true then
       if IsControlJustPressed(1, Config.KeyOpenClose) then
-        hasPhone(function (hasPhone)
-          if hasPhone == true then
-            TooglePhone()
-          else
-            ShowNoPhoneWarning()
-          end
-        end)
+        if Config.PhoneAsItem == true then
+          hasPhone(function (hasPhone)
+            if hasPhone == true then
+              TooglePhone()
+            else
+              ShowNoPhoneWarning()
+            end
+          end)
+        else
+          hasPhone2(function (hasPhone)
+            if hasPhone == true then
+              TooglePhone()
+            else
+              ShowNoPhoneWarning()
+            end
+          end)
+        end     
       end
       if menuIsOpen == true then
         for _, value in ipairs(KeyToucheCloseEvent) do
