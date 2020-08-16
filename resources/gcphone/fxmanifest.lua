@@ -1,4 +1,4 @@
-fx_version 'cerulean'
+fx_version 'adamant'
 games { 'rdr3', 'gta5' }
 
 author 'BTNGaming & chip (Original: n3mtv)'
