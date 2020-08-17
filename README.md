@@ -16,7 +16,7 @@
    - Sending text messages.
    - Voice calls.
    - Anonymous calling.
-   - Bank application (With full bank transfers).
+   - Bank application (With full bank transfers). Link to official new_banking -> https://github.com/NewWayRP/new_banking (For the bank application to work unless you edit yourself.)
    - Anonymous Chat application.
    - Stock market application (With full functionality soon).
    - Customizable cover / screen.
