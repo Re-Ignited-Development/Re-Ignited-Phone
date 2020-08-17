@@ -8,8 +8,8 @@ const state = {
   background: JSON.parse(window.localStorage['gc_background'] || null),
   coque: JSON.parse(window.localStorage['gc_coque'] || null),
   sonido: JSON.parse(window.localStorage['gc_sonido'] || null),
-  zoom: window.localStorage['gc_zoom'] || '100%',
-  volume: parseFloat(window.localStorage['gc_volume']) || 1,
+  zoom: window.localStorage['gc_zoom'] || '80%',
+  volume: parseFloat(window.localStorage['gc_volume']) || 0.6,
   mouse: window.localStorage['gc_mouse'] === 'true',
   lang: window.localStorage['gc_language'],
   config: {
@@ -174,7 +174,7 @@ const actions = {
     dispatch('setBackground', getters.config.background_default)
     dispatch('setCoque', getters.config.coque_default)
     dispatch('setSonido', getters.config.sonido_default)
-    dispatch('setLanguage', 'fr_FR')
+    dispatch('setLanguage', getters.config.defaultLanguage)
   }
 }
 
