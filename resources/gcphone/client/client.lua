@@ -576,8 +576,7 @@ RegisterNUICallback('reponseText', function(data, cb)
   local text = data.text or ''
 
   ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'menuDiag',{
-    title = 'Messages',
-    type  = 'big'
+    title = 'Messages'
     },
     function(data, menu)
     local text = data.value
