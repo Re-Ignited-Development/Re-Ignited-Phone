@@ -1,7 +1,9 @@
 --====================================================================================
 -- #Author: Jonathan D @Gannon
--- Modified and Redesigned by BTNGaming & chip
--- #Version 4.0
+-- Modified by:
+-- BTNGaming 
+-- Chip
+-- DmACK (f.sanllehiromero@uandresbello.edu)
 --====================================================================================
 if Config.newESX then
 	ESX = nil
