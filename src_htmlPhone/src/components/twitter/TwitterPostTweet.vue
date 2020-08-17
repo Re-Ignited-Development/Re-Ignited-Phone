@@ -8,6 +8,7 @@
           :placeholder="IntlString('APP_TWITTER_PLACEHOLDER_MESSAGE')"
         ></textarea>
         <span class='tweet_send' @click="tweeter">{{ IntlString('APP_TWITTER_BUTTON_ACTION_TWEETER') }}</span>
+        <span class='tweet_photo' @click="postphoto">{{ IntlString('APP_TWITTER_BUTTON_PHOTO_TWEETER') }}</span>
     </div>
   </div>
 </template>
@@ -23,12 +24,18 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['IntlString', 'useMouse'])
+    ...mapGetters(['IntlString', 'useMouse', 'enableTakePhoto'])
   },
   watch: {
   },
   methods: {
     ...mapActions(['twitterPostTweet']),
+    async postphoto () {
+      const { url } = await this.$phoneAPI.takePhoto()
+      if (url !== null && url !== undefined) {
+        await this.twitterPostTweet({ message: url })
+      }
+    },
     async onEnter () {
       try {
         const rep = await this.$phoneAPI.getReponseText({
@@ -98,7 +105,7 @@ export default {
 }
 
 
-.tweet_send{
+.tweet_send {
   align-self: flex-end;
   width: 120px;
   height: 32px;
@@ -113,7 +120,29 @@ export default {
   margin: 26px 20px;
   font-size: 16px;
 }
+
+.tweet_photo {
+  align-self: flex-end;
+  width: 120px;
+  height: 32px;
+  float: right;
+  border-radius: 16px;
+  background-color: rgb(29, 161, 242);
+  margin-right: 12px;
+  margin-bottom: 2px;
+  color: white;
+  line-height: 32px;
+  text-align: center;
+  margin: -58px 250px;
+  font-size: 16px;
+}
+
 .tweet_send:hover {
+  cursor: pointer;
+  background-color: #0084b4;
+}
+
+.tweet_photo:hover {
   cursor: pointer;
   background-color: #0084b4;
 }
