@@ -34,9 +34,11 @@ local soundDistanceMax = 8.0
 -- Check if the players have a phone
 -- Callback true or false
 --====================================================================================
-function hasPhone2 (cb)
+--[[
+  function hasPhone (cb)
   cb(true)
 end
+--]]
 --====================================================================================
 --  What if the players want to open their phone that they don't have?
 --====================================================================================
@@ -59,10 +61,14 @@ Citizen.CreateThread(function()
 end)
 
 function hasPhone (cb)
-  if (ESX == nil) then return cb(0) end
-  ESX.TriggerServerCallback('gcphone:getItemAmount', function(qtty)
-    cb(qtty > 0)
-  end, 'phone')
+  if Config.PhoneAsItem == true then
+    if (ESX == nil) then return cb(0) end
+    ESX.TriggerServerCallback('gcphone:getItemAmount', function(qtty)
+      cb(qtty > 0)
+    end, 'phone')
+  else
+    cb(true)
+  end
 end
 function ShowNoPhoneWarning () 
   if (ESX == nil) then return end
@@ -93,23 +99,13 @@ Citizen.CreateThread(function()
     end
     if takePhoto ~= true then
       if IsControlJustPressed(1, Config.KeyOpenClose) then
-        if Config.PhoneAsItem == true then
-          hasPhone(function (hasPhone)
-            if hasPhone == true then
-              TooglePhone()
-            else
-              ShowNoPhoneWarning()
-            end
-          end)
-        else
-          hasPhone2(function (hasPhone)
-            if hasPhone == true then
-              TooglePhone()
-            else
-              ShowNoPhoneWarning()
-            end
-          end)
-        end     
+        hasPhone(function (hasPhone)
+          if hasPhone == true then
+            TooglePhone()
+          else
+            ShowNoPhoneWarning()
+          end
+        end)
       end
       if menuIsOpen == true then
         for _, value in ipairs(KeyToucheCloseEvent) do
