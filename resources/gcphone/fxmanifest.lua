@@ -1,28 +1,74 @@
 fx_version 'adamant'
+games { 'rdr3', 'gta5' }
 
-game 'gta5'
+author 'BTNGaming & chip (Original: n3mtv)'
+description 'GCPhone for ESX 1.2 and 1.1(or older)'
+version '1.1'
 
-description 'ESX Menu Dialog'
 
-version '1.1.0'
-
-client_scripts {
-	'@es_extended/client/wrapper.lua',
-	'client/main.lua'
-}
-
-ui_page 'html/ui.html'
+ui_page 'html/index.html'
 
 files {
-	'html/ui.html',
+	'html/index.html',
+	'html/static/css/app.css',
+	'html/static/js/app.js',
+	'html/static/js/manifest.js',
+	'html/static/js/vendor.js',
 
-	'html/css/app.css',
+	'html/static/config/config.json',
+	
+	-- Coque
+	'html/static/img/coque/*.png',
+	'html/static/img/coque/*.jpg',
+	
+	-- Background
+	'html/static/img/background/*.jpg',
+	'html/static/img/background/*.png',
+	
+	'html/static/img/icons_app/*.png',
+	'html/static/img/icons_app/*.jpg',
+	
+	'html/static/img/app_bank/*.jpg',
+	'html/static/img/app_bank/*.png',
 
-	'html/js/mustache.min.js',
-	'html/js/app.js',
+	'html/static/img/app_tchat/*.png',
+	'html/static/img/app_tchat/*.jpg',
 
-	'html/fonts/pdown.ttf',
-	'html/fonts/bankgothic.ttf'
+	'html/static/img/twitter/*.png',
+	'html/static/img/twitter/*.jpg',
+	'html/static/sound/*.ogg',
+
+	'html/static/img/*.png',
+	'html/static/img/*.jpg',
+	'html/static/fonts/fontawesome-webfont.ttf',
+
+	'html/static/sound/*.ogg',
+	'html/static/sound/*.mp3',
+
 }
 
-dependency 'es_extended'
+client_script {
+    '@es_extended/locale.lua',
+    'locales/*.lua',
+	"client/esxaddonsgcphone-c.lua",
+	"config.lua",
+	"client/animation.lua",
+	"client/client.lua",
+
+	"client/photo.lua",
+	"client/app_tchat.lua",
+	"client/bank.lua",
+	"client/twitter.lua"
+}
+
+server_script {
+    '@es_extended/locale.lua',
+    'locales/*.lua',
+	'@mysql-async/lib/MySQL.lua',
+	"server/esxaddonsgcphone-s.lua",
+	"config.lua",
+	"server/server.lua",
+
+	"server/app_tchat.lua",
+	"server/twitter.lua"
+}
