@@ -1,6 +1,9 @@
 --====================================================================================
 -- #Author: Jonathan D @ Gannon
--- Redesign and modified by BTNGaming & chip @ 
+-- Modified by:
+-- BTNGaming 
+-- Chip
+-- DmACK (f.sanllehiromero@uandresbello.edu)
 --====================================================================================
  
 -- Configuration

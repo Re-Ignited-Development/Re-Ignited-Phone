@@ -1,6 +1,9 @@
 --====================================================================================
 -- #Author: Jonathan D @Gannon
--- Modified and Redesigned by BTNGaming & chip
+-- Modified by:
+-- BTNGaming 
+-- Chip
+-- DmACK (f.sanllehiromero@uandresbello.edu)
 -- #Version 4.0
 --====================================================================================
 ESX = nil

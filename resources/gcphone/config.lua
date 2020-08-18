@@ -23,7 +23,7 @@ Config.newESX = false -- True = ESX 1.2(v1final), False = ESX 1.1 and older. (NO
 Config.KeyOpenClose = 288 -- F1
 Config.KeyTakeCall  = 38  -- E
 
-Config.UseMumbleVoIP = true -- Use Frazzle's Mumble-VoIP Resource (Recommended!) https://github.com/FrazzIe/mumble-voip
+Config.UseMumbleVoIP = false -- Use Frazzle's Mumble-VoIP Resource (Recommended!) https://github.com/FrazzIe/mumble-voip
 Config.UseTokoVoIP   = false
 
 Config.ShowNumberNotification = false -- Show Number or Contact Name when you receive new SMS
