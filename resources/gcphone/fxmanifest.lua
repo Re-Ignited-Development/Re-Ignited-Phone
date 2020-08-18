@@ -46,16 +46,16 @@ files {
 }
 
 client_script {
-    '@es_extended/locale.lua',
+	'@es_extended/locale.lua',
 	'config.lua',
-    'locales/*.lua'
+	'locales/*.lua'
 	'client/*.lua'
 }
 
 server_script {
-    '@es_extended/locale.lua',
+	'@es_extended/locale.lua',
 	'@mysql-async/lib/MySQL.lua',
 	'config.lua',
-    'locales/*.lua',
+	'locales/*.lua',
 	'server/*.lua'
 }
