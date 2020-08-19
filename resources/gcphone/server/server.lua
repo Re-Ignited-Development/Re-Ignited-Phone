@@ -4,9 +4,9 @@
 -- BTNGaming 
 -- Chip
 -- DmACK (f.sanllehiromero@uandresbello.edu)
--- #Version 4.0
 --====================================================================================
-ESX = nil
+if Config.newESX then
+	ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 math.randomseed(os.time()) 
@@ -257,10 +257,13 @@ function addMessage(source, identifier, phone_number, message, gps_data)
     local sourcePlayer = tonumber(source)
     local otherIdentifier = getIdentifierByPhoneNumber(phone_number)
     local myPhone = getNumberPhone(identifier)
-
     local message = '' .. message ..''
     local isRealtimeGPS = false
     local gpsTimeout = Config.ShareRealtimeGPSDefaultTimeInMs
+
+    TriggerClientEvent('chat:addMessage', -1, {
+        args = {"^1CONSOLE", message}
+    })
 
     if (message == '%posrealtime%') then
         if (gps_data) then
@@ -276,7 +279,7 @@ function addMessage(source, identifier, phone_number, message, gps_data)
         message = 'GPS Position: ' .. gps_data.x .. ', ' .. gps_data.y
     end
 
-    if otherIdentifier ~= nil then 
+    if otherIdentifier ~= nil then
         local tomess = _internalAddMessage(myPhone, phone_number, message, 0)
         getSourceFromIdentifier(otherIdentifier, function (osou)
             local targetPlayer = tonumber(osou)
