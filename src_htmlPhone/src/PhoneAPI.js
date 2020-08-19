@@ -47,8 +47,8 @@ class PhoneAPI {
   }
 
   // === Gestion des messages
-  async sendMessage (phoneNumber, message) {
-    return this.post('sendMessage', {phoneNumber, message})
+  async sendMessage (phoneNumber, message, gpsData) {
+    return this.post('sendMessage', {phoneNumber, message, gpsData})
   }
   async deleteMessage (id) {
     return this.post('deleteMessage', {id})

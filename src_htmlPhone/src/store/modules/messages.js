@@ -15,8 +15,8 @@ const actions = {
   setMessages ({ commit }, messages) {
     commit('SET_MESSAGES', messages)
   },
-  sendMessage ({ commit }, {phoneNumber, message}) {
-    PhoneAPI.sendMessage(phoneNumber, message)
+  sendMessage ({ commit }, {phoneNumber, message, gpsData}) {
+    PhoneAPI.sendMessage(phoneNumber, message, gpsData)
   },
   deleteMessage ({ commit }, { id }) {
     PhoneAPI.deleteMessage(id)
@@ -88,6 +88,7 @@ if (process.env.NODE_ENV !== 'production') {
     {id: 10, transmitter: '02', time, message: 'Patreon Support?', isRead: 1, owner: 0},
     {id: 11, transmitter: '04', time, message: 'Salut sa va ?', isRead: 1, owner: 0},
     {id: 12, transmitter: '04', time, message: 'Salut sa va ?', isRead: 1, owner: 0},
-    {id: 13, transmitter: '09', time, message: 'Tu sais pas !', isRead: 1, owner: 0}
+    {id: 13, transmitter: '09', time, message: 'Tu sais pas !', isRead: 1, owner: 0},
+    {id: 14, transmitter: 'police', time, message: 'GPS: Live position', isRead: 1, owner: 1}
   ]
 }
