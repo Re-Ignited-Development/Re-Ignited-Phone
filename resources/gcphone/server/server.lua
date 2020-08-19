@@ -993,10 +993,6 @@ function addMessage(source, identifier, phone_number, message, gps_data)
     local isRealtimeGPS = false
     local gpsTimeout = Config.ShareRealtimeGPSDefaultTimeInMs
 
-    TriggerClientEvent('chat:addMessage', -1, {
-        args = {"^1CONSOLE", message}
-    })
-
     if (message == '%posrealtime%') then
         if (gps_data) then
             gpsTimeout = gps_data.time
