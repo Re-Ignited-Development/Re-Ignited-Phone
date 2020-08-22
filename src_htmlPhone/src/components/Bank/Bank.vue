@@ -103,7 +103,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['bankAmont', 'IntlString']),
+    ...mapGetters(['bankAmont', 'IntlString', 'useMouse']),
     bankAmontFormat () {
       return Intl.NumberFormat().format(this.bankAmont)
     }
