@@ -14,11 +14,11 @@
         >
           {{ messageSent ? IntlString('APP_TWITTER_BUTTON_ACTION_TWEETER_SENT') : IntlString('APP_TWITTER_BUTTON_ACTION_TWEETER') }}
         </span>
-        <!-- <span
+        <span
           v-bind:class="{ 'highlight' : selectedOption === 'tweet_photo', 'tweet_photo': true}"
           @click="postphoto">
             {{ IntlString('APP_TWITTER_BUTTON_PHOTO_TWEETER') }}
-        </span> -->
+        </span>
     </div>
   </div>
 </template>
@@ -34,7 +34,7 @@ export default {
       messageSent: false,
       ignoreControls: false,
       selectedOption: 'textarea',
-      options: ['textarea', 'tweet_send']
+      options: ['textarea', 'tweet_send', 'tweet_photo']
     }
   },
   computed: {
@@ -67,6 +67,10 @@ export default {
         }
         if (this.selectedOption === 'tweet_send') {
           this.tweeter()
+          return
+        }
+        if (this.selectedOption === 'tweet_photo') {
+          this.postphoto()
           return
         }
       } catch (e) {}
