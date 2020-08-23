@@ -89,13 +89,13 @@ export default {
         this.paragonder()
       } else if (this.currentSelect === 0) {
         this.$phoneAPI.getReponseText().then(data => {
-          let message = data.text.trim()
-          this.id = message
+          // convert data.text explicitly to a string so if a number is
+          // passed it we can handle that
+          this.id = `${data.text}`.trim()
         })
       } else if (this.currentSelect === 1) {
         this.$phoneAPI.getReponseText().then(data => {
-          let message = data.text.trim()
-          this.paratutar = message
+          this.paratutar = `${data.text}`.trim()
         })
       } else if (this.currentSelect === 3) {
         this.iptal()
