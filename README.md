@@ -87,7 +87,7 @@ ensure esx_ambulancejob
 ensure esx_job3
 ```
 
-### [Credits](https://github.com/BTNGaming/Re-Ignited-Phone/blob/master/AUTHORS)
+### [Credits](https://github.com/Re-Ignited-Development/Re-Ignited-Phone/blob/master/AUTHORS)
 
 ## Screenshots
 
