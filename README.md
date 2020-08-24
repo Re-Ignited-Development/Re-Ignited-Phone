@@ -1,7 +1,7 @@
 
 ## ReDesign & Functionality
 
-![CI](https://github.com/gabrielcalderon/Re-Ignited-Phone/workflows/CI/badge.svg)
+![CI](https://github.com/gabrielcalderon/Re-Ignited-Phone/workflows/CI/badge.svg?branch=master))
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/re-ignited-development/re-ignited-phone?style=flat-square)
 [![Patreon](https://img.shields.io/badge/patreon-donate-orange.svg)](https://www.patreon.com/reignited)
 [![Discord](https://img.shields.io/discord/463752820026376202.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/9uRJv5v)
