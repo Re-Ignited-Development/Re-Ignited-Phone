@@ -4,7 +4,7 @@
 ![CI](https://github.com/Re-Ignited-Development/Re-Ignited-Phone/workflows/CI/badge.svg?branch=master)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/re-ignited-development/re-ignited-phone?style=flat-square)
 [![Patreon](https://img.shields.io/badge/patreon-donate-orange.svg)](https://www.patreon.com/reignited)
-[![Discord](https://img.shields.io/discord/463752820026376202.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/9uRJv5v)
+[![Discord](https://img.shields.io/discord/308323056592486420.svg?label=Support&logo=discord)](https://discord.gg/9uRJv5v)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://opensource.org/licenses/gpl-3.0.html)
 
 
