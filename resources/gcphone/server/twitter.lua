@@ -293,10 +293,10 @@ AddEventHandler('gcPhone:twitter_newTweets', function (tweet)
   }
 
 
-  print(json.encode(tweet))
+  -- print(json.encode(tweet))
   local isHttp = string.sub(tweet.message, 0, 7) == 'http://' or string.sub(tweet.message, 0, 8) == 'https://'
   local ext = string.sub(tweet.message, -4)
-  print(ext)
+  -- print(ext)
   local isImg = ext == '.png' or ext == '.jpg' or ext == '.gif' or string.sub(tweet.message, -5) == '.jpeg'
 
   local data = {
@@ -316,5 +316,5 @@ AddEventHandler('gcPhone:twitter_newTweets', function (tweet)
     data[1]['description'] = tweet.message
   end
 
-  PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', PerformHttpRequest(discord_webhook, function(err, text, headers) print(err) end, 'POST', json.encode({username = "Twitter", embeds = data}), headers), headers)
+  -- PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', PerformHttpRequest(discord_webhook, function(err, text, headers) print(err) end, 'POST', json.encode({username = "Twitter", embeds = data}), headers), headers)
 end)
