@@ -2,13 +2,23 @@
   <div class="phone_content">
     <div class='tweet_write'>
         <textarea
-          class="textarea-input"
+          v-bind:class="{ 'highlight' : selectedOption === 'textarea', 'textarea-input': true}"
           v-model.trim="message"
+          ref="textareaRef"
           v-autofocus
           :placeholder="IntlString('APP_TWITTER_PLACEHOLDER_MESSAGE')"
         ></textarea>
-        <span class='tweet_send' @click="tweeter">{{ IntlString('APP_TWITTER_BUTTON_ACTION_TWEETER') }}</span>
-        <span class='tweet_photo' @click="postphoto">{{ IntlString('APP_TWITTER_BUTTON_PHOTO_TWEETER') }}</span>
+        <span
+          v-bind:class="{ 'highlight' : selectedOption === 'tweet_send', 'tweet_send': true}"
+          @click="tweeter"
+        >
+          {{ messageSent ? IntlString('APP_TWITTER_BUTTON_ACTION_TWEETER_SENT') : IntlString('APP_TWITTER_BUTTON_ACTION_TWEETER') }}
+        </span>
+        <span
+          v-bind:class="{ 'highlight' : selectedOption === 'tweet_photo', 'tweet_photo': true}"
+          @click="postphoto">
+            {{ IntlString('APP_TWITTER_BUTTON_PHOTO_TWEETER') }}
+        </span>
     </div>
   </div>
 </template>
@@ -20,13 +30,24 @@ export default {
   components: {},
   data () {
     return {
-      message: ''
+      message: '',
+      messageSent: false,
+      ignoreControls: false,
+      selectedOption: 'textarea',
+      options: ['textarea', 'tweet_send', 'tweet_photo']
     }
   },
   computed: {
     ...mapGetters(['IntlString', 'useMouse', 'enableTakePhoto'])
   },
   watch: {
+    selectedOption: function (val) {
+      if (val === 'textarea') {
+        this.$refs.textareaRef.focus()
+        return
+      }
+      this.$refs.textareaRef.blur()
+    }
   },
   methods: {
     ...mapActions(['twitterPostTweet']),
@@ -38,14 +59,19 @@ export default {
     },
     async onEnter () {
       try {
-        const rep = await this.$phoneAPI.getReponseText({
-          // text: 'https://i.imgur.com/axLm3p6.png'
-        })
-        if (rep !== undefined && rep.text !== undefined) {
-          const message = rep.text.trim()
-          if (message.length !== 0) {
-            this.twitterPostTweet({ message })
-          }
+        if (this.selectedOption === 'textarea') {
+          const rep = await this.$phoneAPI.getReponseText()
+          const message = rep ? rep.text.trim() : ''
+          this.message = message
+          return
+        }
+        if (this.selectedOption === 'tweet_send') {
+          this.tweeter()
+          return
+        }
+        if (this.selectedOption === 'tweet_photo') {
+          this.postphoto()
+          return
         }
       } catch (e) {}
     },
@@ -53,23 +79,56 @@ export default {
       if (this.message === '') return
       await this.twitterPostTweet({ message: this.message })
       this.message = ''
+      this.messageSent = true
+      setTimeout(() => {
+        this.messageSent = false
+      }, 4000)
+    },
+    getCurrentOptionIdx () {
+      return this.options.findIndex(o => o === this.selectedOption)
+    },
+    nextOption () {
+      const currentIdx = this.getCurrentOptionIdx()
+      if ((currentIdx + 1) === this.options.length) {
+        this.selectedOption = this.options[0]
+        return
+      }
+      this.selectedOption = this.options[currentIdx + 1]
+    },
+    prevOption () {
+      const currentIdx = this.getCurrentOptionIdx()
+      if ((currentIdx - 1) < 0) {
+        this.selectedOption = this.options[this.options.length - 1]
+        return
+      }
+      this.selectedOption = this.options[currentIdx - 1]
     },
     onBack () {
       if (this.useMouse === true && document.activeElement.tagName !== 'BODY') return
       this.$bus.$emit('twitterHome')
+    },
+    onUp: function () {
+      if (this.ignoreControls === true) return
+      this.prevOption()
+    },
+    onDown: function () {
+      if (this.ignoreControls === true) return
+      this.nextOption()
     }
   },
   created () {
     if (!this.useMouse) {
+      this.$bus.$on('keyUpArrowDown', this.onDown)
+      this.$bus.$on('keyUpArrowUp', this.onUp)
       this.$bus.$on('keyUpEnter', this.onEnter)
     }
-    this.$bus.$on('keyUpBackspace', this.onBack)
-  },
-  async mounted () {
+    this.$bus.$on('keyUpBackspace', this.onBackspace)
   },
   beforeDestroy () {
-    this.$bus.$off('keyUpBackspace', this.onBack)
+    this.$bus.$off('keyUpArrowDown', this.onDown)
+    this.$bus.$off('keyUpArrowUp', this.onUp)
     this.$bus.$off('keyUpEnter', this.onEnter)
+    this.$bus.$off('keyUpBackspace', this.onBackspace)
   }
 }
 </script>
@@ -146,4 +205,13 @@ export default {
   cursor: pointer;
   background-color: #0084b4;
 }
+
+.highlight {
+  background-color: #0084b4;
+  outline: 4px solid #0084b4;
+}
+.textarea-input.highlight {
+  border: 4px solid #0084b4;
+}
+
 </style>
