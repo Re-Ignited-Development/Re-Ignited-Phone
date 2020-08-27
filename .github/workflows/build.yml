@@ -29,6 +29,9 @@ jobs:
       # Create a base resource for each ESX version
       - run: cp -a resources/. esx-1-1/
       - run: cp -a resources/. esx-1-2/
+        
+      # Add SQL Files
+      - run: cp *.sql esx-1-1/ && cp *.sql esx-1-2/
       
       # Configure server.lua for each ESX Version
       - run: mv esx-1-1/server\ 1-1/server.lua esx-1-1/gcphone/server/server.lua
@@ -39,7 +42,7 @@ jobs:
       - run: rm -r esx-1-2/server\ 1-1/ esx-1-2/server\ 1-2/
       
       # Enable ESX 1.2 in gcphone/config.lua for ESX 1.2 resource
-      - run: sed -i 'Config.newESX = false/Config.newESX = true/g' esx-1-2/gcphone/config.lua
+      - run: sed -i 's/Config.newESX = false/Config.newESX = true/g' esx-1-2/gcphone/config.lua
       
       # Upload Artifacts for ESX 1.1 and ESX 1.2
       - uses: actions/upload-artifact@master
