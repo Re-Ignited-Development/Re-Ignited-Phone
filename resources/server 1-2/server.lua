@@ -684,8 +684,16 @@ end
 function bankTransferOnline(xPlayer, zPlayer, amount)
     xPlayer.removeAccountMoney('bank', amount)
     zPlayer.addAccountMoney('bank', amount)
-    xPlayer.triggerEvent('esx:showAdvancedNotification', 'Bank', 'Transfer Money', 'You transfered ~r~$' .. amount .. '~s~ to ~r~' .. zPlayer.source .. ' .', 'CHAR_BANK_MAZE', 9)
-    zPlayer.triggerEvent('esx:showAdvancedNotification', 'Bank', 'Transfer Money', 'You received ~r~$' .. amount .. '~s~ from ~r~' .. xPlayer.source .. ' .', 'CHAR_BANK_MAZE', 9)
+    
+    TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source,
+                       'Bank', 'Transfer Money',
+                       'You transfered ~r~$' .. amount .. '~s~ to ~r~' .. zPlayer.source .. ' .',
+                       'CHAR_BANK_MAZE', 9)
+    
+    TriggerClientEvent('esx:showAdvancedNotification', zPlayer.source,
+                        'Bank', 'Transfer Money',
+                        'You received ~r~$' .. amount .. '~s~ from ~r~' .. xPlayer.source .. ' .',
+                        'CHAR_BANK_MAZE', 9)
 end
 
 ---- handle bank transfers while the target player is offline
@@ -733,10 +741,16 @@ AddEventHandler('gcPhone:bankTransferByPhoneNumber', function(phoneNumber, amoun
 
     -- use a comparison with identifier so we can handle both online and offline
 	if xPlayer.identifier == zPlayerIdentifier then
-		xPlayer.triggerEvent('esx:showAdvancedNotification', 'Bank', 'Transfer Money', 'You cannot transfer to your self!', 'CHAR_BANK_MAZE', 9)
+        TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank',
+                            'Transfer Money',
+                            'You cannot transfer to your self!',
+                            'CHAR_BANK_MAZE', 9)
     else
 		if balance <= 0 or balance < amount or amount <= 0 then
-			xPlayer.triggerEvent('esx:showAdvancedNotification', 'Bank', 'Transfer Money', 'Not enough money to transfer!', 'CHAR_BANK_MAZE', 9)
+            TriggerClientEvent('esx:showAdvancedNotification', _source,
+                               'Bank', 'Transfer Money',
+                               'Not enough money to transfer!',
+                               'CHAR_BANK_MAZE', 9)
         else
             if zPlayer then -- the player is online, we can use ESX functionality to handle transferring money
                 bankTransferOnline(xPlayer, zPlayer, amount)

@@ -663,8 +663,16 @@ end
 function bankTransferOnline(xPlayer, zPlayer, amount)
     xPlayer.removeAccountMoney('bank', amount)
     zPlayer.addAccountMoney('bank', amount)
-    xPlayer.triggerEvent('esx:showAdvancedNotification', 'Bank', 'Transfer Money', 'You transfered ~r~$' .. amount .. '~s~ to ~r~' .. zPlayer.source .. ' .', 'CHAR_BANK_MAZE', 9)
-    zPlayer.triggerEvent('esx:showAdvancedNotification', 'Bank', 'Transfer Money', 'You received ~r~$' .. amount .. '~s~ from ~r~' .. xPlayer.source .. ' .', 'CHAR_BANK_MAZE', 9)
+    
+    TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source,
+                       'Bank', 'Transfer Money',
+                       'You transfered ~r~$' .. amount .. '~s~ to ~r~' .. zPlayer.source .. ' .',
+                       'CHAR_BANK_MAZE', 9)
+    
+    TriggerClientEvent('esx:showAdvancedNotification', zPlayer.source,
+                        'Bank', 'Transfer Money',
+                        'You received ~r~$' .. amount .. '~s~ from ~r~' .. xPlayer.source .. ' .',
+                        'CHAR_BANK_MAZE', 9)
 end
 
 ---- handle bank transfers while the target player is offline
@@ -673,12 +681,15 @@ end
 -- data. Instead we manually write the SQL to update the database.
 function bankTransferOffline(xPlayer, zPlayerIdentifier, phoneNumber, amount)
     -- Note that JSON_ functions are compatibile with MySQL 5.7.8+
-    MySQL.Async.fetchScalar("SELECT JSON_EXTRACT(accounts, '$.bank') AS bank FROM users WHERE identifier = @identifier", {
+    MySQL.Async.fetchScalar("SELECT bank FROM users WHERE identifier = @identifier", {
         ['@identifier'] = zPlayerIdentifier
     }, function(result)
         local zPlayerCurrentBalance = tonumber(result)
         if zPlayerCurrentBalance == nil then
-            xPlayer.triggerEvent('esx:showAdvancedNotification', 'Bank', 'Transfer Money', 'Bank transfer of ~r~$' .. amount .. '~s~ to ~r~' .. phoneNumber .. ' FAILED.', 'CHAR_BANK_MAZE', 9)
+            TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source,
+                               'Bank', 'Transfer Money',
+                               'Bank transfer of ~r~$' .. amount .. '~s~ to ~r~' .. phoneNumber .. ' FAILED.',
+                               'CHAR_BANK_MAZE', 9)
             return
         end
         local zPlayerNewBankBalance = zPlayerCurrentBalance + amount
@@ -686,10 +697,13 @@ function bankTransferOffline(xPlayer, zPlayerIdentifier, phoneNumber, amount)
         -- since xPlayer is online (they intiated the transfer) use ESX functions to update their account
         xPlayer.removeAccountMoney('bank', amount)
 
-        MySQL.Sync.execute('UPDATE `users` SET `accounts` = JSON_SET(accounts, "$.bank", @bank) WHERE `identifier` = @identifier', {
+        MySQL.Sync.execute('UPDATE `users` SET bank = @bank WHERE `identifier` = @identifier', {
             ['@bank'] = zPlayerNewBankBalance, ['@identifier'] = zPlayerIdentifier
         })
-        xPlayer.triggerEvent('esx:showAdvancedNotification', 'Bank', 'Transfer Money', 'You transfered ~r~$' .. amount .. '~s~ to ~r~' .. phoneNumber .. ' .', 'CHAR_BANK_MAZE', 9)
+        TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source,
+                           'Bank', 'Transfer Money',
+                           'You transfered ~r~$' .. amount .. '~s~ to ~r~' .. phoneNumber .. ' .',
+                           'CHAR_BANK_MAZE', 9)
     end)
 end
 
@@ -712,10 +726,16 @@ AddEventHandler('gcPhone:bankTransferByPhoneNumber', function(phoneNumber, amoun
 
     -- use a comparison with identifier so we can handle both online and offline
 	if xPlayer.identifier == zPlayerIdentifier then
-		xPlayer.triggerEvent('esx:showAdvancedNotification', 'Bank', 'Transfer Money', 'You cannot transfer to your self!', 'CHAR_BANK_MAZE', 9)
+        TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank',
+                            'Transfer Money',
+                            'You cannot transfer to your self!',
+                            'CHAR_BANK_MAZE', 9)
     else
 		if balance <= 0 or balance < amount or amount <= 0 then
-			xPlayer.triggerEvent('esx:showAdvancedNotification', 'Bank', 'Transfer Money', 'Not enough money to transfer!', 'CHAR_BANK_MAZE', 9)
+            TriggerClientEvent('esx:showAdvancedNotification', _source,
+                               'Bank', 'Transfer Money',
+                               'Not enough money to transfer!',
+                               'CHAR_BANK_MAZE', 9)
         else
             if zPlayer then -- the player is online, we can use ESX functionality to handle transferring money
                 bankTransferOnline(xPlayer, zPlayer, amount)
