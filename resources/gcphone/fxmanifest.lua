@@ -1,8 +1,8 @@
 fx_version 'adamant'
 games { 'rdr3', 'gta5' }
 
-author 'BTNGaming & chip (Original: n3mtv)'
-description 'GCPhone for ESX 1.2 and 1.1(or older)'
+author 'BTNGaming, chip, ROCKY_southpaw, and Kidz (Original: n3mtv)'
+description 'GCPhone for ESX'
 version '1.1'
 
 

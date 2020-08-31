@@ -17,15 +17,23 @@ end)
 
 function notifyAlertSMS (number, alert, listSrc)
   if PhoneNumbers[number] ~= nil then
-	local mess = 'The #' .. alert.numero  .. ' : ' .. alert.message
-	if alert.coords ~= nil then
-		mess = mess .. ' ' .. alert.coords.x .. ', ' .. alert.coords.y 
-	end
+    local messText = alert.message
+    if (messText == '%posrealtime%') then
+      messText = 'GPS Live Position'
+    end
+    local mess = 'From #' .. alert.numero  .. ' : ' .. messText
+    if alert.coords ~= nil then
+      mess = mess .. ' ' .. alert.coords.x .. ', ' .. alert.coords.y 
+    end
     for k, _ in pairs(listSrc) do
-      getPhoneNumber(tonumber(k), function (n)
+      local targetPlayer = tonumber(k)
+      getPhoneNumber(targetPlayer, function (n)
         if n ~= nil then
           TriggerEvent('gcPhone:_internalAddMessage', number, n, mess, 0, function (smsMess)
-            TriggerClientEvent("gcPhone:receiveMessage", tonumber(k), smsMess)
+            TriggerClientEvent('gcPhone:receiveMessage', targetPlayer, smsMess)
+            if alert.source then
+              TriggerClientEvent('gcPhone:receiveLivePosition', targetPlayer, alert.source, Config.ShareRealtimeGPSDefaultTimeInMs, alert.numero, 1)
+            end
           end)
         end
       end)
@@ -72,6 +80,7 @@ AddEventHandler('gcPhone:sendMessage', function(number, message)
         notifyAlertSMS(number, {
           message = message,
           numero = phone,
+          source = sourcePlayer
         }, PhoneNumbers[number].sources)
       end)
     end
@@ -79,17 +88,18 @@ end)
 
 RegisterServerEvent('esx_addons_gcphone:startCall')
 AddEventHandler('esx_addons_gcphone:startCall', function (number, message, coords)
-  local source = source
+  local sourcePlayer = tonumber(source)
   if PhoneNumbers[number] ~= nil then
     getPhoneNumber(source, function (phone) 
       notifyAlertSMS(number, {
         message = message,
         coords = coords,
         numero = phone,
+        source = sourcePlayer
       }, PhoneNumbers[number].sources)
     end)
   else
-    print('= WARNING = Appels sur un service non enregistre => numero : ' .. number)
+    print('= WARNING = Trying to call an unregistered service => numero : ' .. number)
   end
 end)
 

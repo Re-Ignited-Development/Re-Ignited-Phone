@@ -1,27 +1,57 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# Triggers the workflow on push or pull request.
 on:
   push:
-    branches: [ master ]
+    paths-ignore:
+    - 'sql/**'
+    - '**.md'
   pull_request:
-    branches: [ master ]
+    paths-ignore:
+    - 'sql/**'
+    - '**.md'
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# Build Workflow
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2-beta
         with:
           node-version: '12'
-      - run: cd ./src_htmlPhone && npm install
-      - run: cd ./src_htmlPhone && npm run build
+      # Prep phase
+      - run: mkdir -p resources/gcphone/html/static esx1-1 esx1-2
+      
+      # Build source
+      - run: cd src_htmlPhone && npm install && npm run build
+      - run: mkdir -p resources/gcphone/html/static
+
+      # Copy static files to final location
+      - run: cp -R src_htmlPhone/static/ resources/gcphone/html/
+      - run: cp src_htmlPhone/index.html resources/gcphone/html/index.html
+      
+      # Create a base resource for each ESX version
+      - run: cp -a resources/. esx-1-1/
+      - run: cp -a resources/. esx-1-2/
+      
+      # Configure server.lua for each ESX Version
+      - run: mv esx-1-1/server\ 1-1/server.lua esx-1-1/gcphone/server/server.lua
+      - run: mv esx-1-2/server\ 1-2/server.lua esx-1-2/gcphone/server/server.lua
+      
+      # Cleanup
+      - run: rm -r esx-1-1/server\ 1-1/ esx-1-1/server\ 1-2/
+      - run: rm -r esx-1-2/server\ 1-1/ esx-1-2/server\ 1-2/
+      
+      # Enable ESX 1.2 in gcphone/config.lua for ESX 1.2 resource
+      - run: sed 's/Config.newESX = false/Config.newESX = true/g' esx-1-2/gcphone/config.lua
+      
+      # Upload Artifacts for ESX 1.1 and ESX 1.2
+      - uses: actions/upload-artifact@master
+        with:
+          name: resources-esx-1-1
+          path: esx-1-1
+      - uses: actions/upload-artifact@master
+        with:
+          name: resources-esx-1-2
+          path: esx-1-2

@@ -1,28 +1,14 @@
-# Installation (ESX 1.1)
-> 1. Navigate to Re-Ignited-Phone-master > resources
-> 2. Copy/Drag the gcphone Folder into your server resources folder. (You no longer need esx_addons_gcphone as it was merged with the phone)
+# Installation 
+> 1. Download the release for your ESX version (ESX 1.1 & ESX 1.2) from [Releases](https://github.com/Re-Ignited-Development/Re-Ignited-Phone/releases)
+> 2. Copy/Drag the **gcphone** folder into your server resources folder. (You no longer need esx_addons_gcphone as it was merged with the phone)
 > 3. Import the following SQL's: `base.sql` and `twitter.sql` **(This is the same as the other versions.)** (Locales available in the sql folder.)
-> 4. Add the following to server.cfg **AFTER es_extended** & **BEFORE any jobs**. (Such as esx_ambulancejob, esx_policejob etc...)
+> 4. Add the following to your server.cfg **AFTER es_extended** & **BEFORE any jobs**. (Such as esx_ambulancejob, esx_policejob etc...)
 
 ``` 
 ensure gcphone
 ```
 
 > 5. Start your server.
-
-## Installation (ESX 1.2 AKA V1 Final)
-> 1. Navigate to Re-Ignited-Phone-master > resources
-> 2. Copy/Drag the gcphone Folder into your server resources folder. (You no longer need esx_addons_gcphone as it was merged with the phone)
-> 3. Import the following SQL's: `base.sql` and `twitter.sql` **(This is the same as the other versions.)**
-> 4. Add the following to server.cfg AFTER es_extended & BEFORE jobs.
-
-``` 
-ensure gcphone
-```
-
-> 5. Navigate to `gcphone > config.lua` line `21`.
-> 6. Change `Config.newESX = false` to `Config.newESX = true`.
-> 7. Start your server.
 
 # Notes
 -**No changes to fxmanifest is needed when adding new images to the resource due to Globbing. Can read more about this [here](https://docs.fivem.net/docs/scripting-reference/resource-manifest/resource-manifest/#globbing "FIveM Globbing Information")**.

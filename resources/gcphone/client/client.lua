@@ -19,6 +19,7 @@ local KeyToucheCloseEvent = {
 local menuIsOpen = false
 local contacts = {}
 local messages = {}
+local gpsBlips = {}
 local myPhoneNumber = ''
 local isDead = false
 local USE_RTC = false
@@ -128,7 +129,67 @@ Citizen.CreateThread(function()
   end
 end)
 
+--====================================================================================
+-- GPS Blips
+--====================================================================================
+function styleBlip(blip, type, number, player)
+  local blipLabel = '#' .. number
+  local blipLabelPrefix = 'Phone GPS Location: '
 
+  -- [[ type 0 ]] --
+  if (type == 0) then
+    local isContact = false
+    for k,contact in pairs(contacts) do
+      if contact.number == number then
+        blipLabel = contacts[k].display .. ' (' .. blipLabel .. ')'
+        isContact = true
+        break
+      end
+    end
+
+    ShowCrewIndicatorOnBlip(blip, true)
+    if (isContact == true) then
+      SetBlipColour(blip, 2)
+    else
+      SetBlipColour(blip, 4)
+    end
+  end
+
+  -- [[ type 1 ]] --
+  if (type == 1) then
+    blipLabelPrefix = 'Emergency SMS Sender Location: '
+    ShowCrewIndicatorOnBlip(blip, true)
+    SetBlipColour(blip, 5)
+  end
+
+  BeginTextCommandSetBlipName("STRING")
+  AddTextComponentString(blipLabelPrefix .. blipLabel)
+  EndTextCommandSetBlipName(blip)
+
+  SetBlipSecondaryColour(blip, 255, 0, 0)
+  SetBlipScale(blip, 0.9)
+end
+
+RegisterNetEvent('gcPhone:receiveLivePosition')
+AddEventHandler('gcPhone:receiveLivePosition', function(sourcePlayerServerId, timeoutInMilliseconds, sourceNumber, type)
+  if (sourcePlayerServerId ~= nil and sourceNumber ~= nil) then
+    local blipId = sourceNumber
+    if (gpsBlips[blipId] ~= nil) then
+      RemoveBlip(gpsBlips[blipId])
+      gpsBlips[blipId] = nil
+    end
+    local sourcePlayer = GetPlayerFromServerId(sourcePlayerServerId)
+    local sourcePed = GetPlayerPed(sourcePlayer)
+    gpsBlips[blipId] = AddBlipForEntity(sourcePed)
+    styleBlip(gpsBlips[blipId], type, sourceNumber, sourcePlayer)
+    Citizen.SetTimeout(timeoutInMilliseconds, function()
+      SetBlipFlashes(gpsBlips[blipId], true)
+      Citizen.Wait(10000)
+      RemoveBlip(gpsBlips[blipId])
+      gpsBlips[blipId] = nil
+    end)
+  end
+end)
 
 --====================================================================================
 --  Activate or Deactivate an application (appName => config.json)
@@ -592,10 +653,9 @@ RegisterNUICallback('getMessages', function(data, cb)
 end)
 RegisterNUICallback('sendMessage', function(data, cb)
   if data.message == '%pos%' then
-    local myPos = GetEntityCoords(PlayerPedId())
-    data.message = 'GPS: ' .. myPos.x .. ', ' .. myPos.y
+    data.gpsData = GetEntityCoords(PlayerPedId())
   end
-  TriggerServerEvent('gcPhone:sendMessage', data.phoneNumber, data.message)
+  TriggerServerEvent('gcPhone:sendMessage', data.phoneNumber, data.message, data.gpsData)
 end)
 RegisterNUICallback('deleteMessage', function(data, cb)
   deleteMessage(data.id)

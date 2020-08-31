@@ -27,3 +27,5 @@ Config.UseMumbleVoIP = false -- Use Frazzle's Mumble-VoIP Resource (Recommended!
 Config.UseTokoVoIP   = false
 
 Config.ShowNumberNotification = false -- Show Number or Contact Name when you receive new SMS
+
+Config.ShareRealtimeGPSDefaultTimeInMs = 1000 * 60 -- Set default realtime GPS sharing expiration time in milliseconds
