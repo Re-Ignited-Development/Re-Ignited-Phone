@@ -33,7 +33,7 @@ end
 --]]
 
 ESX.RegisterServerCallback('gcphone:getItemAmount', function(source, cb, item)
-    print('gcphone:getItemAmount call item : ' .. item)
+    --print('gcphone:getItemAmount call item : ' .. item)
     local xPlayer = ESX.GetPlayerFromId(source)
     local items = xPlayer.getInventoryItem(item)
 
