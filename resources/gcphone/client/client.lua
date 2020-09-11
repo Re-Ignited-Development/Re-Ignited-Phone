@@ -709,10 +709,9 @@ RegisterNUICallback('deleteALL', function(data, cb)
 end)
 
 function TooglePhone()
-  if Config.ItemRequired == true then -- If
+  if Config.ItemRequired == true then
     hasPhone(function (hasPhone)
       if hasPhone == true then
-        print("hasphone")
         menuIsOpen = not menuIsOpen
         SendNUIMessage({show = menuIsOpen})
         if menuIsOpen == true then 
@@ -727,7 +726,6 @@ function TooglePhone()
       end
     end)
   elseif Config.ItemRequired == false then
-    print("config false")
     menuIsOpen = not menuIsOpen
     SendNUIMessage({show = menuIsOpen})
     if menuIsOpen == true then 
