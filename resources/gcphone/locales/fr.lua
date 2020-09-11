@@ -5,7 +5,6 @@ Locales['fr'] = {
     ["new_message"] = "~o~Nouveau message",
     ["new_message_from"] = "~o~Nouveau message de ~y~%s",
     ["new_message_transmitter"] = "~o~Nouveau message de ~g~%s",
-    ["use_fixed"] = "~g~%s's phone ~o~(%s) ~n~~INPUT_PICKUP~~w~ Use phone",
     ["use_fixed"] = "~g~Téléphone fixe %s ~o~(%s) ~n~~INPUT_PICKUP~~w~ Utiliser le téléphone",
     
     -- Social
