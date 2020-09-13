@@ -18,7 +18,7 @@ export default {
   .splash{
     width: 100%;
     height: 100%;
-    background-color: #20201d;
+    background-color: black; /** Splash Background */
     display: flex;
     justify-content: center;
     align-items: center;
