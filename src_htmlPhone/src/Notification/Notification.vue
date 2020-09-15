@@ -7,7 +7,7 @@
       :style="style(notif)"
     >
       <div class="title">
-        <i v-if="notif.icon" class="fa" :class="'fa-' + notif.icon"/> {{notif.title}}
+        <i v-if="notif.icon" class="fab fa-twitter" /> {{notif.title}}
       </div>
       <div class="message">{{notif.message}}</div>
     </div>
@@ -65,7 +65,7 @@ export default {
 <style scoped>
   .notification {
     width: 450px;
-    background-color: rgba(29, 161, 242, 0.6);
+    background-color: rgba(29, 161, 242, 0.6); /* Twitter Notification Background */
     color: white;
     padding: 8px 16px;
     margin-bottom: 8px;

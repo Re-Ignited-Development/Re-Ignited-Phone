@@ -1,6 +1,6 @@
 <template>
   <div class="phone_app">
-    <PhoneTitle :title="IntlString('APP_DARKTCHAT_TITLE')" backgroundColor="#090f20" @back="onBack" />
+    <PhoneTitle :title="IntlString('APP_DARKTCHAT_TITLE')" backgroundColor="#2b2a2a" @back="onBack" /> <!-- HEADER -->
     <div class="elements" @contextmenu.prevent="addChannelOption">
         <div class="element" v-for='(elem, key) in tchatChannels' 
           v-bind:key="elem.channel"
@@ -58,8 +58,8 @@ export default {
       if (this.ignoreControls === true) return
       this.ignoreControls = true
       let choix = [
-        {id: 1, title: this.IntlString('APP_DARKTCHAT_NEW_CHANNEL'), icons: 'fa-plus', color: 'green'},
-        {id: 2, title: this.IntlString('APP_DARKTCHAT_DELETE_CHANNEL'), icons: 'fa-minus', color: 'orange'},
+        {id: 1, title: this.IntlString('APP_DARKTCHAT_NEW_CHANNEL'), icons: 'fa-plus', color: 'green'}, /** New Channel Option Color */
+        {id: 2, title: this.IntlString('APP_DARKTCHAT_DELETE_CHANNEL'), icons: 'fa-minus', color: 'red'}, /** DeleteChannel Option Color */
         {id: 3, title: this.IntlString('APP_DARKTCHAT_CANCEL'), icons: 'fa-undo'}
       ]
       if (this.tchatChannels.length === 0) {
@@ -82,7 +82,7 @@ export default {
       if (this.tchatChannels.length === 0) {
         this.ignoreControls = true
         let choix = [
-          {id: 1, title: this.IntlString('APP_DARKTCHAT_NEW_CHANNEL'), icons: 'fa-plus', color: 'green'},
+          {id: 1, title: this.IntlString('APP_DARKTCHAT_NEW_CHANNEL'), icons: 'fa-plus', color: 'green'}, /** New Channel Option Color */
           {id: 3, title: this.IntlString('APP_DARKTCHAT_CANCEL'), icons: 'fa-undo'}
         ]
         const rep = await Modal.CreateModal({ choix })
@@ -150,14 +150,14 @@ export default {
   height: 54px;
   line-height: 34px;
   font-weight: 700;
-  color: white;
+  color: green; /** Unknown */
 }
 
 .elements{
   height: calc(100% - 54px);
   overflow-y: auto;
-  background-color: #20201d;
-  color: #a6a28c
+  background-color: #000000;/** Homepage Background */
+  color: #ffffff /** Chat Text Color HomePage */
 }
 .element{
   height: 42px;
@@ -174,27 +174,27 @@ export default {
   transition: .15s;
 }
 .elem-title .diese {
-  color: #0079d3;
+  color: #5ecc8d; /** Hashtag Color */
   font-size: 22px;
   font-weight: 700;
   line-height: 40px;
 }
 
 .element.select, .element:hover{
-   background-color: white;
-   color: #0079d3;
+   background-color: #787272; /** Hover Box Color */
+   color: #FFFFFF; /** Hover Text Color */
 
 }
 .element.select .elem-title, .element:hover .elem-title {
    margin-left: 12px;
 }
 .element.select .elem-title .diese, .element:hover .elem-title .diese {
-   color:#0079d3;
+   color:#5ecc8d; /** Hashtag Hover Color */
 }
  .elements::-webkit-scrollbar-track
     {
         box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        background-color: #F5F5F5;
+        background-color: #356e4d; /** Scrollbar Edge */
     }
   .elements::-webkit-scrollbar
     {
@@ -203,6 +203,6 @@ export default {
     }
   .elements::-webkit-scrollbar-thumb
     {
-        background-color: #0079d3;
+        background-color: #5ecc8d; /** Scrollbar Thumb */
     }
 </style>

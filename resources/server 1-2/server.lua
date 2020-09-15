@@ -30,9 +30,9 @@ end
   Un solution ESC basé sur la solution donnée par HalCroves
   https://forum.fivem.net/t/tutorial-for-gcphone-with-call-and-job-message-other/177904
 --]]
---[[
+
  ESX.RegisterServerCallback('gcphone:getItemAmount', function(source, cb, item)
-	print('gcphone:getItemAmount call item : ' .. item)
+	--print('gcphone:getItemAmount call item : ' .. item)
 	local xPlayer = ESX.GetPlayerFromId(source)
         local items = xPlayer.getInventoryItem(item)
 
@@ -42,7 +42,6 @@ end
             cb(items.count)
         end
 end)
---]]
 
 --====================================================================================
 --  SIM CARDS // Thanks to AshKetchumza for the idea an some code.

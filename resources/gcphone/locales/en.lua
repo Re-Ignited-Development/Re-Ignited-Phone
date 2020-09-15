@@ -8,5 +8,8 @@ Locales['en'] = {
     ["use_fixed"] = "~g~%s's phone ~o~(%s) ~n~~INPUT_PICKUP~~w~ Use phone",
     
     -- Social
-    ["new_tweet"] = "New Tweet!"
+    ["new_tweet"] = "New Tweet!",
+
+    -- Warning
+    ["no_phone"] = "You do not have a ~r~phone~s~."
 }

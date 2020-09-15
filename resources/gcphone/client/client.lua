@@ -33,26 +33,6 @@ local PhoneInCall = {}
 local currentPlaySound = false
 local soundDistanceMax = 8.0
 
-
---====================================================================================
--- Check if the players have a phone
--- Callback true or false
---====================================================================================
-function hasPhone (cb)
-  cb(true)
-end
---====================================================================================
---  What if the players want to open their phone that they don't have?
---====================================================================================
-function ShowNoPhoneWarning ()
-end
-
---[[
-Opening of the phone linked to an item.
-Based on the solution given by HalCroves
-  https://forum.fivem.net/t/tutorial-for-gcphone-with-call-and-job-message-other/177904
-]]--
-
 ESX = nil
 
 Citizen.CreateThread(function()
@@ -61,17 +41,6 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
   end
 end)
---[[
-function hasPhone (cb)
-  if (ESX == nil) then return cb(0) end
-  ESX.TriggerServerCallback('gcphone:getItemAmount', function(qtty)
-    cb(qtty > 0)
-  end, 'phone')
-end
-function ShowNoPhoneWarning () 
-  if (ESX == nil) then return end
-  ESX.ShowNotification("You do not have a ~r~phone~s~.")
-end --]]
 
 AddEventHandler('esx:onPlayerDeath', function()
   if menuIsOpen then
@@ -86,6 +55,36 @@ AddEventHandler('esx:playerLoaded', function()
   TriggerServerEvent('gcPhone:allUpdate')
 end)
 
+----
+--Item Functions
+----
+
+--[[
+Opening of the phone linked to an item.
+Based on the solution given by HalCroves
+  https://forum.fivem.net/t/tutorial-for-gcphone-with-call-and-job-message-other/177904
+]]--
+
+function hasPhone(cb)
+  cb(true)
+end
+
+function hasPhone(cb)
+  if (ESX == nil) then return cb(0) end
+  ESX.TriggerServerCallback('gcphone:getItemAmount', function(qtty)
+    cb(qtty > 0)
+  end, 'phone')
+end
+
+function NoPhone() 
+  if (ESX == nil) then return end
+  ESX.ShowNotification(_U('no_phone'))
+end
+
+RegisterCommand('phone', function(source) -- Toggles Phone Via Command. Can coment out.
+  TooglePhone()
+end, false)
+
 --====================================================================================
 --  
 --====================================================================================
@@ -96,14 +95,8 @@ Citizen.CreateThread(function()
       DisableControlAction(0, 288, true)
     end
     if takePhoto ~= true then
-      if IsControlJustPressed(1, Config.KeyOpenClose) then
-        hasPhone(function (hasPhone)
-          if hasPhone == true then
-            TooglePhone()
-          else
-            ShowNoPhoneWarning()
-          end
-        end)
+      if IsControlJustPressed(1, Config.KeyOpenClose) then -- On key press, will open the phone
+          TooglePhone()
       end
       if menuIsOpen == true then
         for _, value in ipairs(KeyToucheCloseEvent) do
@@ -715,19 +708,36 @@ RegisterNUICallback('deleteALL', function(data, cb)
   cb()
 end)
 
-
-
-function TooglePhone() 
-  menuIsOpen = not menuIsOpen
-  SendNUIMessage({show = menuIsOpen})
-  if menuIsOpen == true then 
-    PhonePlayIn()
-    TriggerEvent('gcPhone:setMenuStatus', true)
-  else
-    PhonePlayOut()
-    TriggerEvent('gcPhone:setMenuStatus', false)
+function TooglePhone()
+  if Config.ItemRequired == true then
+    hasPhone(function (hasPhone)
+      if hasPhone == true then
+        menuIsOpen = not menuIsOpen
+        SendNUIMessage({show = menuIsOpen})
+        if menuIsOpen == true then 
+          PhonePlayIn()
+          TriggerEvent('gcPhone:setMenuStatus', true)
+        else
+          PhonePlayOut()
+          TriggerEvent('gcPhone:setMenuStatus', false)
+        end
+      elseif hasPhone == false and Config.NoPhoneWarning == true then
+        NoPhone()
+      end
+    end)
+  elseif Config.ItemRequired == false then
+    menuIsOpen = not menuIsOpen
+    SendNUIMessage({show = menuIsOpen})
+    if menuIsOpen == true then 
+      PhonePlayIn()
+      TriggerEvent('gcPhone:setMenuStatus', true)
+    else
+      PhonePlayOut()
+      TriggerEvent('gcPhone:setMenuStatus', false)
+    end
   end
 end
+
 RegisterNUICallback('faketakePhoto', function(data, cb)
   menuIsOpen = false
   TriggerEvent('gcPhone:setMenuStatus', false)
@@ -741,26 +751,8 @@ RegisterNUICallback('closePhone', function(data, cb)
   TriggerEvent('gcPhone:setMenuStatus', false)
   SendNUIMessage({show = false})
   PhonePlayOut()
-  --[[else
-    PhonePlayOut()
-  end
-end
-RegisterNUICallback('faketakePhoto', function(data, cb)
-  menuIsOpen = false
-  SendNUIMessage({show = false})
-  cb()
-  TriggerEvent('camera:open')
-end)
-
-RegisterNUICallback('closePhone', function(data, cb)
-  menuIsOpen = false
-  SendNUIMessage({show = false})
-  PhonePlayOut()]]--
   cb()
 end)
-
-
-
 
 ----------------------------------
 ---------- GESTION APPEL ---------
@@ -774,7 +766,6 @@ RegisterNUICallback('appelsDeleteAllHistorique', function (data, cb)
   cb()
 end)
 
-
 ----------------------------------
 ---------- GESTION VIA WEBRTC ----
 ----------------------------------
@@ -787,7 +778,6 @@ AddEventHandler('onClientResourceStart', function(res)
       TriggerServerEvent('gcPhone:allUpdate')
   end
 end)
-
 
 RegisterNUICallback('setIgnoreFocus', function (data, cb)
   ignoreFocus = data.ignoreFocus

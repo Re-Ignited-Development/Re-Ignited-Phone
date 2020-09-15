@@ -1,6 +1,6 @@
 <template>
   <div class="phone_app">
-    <PhoneTitle :title="channelName" backgroundColor="#090f20" @back="onQuit"/>
+    <PhoneTitle :title="channelName" backgroundColor="#2b2a2a" @back="onQuit"/> <!-- Chat Background Header-->
     <div class="phone_content">
       <div class="elements" ref="elementsDiv">
           <div class="element" v-for='(elem) in tchatMessages' 
@@ -131,8 +131,8 @@ export default {
 
 .elements{
   height: calc(100% - 56px);
-  background-color: #20201d;
-  color: white;
+  background-color: #000000; /** Chat Background */
+  color: black; /** Unknown Black */
   display: flex;
   flex-direction: column;
   padding-bottom: 12px;
@@ -140,7 +140,7 @@ export default {
 }
 
 .element{
-  color: #a6a28c;
+  color: #5ecc8d; /** Time Color */
   flex: 0 0 auto;
   width: 100%;
   display: flex;
@@ -161,7 +161,7 @@ export default {
 
 .message{
   width: 100%;
-  color: black;
+  color: white; /** Message Color? */
 }
 
 .tchat_write{
@@ -181,28 +181,28 @@ export default {
     padding: 3px 5px;
     float: left;
     height: 36px;
-    background-color: white;
-    color: black;
+    background-color: black; /** Textbox Background */
+    color: white; /** Textbox Text */
 }
 .tchat_write input::placeholder {
-  color: #ccc;
+  color: #ffffff; /** Unknown Color */
 }
 .tchat_send{
     width: 32px;
     height: 32px;
     float: right;
     border-radius: 50%;
-    background-color: #ff4500;
+    background-color: black; /** Send Button Border */
     margin-right: 12px;
     margin-bottom: 2px;
-    color: white;
+    color: white; /** Send Button Icon Color*/
     line-height: 32px;
     text-align: center;
 }
 .elements::-webkit-scrollbar-track
   {
       box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-      background-color: #a6a28c;
+      background-color: #356e4d; /** Scrollbar Edge */
   }
 .elements::-webkit-scrollbar
   {
@@ -211,6 +211,6 @@ export default {
   }
 .elements::-webkit-scrollbar-thumb
   {
-      background-color: #FFC629;
+      background-color: #5ecc8d; /** Scrollbar thumb */
   }
 </style>
