@@ -122,13 +122,13 @@ export default {
       this.$bus.$on('keyUpArrowUp', this.onUp)
       this.$bus.$on('keyUpEnter', this.onEnter)
     }
-    this.$bus.$on('keyUpBackspace', this.onBackspace)
+    this.$bus.$on('keyUpBackspace', this.onBack)
   },
   beforeDestroy () {
     this.$bus.$off('keyUpArrowDown', this.onDown)
     this.$bus.$off('keyUpArrowUp', this.onUp)
     this.$bus.$off('keyUpEnter', this.onEnter)
-    this.$bus.$off('keyUpBackspace', this.onBackspace)
+    this.$bus.$off('keyUpBackspace', this.onBack)
   }
 }
 </script>
