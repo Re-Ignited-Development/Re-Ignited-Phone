@@ -646,6 +646,8 @@ RegisterNUICallback('getMessages', function(data, cb)
 end)
 RegisterNUICallback('sendMessage', function(data, cb)
   if data.message == '%pos%' then
+    local myPos = GetEntityCoords(PlayerPedId())
+    data.message = 'GPS: ' .. myPos.x .. ', ' .. myPos.y
     data.gpsData = GetEntityCoords(PlayerPedId())
   end
   TriggerServerEvent('gcPhone:sendMessage', data.phoneNumber, data.message, data.gpsData)
