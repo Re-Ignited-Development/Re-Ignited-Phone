@@ -316,5 +316,5 @@ AddEventHandler('gcPhone:twitter_newTweets', function (tweet)
     data[1]['description'] = tweet.message
   end
 
-  -- PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', PerformHttpRequest(discord_webhook, function(err, text, headers) print(err) end, 'POST', json.encode({username = "Twitter", embeds = data}), headers), headers)
+  PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', PerformHttpRequest(discord_webhook, function(err, text, headers) print(err) end, 'POST', json.encode({username = "Twitter", embeds = data}), headers), headers)
 end)
