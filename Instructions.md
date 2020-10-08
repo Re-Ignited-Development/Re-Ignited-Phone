@@ -109,27 +109,90 @@ cs_CZ (Čeština)
 
 > `"defaultLanguage": "en_US",` Default Language
 
-## Configuration (Default Contacts)
+## Configuration (Adding Default Contact)
 > 1. Navigate to `gcphone > html > static > config > config.json`
-> 2. Search for `serviceCall` This is where you add new contacts/prompts. See below for details:
+> 2. Search for `defaultContacts` This is where you add new Default Contacts. See below for details (You caa use letter + backgroundColor instead of icon if you so desire):
+
 ```lua
-"display": "CONTACT NAME",
-      "icon": "/html/static/img/icons_app/ICONNAME.png",
-      "subMenu": [{ --https://i.imgur.com/6Qb07pN.png Sub menu's are what you see when you click on the contact under favorites.
+  "defaultContacts": [
+    {
+      "number": "ambulance",
+      "display": "Ambulance",
+      "icon": "/html/static/img/icons_app/bank.png"
+    },
+    {
+      "number": "police",
+      "display": "Police",
+      "backgroundColor": "blue",
+      "letter": "P"
+    },
+    {
+      "number": "JOB NAME",
+      "display": "DISPLAY NAME",
+      "icon": "/html/static/img/icons_app/ICON LINK.png" 
+    }
+  ],
+
+```
+## Configuration (Additional Service Call) 
+> This assumes you already have the contact as a default contact.
+> 1. Navigate to `gcphone > html > static > config > config.json`
+> 2. Search for `serviceCall` This is where you add new prompts. See below for details:
+```lua
+  "serviceCall": [
+    {
+      "display": "Police",
+      "icon": "/html/static/img/icons_app/police.png",
+      "subMenu": [{
           "title": "Send Message",
-          "eventName": "esx_addons_gcphone:call", --This is for text
+          "eventName": "esx_addons_gcphone:call",
           "type": {
-            "number": "JOBNAME" --If its a job, use the job name. Example, taxi,police,ambulance
+            "number": "police"
           }
         },
         {
-          "title": "Call Business",
-          "eventName": "gcphone:autoCallNumber", --This is a fixed location. You specify this in the config.lua
+          "title": "Call Police Station",
+          "eventName": "gcphone:autoCallNumber",
           "type": {
-            "number": "NUMBER" --Use the number you put in the config.lua
+            "number": "911"
           }
         }
       ]
     },
+    {
+      "display": "Ambulance",
+      "backgroundColor": "red",
+      "subMenu": [{
+        "title": "Send Message",
+        "eventName": "esx_addons_gcphone:call",
+        "type": {
+          "number": "ambulance"
+        }
+      }
+    ],
+    {
+      "display": "DISPLAY NAME",
+      "backgroundColor": "COLOR INSTEAD OF ICON",
+      "subMenu": [{
+        "title": "Send Message",
+        "eventName": "esx_addons_gcphone:call",
+        "type": {
+          "number": "JOB NAME"
+        }
+      }
+    ],
+    {
+      "display": "DISPLAY NAME",
+      "icon": "/html/static/img/icons_app/ICONNAME.png",
+      "subMenu": [{
+        "title": "Send Message",
+        "eventName": "esx_addons_gcphone:call",
+        "type": {
+          "number": "JOB NAME"
+        }
+      }
+    ]
+    }
+  ],
 ```
 > 3. You will need to edit the config.lua if you would like to add aditional preset locations like payphones/pick up locations similiar to PD.
