@@ -265,7 +265,7 @@ function addMessage(source, identifier, phone_number, message, gps_data)
         if (gps_data) then
             gpsTimeout = gps_data.time
         end
-        local timeInMinutes = ESX.Math.Round( gpsTimeout / (1000 * 60) )
+        local timeInMinutes = ESX.Math.Round( gpsTimeout / 1000 / 60 )
         local timeString = (timeInMinutes == nil) and '' or ' ' .. tostring(timeInMinutes) .. ' min'
         message = 'GPS Live Position:' .. timeString .. ''
         isRealtimeGPS = true
