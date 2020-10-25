@@ -278,10 +278,7 @@ AddEventHandler('gcPhone:twitter_setAvatarUrl', function(username, password, ava
 end)
 
 
---[[
-  Discord WebHook
-  set discord_webhook 'https//....' in config.cfg
---]]
+-- DIscord Webhook must be enabled in the config.lua
 AddEventHandler('gcPhone:twitter_newTweets', function (tweet)
   -- print(json.encode(tweet))
   local discord_webhook = Config.Discord_Webhook
@@ -316,5 +313,7 @@ AddEventHandler('gcPhone:twitter_newTweets', function (tweet)
     data[1]['description'] = tweet.message
   end
 
-  -- PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', PerformHttpRequest(discord_webhook, function(err, text, headers) print(err) end, 'POST', json.encode({username = "Twitter", embeds = data}), headers), headers)
+  if Config.UseDiscordLogging then
+    PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', PerformHttpRequest(discord_webhook, function(err, text, headers) print(err) end, 'POST', json.encode({username = "Twitter", embeds = data}), headers), headers)
+  end
 end)
