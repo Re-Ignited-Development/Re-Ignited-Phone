@@ -632,7 +632,7 @@ RegisterNUICallback('reponseText', function(data, cb)
     function(data, menu)
     local text = data.value
     menu.close()
-    cb(json.encode({text = text}))
+    cb(json.encode({text = tostring(text)}))
     end,
   function(data, menu)
     menu.close()
