@@ -32,8 +32,11 @@ function notifyAlertSMS (number, alert, listSrc)
           TriggerEvent('gcPhone:_internalAddMessage', number, n, mess, 0, function (smsMess)
             TriggerClientEvent('gcPhone:receiveMessage', targetPlayer, smsMess)
             if alert.source then
-              TriggerClientEvent('gcPhone:receiveLivePosition', targetPlayer, alert.source, Config.ShareRealtimeGPSDefaultTimeInMs, alert.numero, 1)
-            end
+              if messText == 'GPS Live Position' then
+                local duration = Config.ShareRealtimeGPSJobTimer * 60000 --Config Time (Default = 10 minutes)
+                TriggerClientEvent('gcPhone:receiveLivePosition', targetPlayer, alert.source, duration, alert.numero, 1)
+              end
+           end
           end)
         end
       end)

@@ -29,6 +29,7 @@ Config.UseTokoVoIP   = false
 Config.ShowNumberNotification = false -- Show Number or Contact Name when you receive new SMS
 
 Config.ShareRealtimeGPSDefaultTimeInMs = 1000 * 60 -- Set default realtime GPS sharing expiration time in milliseconds
+Config.ShareRealtimeGPSJobTimer = 10 -- Default Job GPS Timer (Minutes)
 
 -- Optional Features (Can all be set to true or false.)
 Config.ItemRequired = false -- If true, must have the item "phone" to use it.
