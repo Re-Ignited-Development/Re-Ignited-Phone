@@ -651,6 +651,102 @@ function getBourse()
     return result
 end
 
+
+--====================================================================================
+--  App banking
+--====================================================================================
+
+---- Handle bank transfers while the target player is online
+-- This is the default functionality of the new_banking resourcefile:
+--  https://github.com/jacobwi/new_banking/blob/7dbc64d77b5c6a83fc04cc2d164a92977d796d7d/server.lua#L70
+function bankTransferOnline(xPlayer, zPlayer, amount)
+    xPlayer.removeAccountMoney('bank', amount)
+    zPlayer.addAccountMoney('bank', amount)
+    
+    TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source,
+                       'Bank', 'Transfer Money',
+                       'You transfered ~r~$' .. amount .. '~s~ to ~r~' .. zPlayer.source .. ' .',
+                       'CHAR_BANK_MAZE', 9)
+    
+    TriggerClientEvent('esx:showAdvancedNotification', zPlayer.source,
+                        'Bank', 'Transfer Money',
+                        'You received ~r~$' .. amount .. '~s~ from ~r~' .. xPlayer.source .. ' .',
+                        'CHAR_BANK_MAZE', 9)
+end
+
+---- handle bank transfers while the target player is offline
+-- Due to the way ESX transfers money (updating on the client, then on regular intervals saving
+-- that value to the database) we cannot use ESX functions to update the offlien target player's account
+-- data. Instead we manually write the SQL to update the database.
+function bankTransferOffline(xPlayer, zPlayerIdentifier, phoneNumber, amount)
+    -- Note that JSON_ functions are compatibile with MySQL 5.7.8+
+    MySQL.Async.fetchScalar("SELECT bank FROM users WHERE identifier = @identifier", {
+        ['@identifier'] = zPlayerIdentifier
+    }, function(result)
+        local zPlayerCurrentBalance = tonumber(result)
+        if zPlayerCurrentBalance == nil then
+            TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source,
+                               'Bank', 'Transfer Money',
+                               'Bank transfer of ~r~$' .. amount .. '~s~ to ~r~' .. phoneNumber .. ' FAILED.',
+                               'CHAR_BANK_MAZE', 9)
+            return
+        end
+        local zPlayerNewBankBalance = zPlayerCurrentBalance + amount
+
+        -- since xPlayer is online (they intiated the transfer) use ESX functions to update their account
+        xPlayer.removeAccountMoney('bank', amount)
+
+        MySQL.Sync.execute('UPDATE `users` SET bank = @bank WHERE `identifier` = @identifier', {
+            ['@bank'] = zPlayerNewBankBalance, ['@identifier'] = zPlayerIdentifier
+        })
+        TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source,
+                           'Bank', 'Transfer Money',
+                           'You transfered ~r~$' .. amount .. '~s~ to ~r~' .. phoneNumber .. ' .',
+                           'CHAR_BANK_MAZE', 9)
+    end)
+end
+
+---- handle bank transfers when the target player is online
+-- this handler is a copy/paste from the new_banking resource with modifications
+-- to send by money by phone number and allows for the target player to be both
+-- online and offline. See original code from the new_banking resource here:
+-- https://github.com/jacobwi/new_banking/blob/7dbc64d77b5c6a83fc04cc2d164a92977d796d7d/server.lua#L53
+RegisterServerEvent('gcPhone:bankTransferByPhoneNumber')
+AddEventHandler('gcPhone:bankTransferByPhoneNumber', function(phoneNumber, amountStr)
+	local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local zPlayerIdentifier = getIdentifierByPhoneNumber(phoneNumber)
+    local zPlayer = ESX.GetPlayerFromIdentifier(zPlayerIdentifier)
+
+    local amount = tonumber(amountStr)
+
+	local balance = 0
+    balance = xPlayer.getAccount('bank').money
+
+    -- use a comparison with identifier so we can handle both online and offline
+	if xPlayer.identifier == zPlayerIdentifier then
+        TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank',
+                            'Transfer Money',
+                            'You cannot transfer to your self!',
+                            'CHAR_BANK_MAZE', 9)
+    else
+		if balance <= 0 or balance < amount or amount <= 0 then
+            TriggerClientEvent('esx:showAdvancedNotification', _source,
+                               'Bank', 'Transfer Money',
+                               'Not enough money to transfer!',
+                               'CHAR_BANK_MAZE', 9)
+        else
+            if zPlayer then -- the player is online, we can use ESX functionality to handle transferring money
+                bankTransferOnline(xPlayer, zPlayer, amount)
+            else  -- if the player is offline we have to manually update the database
+                bankTransferOffline(xPlayer, zPlayerIdentifier, phoneNumber, amount)
+            end
+            
+		end
+		
+	end
+end)
+
 --====================================================================================
 --  App ... WIP
 --====================================================================================

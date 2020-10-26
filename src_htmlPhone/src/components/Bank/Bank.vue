@@ -16,7 +16,7 @@
         </div>
 
         <div class="element-content" ref="form"> 
-          <input style=" border-radius: 23px; font-size: 16px;" v-bind:class="{ select: 0 === currentSelect}" v-autofocus oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ref="form0" v-model="id" class="paragonder" placeholder="ID">
+          <input style=" border-radius: 23px; font-size: 16px;" v-bind:class="{ select: 0 === currentSelect}" v-autofocus ref="form0" v-model="id" class="paragonder" placeholder="ID or Phone Number">
       </div> 
 
         <div class="element-content">           
@@ -89,13 +89,13 @@ export default {
         this.paragonder()
       } else if (this.currentSelect === 0) {
         this.$phoneAPI.getReponseText().then(data => {
-          let message = data.text.trim()
-          this.id = message
+          // convert data.text explicitly to a string so if a number is
+          // passed it we can handle that
+          this.id = `${data.text}`.trim()
         })
       } else if (this.currentSelect === 1) {
         this.$phoneAPI.getReponseText().then(data => {
-          let message = data.text.trim()
-          this.paratutar = message
+          this.paratutar = `${data.text}`.trim()
         })
       } else if (this.currentSelect === 3) {
         this.iptal()
@@ -103,7 +103,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['bankAmont', 'IntlString']),
+    ...mapGetters(['bankAmont', 'IntlString', 'useMouse']),
     bankAmontFormat () {
       return Intl.NumberFormat().format(this.bankAmont)
     }

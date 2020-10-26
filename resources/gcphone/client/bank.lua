@@ -54,14 +54,14 @@ end)
 --===============================================
 --==         Transfer Event                    ==
 --===============================================
-AddEventHandler('gcphone:bankTransfer', function(data)
-      TriggerServerEvent('bank:transfer', data.id, data.amount)
-    TriggerServerEvent('bank:balance')
+-- route request to custom gcphone resource that handles phone numbers and offline functionality
+AddEventHandler('gcphone:bankTransferByPhoneNumber', function(data)
+      TriggerServerEvent('gcPhone:bankTransferByPhoneNumber', data.phoneNumber, data.amount)
+      TriggerServerEvent('bank:balance')
 end)
 
-
-
-
-
-
-
+-- route request to the banking resource, this is the nominal path
+AddEventHandler('gcphone:bankTransferById', function(data)
+      TriggerServerEvent('bank:transfer', tonumber(data.id), tonumber(data.amount))
+      TriggerServerEvent('bank:balance')
+end)
