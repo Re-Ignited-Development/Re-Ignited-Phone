@@ -148,6 +148,11 @@ export default {
 
 input {
   outline: none;
+  font-weight: 500;
+}
+
+input::placeholder {
+  font-weight: 500;
 }
 
 button {
@@ -230,7 +235,7 @@ button {
   border: none;
   width: 220px;
   color: #fff;
-  background-color: rgb(76, 175, 80);
+  background-color: #2e7230;
   padding: .5rem 1rem;
   font-size: 17px;
   line-height: 1.5;
@@ -264,6 +269,6 @@ button {
   text-transform: none;
 }
 .select{
-  border: 1px double #7cb732;
+  border: 3px solid#2e7230;
 }
 </style>
