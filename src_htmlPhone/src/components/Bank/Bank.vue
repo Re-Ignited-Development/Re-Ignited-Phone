@@ -235,7 +235,7 @@ button {
   border: none;
   width: 220px;
   color: #fff;
-  background-color: #2e7230;
+  background-color: #234d25;
   padding: .5rem 1rem;
   font-size: 17px;
   line-height: 1.5;
@@ -251,6 +251,7 @@ button {
 .buton-transfer:hover {
   background: #7cb732;
 }
+
 
 .buton-cancel{
   border: none;
@@ -269,6 +270,9 @@ button {
   text-transform: none;
 }
 .select{
-  border: 3px solid#2e7230;
+  border: 3px solid#366938;
 }
+
+
+
 </style>
