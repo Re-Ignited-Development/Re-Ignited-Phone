@@ -139,8 +139,7 @@ cs_CZ (Čeština)
 > 1. Navigate to `gcphone > html > static > config > config.json`
 > 2. Search for `serviceCall` This is where you add new prompts. See below for details:
 ```lua
-  "serviceCall": [
-    {
+  "serviceCall": [{
       "display": "Police",
       "icon": "/html/static/img/icons_app/police.png",
       "subMenu": [{
@@ -168,8 +167,8 @@ cs_CZ (Čeština)
         "type": {
           "number": "ambulance"
         }
-      }
-    ],
+      }]
+    },
     {
       "display": "DISPLAY NAME",
       "backgroundColor": "COLOR INSTEAD OF ICON",
@@ -179,8 +178,8 @@ cs_CZ (Čeština)
         "type": {
           "number": "JOB NAME"
         }
-      }
-    ],
+      }]
+    },
     {
       "display": "DISPLAY NAME",
       "icon": "/html/static/img/icons_app/ICONNAME.png",
@@ -190,8 +189,7 @@ cs_CZ (Čeština)
         "type": {
           "number": "JOB NAME"
         }
-      }
-    ]
+      }]
     }
   ],
 ```
