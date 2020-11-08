@@ -8,6 +8,14 @@ import Notification from './Notification'
 
 import AutoFocus from './directives/autofocus'
 
+// Fontawesome
+import fontawesome from '@fortawesome/fontawesome'
+import fa from '@fortawesome/fontawesome-free-regular'
+import fas from '@fortawesome/fontawesome-free-solid'
+import fab from '@fortawesome/fontawesome-free-brands'
+
+fontawesome.library.add(fa, fas, fab)
+
 Vue.use(VueTimeago)
 Vue.use(Notification)
 Vue.config.productionTip = false
