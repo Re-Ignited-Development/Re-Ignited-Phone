@@ -181,12 +181,9 @@ AddEventHandler('gcPhone:receiveLivePosition', function(sourcePlayerServerId, ti
       while Config.ItemRequired and gpsActive do
         Citizen.Wait(checkRate)
         hasPhone(function (hasPhone)
-          if hasPhone == true then
-            print("gps still active")
-          elseif hasPhone == false then
-            print("removeGPS")
+          if hasPhone == false then
             SetBlipFlashes(entityBlip, true)
-            Citizen.Wait(10000) -- 10 seconds remaining
+            Citizen.Wait(2000) -- 2 Seconds
             RemoveBlip(entityBlip)
             entityBlip = nil
             gpsActive = false
@@ -284,7 +281,8 @@ end)
 
 Citizen.CreateThread(function ()
   local mod = 0
-  while true do 
+  while true do
+     
     local playerPed   = PlayerPedId()
     local coords      = GetEntityCoords(playerPed)
     local inRangeToActivePhone = false
@@ -333,6 +331,7 @@ Citizen.CreateThread(function ()
 end)
 
 function PlaySoundJS (sound, volume)
+  print("playSound")
   SendNUIMessage({ event = 'playSound', sound = sound, volume = volume })
 end
 
@@ -511,7 +510,7 @@ AddEventHandler("gcPhone:rejectCall", function(infoCall)
       NetworkSetTalkerProximity(2.5)
     end
   end
-  PhonePlayText()
+  --PhonePlayText()
   SendNUIMessage({event = 'rejectCall', infoCall = infoCall})
 end)
 
