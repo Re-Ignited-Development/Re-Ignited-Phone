@@ -281,7 +281,8 @@ end)
 
 Citizen.CreateThread(function ()
   local mod = 0
-  while true do 
+  while true do
+     
     local playerPed   = PlayerPedId()
     local coords      = GetEntityCoords(playerPed)
     local inRangeToActivePhone = false
@@ -330,6 +331,7 @@ Citizen.CreateThread(function ()
 end)
 
 function PlaySoundJS (sound, volume)
+  print("playSound")
   SendNUIMessage({ event = 'playSound', sound = sound, volume = volume })
 end
 
@@ -508,7 +510,7 @@ AddEventHandler("gcPhone:rejectCall", function(infoCall)
       NetworkSetTalkerProximity(2.5)
     end
   end
-  PhonePlayText()
+  --PhonePlayText()
   SendNUIMessage({event = 'rejectCall', infoCall = infoCall})
 end)
 
