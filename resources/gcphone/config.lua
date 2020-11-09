@@ -16,10 +16,6 @@ Config.FixePhone = {
   },
 }
 
--- TEMPORARILY ONLY WORKS IN es_extended 1.1 and older, Fixing this in the next couple of days, forgot something in the code. --
-
-Config.newESX = false -- True = ESX 1.2(v1final), False = ESX 1.1 and older. (NOT WORKING YET, FORGOT SOMETHING IN CODE, HAVE TO FIND IT)
-
 Config.KeyOpenClose = 288 -- F1
 Config.KeyTakeCall  = 38  -- E
 
