@@ -58,13 +58,6 @@ end)
 ----
 --Item Functions
 ----
-
---[[
-Opening of the phone linked to an item.
-Based on the solution given by HalCroves
-  https://forum.fivem.net/t/tutorial-for-gcphone-with-call-and-job-message-other/177904
-]]--
-
 function hasPhone(cb)
   cb(true)
 end
@@ -163,23 +156,43 @@ function styleBlip(blip, type, number, player)
   SetBlipScale(blip, 0.9)
 end
 
+local checkRate = 5000 -- every 5 seconds
+local gpsActive = false
 RegisterNetEvent('gcPhone:receiveLivePosition')
 AddEventHandler('gcPhone:receiveLivePosition', function(sourcePlayerServerId, timeoutInMilliseconds, sourceNumber, type)
   if (sourcePlayerServerId ~= nil and sourceNumber ~= nil) then
-    local blipId = sourceNumber
-    if (gpsBlips[blipId] ~= nil) then
-      RemoveBlip(gpsBlips[blipId])
-      gpsBlips[blipId] = nil
+    if (entityBlip ~= nil) then
+      RemoveBlip(entityBlip)
+      entityBlip = nil
     end
     local sourcePlayer = GetPlayerFromServerId(sourcePlayerServerId)
     local sourcePed = GetPlayerPed(sourcePlayer)
-    gpsBlips[blipId] = AddBlipForEntity(sourcePed)
-    styleBlip(gpsBlips[blipId], type, sourceNumber, sourcePlayer)
+    entityBlip = AddBlipForEntity(sourcePed)
+    styleBlip(entityBlip, type, sourceNumber, sourcePlayer)
+    gpsActive = true
     Citizen.SetTimeout(timeoutInMilliseconds, function()
-      SetBlipFlashes(gpsBlips[blipId], true)
+      SetBlipFlashes(entityBlip, true)
       Citizen.Wait(10000)
-      RemoveBlip(gpsBlips[blipId])
-      gpsBlips[blipId] = nil
+      RemoveBlip(entityBlip)
+      entityBlip = nil
+      gpsActive = false
+    end)
+    Citizen.CreateThread(function()
+      while Config.ItemRequired and gpsActive do
+        Citizen.Wait(checkRate)
+        hasPhone(function (hasPhone)
+          if hasPhone == true then
+            print("gps still active")
+          elseif hasPhone == false then
+            print("removeGPS")
+            SetBlipFlashes(entityBlip, true)
+            Citizen.Wait(10000) -- 10 seconds remaining
+            RemoveBlip(entityBlip)
+            entityBlip = nil
+            gpsActive = false
+          end
+        end)
+      end
     end)
   end
 end)
