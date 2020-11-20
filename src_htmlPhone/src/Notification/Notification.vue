@@ -63,12 +63,17 @@ export default {
 </script>
 
 <style scoped>
+  .notifications {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
   .notification {
-    width: 450px;
+    width: 400px;
     background-color: rgba(29, 161, 242, 0.6); /* Twitter Notification Background */
     color: white;
     padding: 8px 16px;
-    margin-bottom: 8px;
+    margin: 10px;
     border-radius: 6px;
   }
   .title {
