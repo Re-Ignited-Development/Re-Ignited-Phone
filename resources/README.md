@@ -1,3 +1,7 @@
+# Do NOT join the Discord asking for support because your phone wont open or you have no HTML.
+Unless you intend on modifying the source code, you should not have this file.
+
+**USE THE LATEST RELEASE IF THIS IS NOT YOUR INTENDED USE https://github.com/Re-Ignited-Development/Re-Ignited-Phone/releases**
 
 # ReDesign & Functionality
 
