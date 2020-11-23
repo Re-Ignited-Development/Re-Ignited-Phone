@@ -34,7 +34,7 @@
     }]
   },
 
-  "//": "REQUIRES https://github.com/citizenfx/screenshot-basic otherwise set enableTakePhoto to false. Thanks to @GLDmACK for his Upload Service!!!", 
+  "//": "REQUIRES https://github.com/citizenfx/screenshot-basic otherwise set enableTakePhoto to false. Thanks to @GLDmACK for his Upload Service!!!",
   "enableTakePhoto": true,
   "fileUploadService_Url": "https://gcphone.herokuapp.com/uploads/upload",
   "fileUploadService_Field": "image",
@@ -68,7 +68,7 @@
     "Brick Base": "base.png",
     "Transparent": "transparent.png"
   },
-  
+
   "sonido": {
     "Astronomia": "ring.ogg",
     "Crystallize": "Crystallize.ogg",
@@ -272,7 +272,7 @@
       "name": "Notes",
       "menuTitle": "visible",
       "fr_FR__name": "Notes",
-      "cs_CZ__name": "Poznámky",	  
+      "cs_CZ__name": "Poznámky",
       "en_US__name": "Notes",
       "de_DE__name": "Notizen",
       "pl_PL__name": "Notatki",
@@ -318,6 +318,7 @@
       "APP_PHONE_MENU_FAVORITES": "Favoris",
       "APP_PHONE_MENU_RECENTS": "Récents",
       "APP_PHONE_MENU_CONTACTS": "Contacts",
+      "APP_PHONE_ENTER_NAME": "Enter A Name",
       "APP_PHONE_ENTER_NUMBER": "Entrer un numero",
       "APP_PHONE_NUMBER_HIDDEN": "Munero masqué",
       "APP_PHONE_NUMBER_UNKNOWN": "Inconnu",
@@ -446,6 +447,7 @@
       "APP_PHONE_MENU_FAVORITES": "Favorites",
       "APP_PHONE_MENU_RECENTS": "Recent",
       "APP_PHONE_MENU_CONTACTS": "Contacts",
+      "APP_PHONE_ENTER_NAME": "Enter A Name",
       "APP_PHONE_ENTER_NUMBER": "Enter a Number",
       "APP_BANK_TITLE": "Bank",
       "APP_BOURSE_TITLE": "Stock Exchange",
@@ -569,6 +571,7 @@
       "APP_PHONE_MENU_FAVORITES": "Favoriten",
       "APP_PHONE_MENU_RECENTS": "Kürzlich",
       "APP_PHONE_MENU_CONTACTS": "Kontakte",
+      "APP_PHONE_ENTER_NAME": "Enter A Name",
       "APP_PHONE_ENTER_NUMBER": "Nummer eingeben",
       "APP_PHONE_NUMBER_HIDDEN": "Nummer unterdrückt",
       "APP_PHONE_NUMBER_UNKNOWN": "Unbekannt",
@@ -688,6 +691,7 @@
       "APP_PHONE_MENU_FAVORITES": "Ulubione",
       "APP_PHONE_MENU_RECENTS": "Ostatnie",
       "APP_PHONE_MENU_CONTACTS": "Kontakty",
+      "APP_PHONE_ENTER_NAME": "Enter A Name",
       "APP_PHONE_ENTER_NUMBER": "Wprowadź numer",
       "APP_BANK_TITLE": "Bank",
       "APP_BOURSE_TITLE": "Giełda",
@@ -803,6 +807,7 @@
       "APP_PHONE_MENU_FAVORITES": "preferidos",
       "APP_PHONE_MENU_RECENTS": "Recientes",
       "APP_PHONE_MENU_CONTACTS": "Contactos",
+      "APP_PHONE_ENTER_NAME": "Enter A Name",
       "APP_PHONE_ENTER_NUMBER": "Introduzca un número",
       "APP_BANK_TITLE": "Wallet",
       "APP_BOURSE_TITLE": "Bolsa de valores",
@@ -929,6 +934,7 @@
       "APP_PHONE_MENU_FAVORITES": "Favoritos",
       "APP_PHONE_MENU_RECENTS": "Recentes",
       "APP_PHONE_MENU_CONTACTS": "Contactos",
+      "APP_PHONE_ENTER_NAME": "Enter A Name",
       "APP_PHONE_ENTER_NUMBER": "Insere um número",
       "APP_BANK_TITLE": "Banco",
       "APP_BOURSE_TITLE": "Bolsa de Valores",
@@ -1045,6 +1051,7 @@
       "APP_PHONE_MENU_FAVORITES": "Oblíbené",
       "APP_PHONE_MENU_RECENTS": "Nejnovější",
       "APP_PHONE_MENU_CONTACTS": "Kontakty",
+      "APP_PHONE_ENTER_NAME": "Enter A Name",
       "APP_PHONE_ENTER_NUMBER": "Zadej číslo",
       "APP_BANK_TITLE": "Banka",
       "APP_BOURSE_TITLE": "Burza",
@@ -1126,8 +1133,8 @@
       "APP_MESSAGE_SEND_GPS_REALTIME": "Sdílet živou GPS polohu",
       "APP_MESSAGE_SEND_GPS_REALTIME_TIME_1": "1 Minuta",
       "APP_MESSAGE_SEND_GPS_REALTIME_TIME_2": "5 Minut",
-      "APP_MESSAGE_SEND_GPS_REALTIME_TIME_3": "10 Minut",	
-      "APP_PHONE_CALL_ANONYMOUS": "Volat se skrytým číslem",	  
+      "APP_MESSAGE_SEND_GPS_REALTIME_TIME_3": "10 Minut",
+      "APP_PHONE_CALL_ANONYMOUS": "Volat se skrytým číslem",
 
       "TIMEAGO": [
         "nyní",

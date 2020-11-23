@@ -8,10 +8,10 @@
             <div @click.stop="selectItem(histo)" class="elem-content">
               <div @click.stop="selectItem(histo)" class="elem-content-p">{{histo.display}}</div>
               <div @click.stop="selectItem(histo)" class="elem-content-s">
-                <div 
+                <div
                     @click.stop="selectItem(histo)"
-                    class="elem-histo-pico" 
-                    :class="{'reject': hc.accept === false}" 
+                    class="elem-histo-pico"
+                    :class="{'reject': hc.accept === false}"
                     v-for="(hc, i) in histo.lastCall" :key="i">
                     <svg @click.stop="selectItem(histo)" v-if="hc.accepts === 1 && hc.incoming === 1" viewBox="0 0 24 24" fill="#c5c5c7">
                       <path d="M9,5v2h6.59L4,18.59L5.41,20L17,8.41V15h2V5H9z"/>
@@ -26,7 +26,7 @@
                       <path d="M19.59,7L12,14.59L6.41,9H11V7H3v8h2v-4.59l7,7l9-9L19.59,7z"/>
                     </svg>
                 </div>
-                
+
                 <div v-if="histo.lastCall.length !==0" class="lastCall">
                   <timeago :since='histo.lastCall[0].date' :auto-update="20"></timeago>
                 </div>
@@ -110,13 +110,15 @@ export default {
     },
     save (numero) {
       if (this.id !== -1) {
-        this.addContact({
-          number: numero
+        Modal.CreateTextModal({
+          title: this.IntlString('APP_PHONE_ENTER_NAME'), limit: 12
+        }).then(data => {
+          this.addContact({
+            display: data.text,
+            number: numero
+          })
         })
-      } else {
-        console.log('No añadido')
-      }
-      history.back()
+      } else { console.log('No añadido') }
     },
     stylePuce (data) {
       data = data || {}
