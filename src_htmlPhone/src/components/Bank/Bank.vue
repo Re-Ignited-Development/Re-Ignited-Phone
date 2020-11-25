@@ -1,5 +1,5 @@
 <template>
-  <div class="screen" @click="onBackspace">
+  <div class="screen">
     <div class='elements'>
       <InfoBare style="width: 100%;top: 100%;margin-left: -17px;"/>
       <img class="logo_maze" src="/html/static/img/app_bank/FleecaBank.png">
@@ -57,7 +57,6 @@ export default {
       this.$router.go(-1)
     },
     iptal () {
-      // this.$router.push({path: '/messages'})
       this.$router.go(-1)
     },
     paragonder () {
