@@ -55,7 +55,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['startCall', 'appelsDeleteHistorique', 'appelsDeleteAllHistorique', 'addContact']),
+    ...mapActions(['startCall', 'appelsDeleteHistorique', 'appelsDeleteAllHistorique']),
     getContact (num) {
       const find = this.contacts.find(e => e.number === num)
       return find
