@@ -110,13 +110,16 @@ export default {
     },
     save (numero) {
       if (this.id !== -1) {
-        this.addContact({
-          number: numero
+        this.$router.push({
+          name: 'contacts.view',
+          params: {
+            id: 0,
+            number: numero
+          }
         })
       } else {
         console.log('No añadido')
       }
-      history.back()
     },
     stylePuce (data) {
       data = data || {}
