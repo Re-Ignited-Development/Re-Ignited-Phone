@@ -71,7 +71,6 @@ ESX Addons GCPhone has been merged INTO the gcphone files for ease of use. **You
 Please put `ensure gcphone` before jobs.
 
 Example :
-
 ```
 ensure mysql-async
 
