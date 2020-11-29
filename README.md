@@ -45,7 +45,7 @@
 
 - Screenshots/Selfies with already working upload server.
 
-- Easy installation instructions. Created for us by @Rocky_southpaw#7777
+- Easy installation instructions. Created for us by @ROCKY_southpaw#7777
 
   
 ## Configuration
