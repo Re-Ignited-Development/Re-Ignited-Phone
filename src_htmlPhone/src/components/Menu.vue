@@ -154,7 +154,9 @@ export default {
   transition: all 0.5s ease-in-out;
 }
 
-.menu_buttons {
+/* Requires TESTING for mouse control issue*/
+
+/* .menu_buttons {
   animation-name: up;
   animation-duration: 0.6s;
   animation-fill-mode: forwards;
@@ -162,7 +164,7 @@ export default {
 @keyframes up {
   from {transform: translateY(100vh);}
   to {transform: translateY(0);}
-}
+} */
 
 
 .app_btn_name {
