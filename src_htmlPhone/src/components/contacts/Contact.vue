@@ -125,10 +125,23 @@ export default {
     deleteC () {
       if (this.id !== -1) {
         this.ignoreControls = true
-        let choix = [{title: 'Annuler'}, {title: 'Annuler'}, {title: 'Supprimer', color: 'red'}, {title: 'Annuler'}, {title: 'Annuler'}]
-        Modal.CreateModal({choix}).then(reponse => {
+        Modal.CreateModal({
+          choix: [
+            {
+              action: 'cancel',
+              title: this.IntlString('CANCEL'),
+              icons: 'fa-undo'
+            },
+            {
+              action: 'delete',
+              title: this.IntlString('APP_PHONE_DELETE'),
+              icons: 'fa-trash',
+              color: 'red'
+            }
+          ]
+        }).then(el => {
           this.ignoreControls = false
-          if (reponse.title === 'Supprimer') {
+          if (el.action === 'delete') {
             this.$phoneAPI.deleteContact(this.id)
             history.back()
           }
@@ -179,16 +192,16 @@ export default {
   height: 100%;
 }
 .title{
-    padding-left: 16px;
-    height: 34px;
-    line-height: 34px;
-    font-weight: 700;
-    background-color: #5264AE;
-    color: white;
+  padding-left: 16px;
+  height: 34px;
+  line-height: 34px;
+  font-weight: 700;
+  background-color: #5264AE;
+  color: white;
 }
 .content{
-    margin: 6px 10px;
-    margin-top: 28px;
+  margin: 6px 10px;
+  margin-top: 28px;
 }
 .group { 
   position:relative; 
@@ -272,16 +285,16 @@ input:focus ~ .highlight {
 }
 
 .group .btn{
-    width: 100%;
-    padding: 0px 0px;
-    height: 48px;
-    color: #fff;
-    border: 0 none;
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 34px;
-    color: #202129;
-    background-color: #edeeee;
+  width: 100%;
+  padding: 0px 0px;
+  height: 48px;
+  color: #fff;
+  border: 0 none;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 34px;
+  color: #202129;
+  background-color: #edeeee;
 }
 .group.select .btn{
     /* border: 6px solid #C0C0C0; */
