@@ -79,7 +79,7 @@ export default {
         icons: 'fa-heart'
       }, {
         id: 2,
-        title: 'Répondre',
+        title: this.IntlString('APP_TWITTER_VIEW_REPLY'),
         icons: 'fa-reply'
       }, {
         id: -1,
@@ -115,7 +115,7 @@ export default {
       try {
         this.ignoreControls = true
         const rep = await Modal.CreateTextModal({
-          title: 'Répondre',
+          title: this.IntlString('APP_TWITTER_VIEW_REPLY') || 'Reply',
           text: `@${authorName} `
         })
         if (rep !== undefined && rep.text !== undefined) {
