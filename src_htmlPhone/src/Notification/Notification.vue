@@ -9,7 +9,10 @@
       <div class="title">
         <i v-if="notif.icon" class="fab fa-twitter" /> {{notif.title}}
       </div>
-      <div class="message">{{notif.message}}</div>
+      <div v-if="isImage(notif.message) === true" class="message">
+        <img :src="notif.message" class='img-msg' />
+      </div>
+      <div v-else class="message">{{notif.message}}</div>
     </div>
   </div>
 </template>
@@ -29,6 +32,10 @@ export default {
     events.$on('add', this.addItem)
   },
   methods: {
+    // Check if the link is an image URL
+    isImage (url) {
+      return /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|png)/g.test(url)
+    },
     async addItem (event = {}) {
       const dataNotif = {
         ...event,
@@ -63,23 +70,27 @@ export default {
 </script>
 
 <style scoped>
-  .notifications {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  .notification {
-    width: 400px;
-    background-color: rgba(29, 161, 242, 0.6); /* Twitter Notification Background */
-    color: white;
-    padding: 8px 16px;
-    margin: 10px;
-    border-radius: 6px;
-  }
-  .title {
-    font-size: 18px;
-  }
-  .message {
-    font-size: 16px;
-  }
+.notifications {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.notification {
+  width: auto;
+  background-color: rgba(29, 161, 242, 0.6); /* Twitter Notification Background */
+  color: white;
+  padding: 8px 16px;
+  margin: 10px;
+  border-radius: 6px;
+}
+.title {
+  font-size: 18px;
+}
+.message {
+  font-size: 16px;
+}
+  
+.img-msg {
+  height: 150px;
+}
 </style>
