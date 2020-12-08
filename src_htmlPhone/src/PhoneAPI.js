@@ -201,6 +201,7 @@ class PhoneAPI {
   }
   // Call
   async startCall (numero, extraData = undefined) {
+    if (numero.length > 10) return this.log('Err: This number is invalid')
     if (USE_VOICE_RTC === true) {
       const rtcOffer = await this.voiceRTC.prepareCall()
       return this.post('startCall', { numero, rtcOffer, extraData })
@@ -349,7 +350,8 @@ class PhoneAPI {
         volume: volume,
         loop: true,
         onend: function () {
-          console.log('Finished!')
+          // Changed to use log API
+          this.log('Finished!')
         }
       })
       this.soundList[sound].play()
