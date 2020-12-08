@@ -93,6 +93,7 @@
 
   "serviceCall": [{
       "display": "Police",
+      "backgroundColor": "blue",
       "icon": "/html/static/img/icons_app/police.png",
       "subMenu": [{
           "title": "Send Message",
