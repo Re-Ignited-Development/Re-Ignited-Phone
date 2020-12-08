@@ -96,14 +96,18 @@
       "icon": "/html/static/img/contacts/police.png",
       "subMenu": [{
           "title": "Send Message",
+          "action": "sendMessage",
           "eventName": "esx_addons_gcphone:call",
+          "icons": "fa-comments",
           "type": {
             "number": "police"
           }
         },
         {
           "title": "Call Police Station",
+          "action": "call",
           "eventName": "gcphone:autoCallNumber",
+          "icons": "fa-phone",
           "type": {
             "number": "911"
           }
@@ -114,7 +118,9 @@
       "display": "Ambulance",
       "icon": "/html/static/img/contacts/ems.png",
       "subMenu": [{
+        "action": "sendMessage",
         "title": "Send Message",
+        "icons": "fa-comments",
         "eventName": "esx_addons_gcphone:call",
         "type": {
           "number": "ambulance"
@@ -420,7 +426,7 @@
       "PHONE_WARNING_MESSAGE": "WARNING",
       "PHONE_WARNING_MESSAGE_MESS": "Messages",
       "CONFIRM": "Accept",
-      "CANCEL": "Abort",
+      "CANCEL": "Cancel",
       "APP_CONFIG_TITLE": "Settings",
       "APP_MESSAGE_SAVE_CONTACT": "Save contact",
       "APP_CONFIG_MY_MUNBER": "My Number",
