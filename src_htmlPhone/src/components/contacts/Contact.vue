@@ -4,14 +4,14 @@
     <div class='phone_content content inputText'>
         
         <div class="group select" data-type="text" data-model='display' data-maxlength = '64'>      
-            <input type="text" v-model="contact.display" maxlength="64" v-autofocus>
+            <input type="text" v-model="contact.display" maxlength="64" v-autofocus class='inputText'>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>{{ IntlString('APP_CONTACT_LABEL_NAME') }}</label>
         </div>
         
-        <div class="group inputText" data-type="text" data-model='number' data-maxlength='10'>      
-            <input type="text" v-model="contact.number" maxlength="10">
+        <div class="group" data-type="text" data-model='number' data-maxlength='10'>      
+            <input type="text" v-model="contact.number" maxlength="10" class='inputText'>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>{{ IntlString('APP_CONTACT_LABEL_NUMBER') }}</label>
@@ -207,18 +207,22 @@ export default {
   position:relative; 
   margin-top:24px; 
 }
-.group.inputText { 
-  position:relative; 
-  margin-top:45px; 
-}
-input 				{
+
+input {
   font-size:24px;
   display:block;
   width:100%;
   border:none;
-  border-bottom:1px solid #757575;
+  border-bottom: 1px solid #757575;
 }
-input:focus 		{ outline:none; }
+
+input:focus { 
+  outline:none;
+}
+
+input.inputText:focus {
+  border: 3px solid green;
+}
 
 /* LABEL ======================================= */
 label 				 {
