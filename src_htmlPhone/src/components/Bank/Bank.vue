@@ -251,11 +251,10 @@ button {
   background: #7cb732;
 }
 
-
 .buton-cancel{
   border: none;
   width: 220px;
-  color: #fff;
+  color: black;
   background-image: linear-gradient(to right, #D3D3D3, #C5C5C5 , #B6B6B6); 
   padding: .5rem 1rem;
   font-size: 17px;
@@ -269,7 +268,7 @@ button {
   text-transform: none;
 }
 .select{
-  border: 3px solid#366938;
+  box-shadow: inset 0px 0px 0px 4px #53a056;
 }
 
 
