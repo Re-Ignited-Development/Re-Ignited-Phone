@@ -46,6 +46,15 @@ class PhoneAPI {
     return text
   }
 
+  sendGenericError (data) {
+    this.log(`Sending Error: ${data}`)
+    Vue.notify({
+      title: 'Error',
+      message: data,
+      backgroundColor: '#e0245e80'
+    })
+  }
+
   // === Gestion des messages
   async sendMessage (phoneNumber, message, gpsData) {
     return this.post('sendMessage', {phoneNumber, message, gpsData})
@@ -327,6 +336,7 @@ class PhoneAPI {
       icon: 'twitter'
     })
   }
+  // Generic Error Message Event
 
   onplaySound ({ sound, volume = 1 }) {
     var path = '/html/static/sound/' + sound

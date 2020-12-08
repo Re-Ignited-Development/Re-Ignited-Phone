@@ -208,25 +208,25 @@ export default {
 </script>
 
 <style scoped>
-  .svgreply:hover {
-    cursor: pointer;
-    fill: #1da1f2;
-    color: #1da1f2;
-  }
-  .svglike:hover {
-    cursor: pointer;
-    fill: red;
-    color: red;
-  }
-  .svgdislike {
-    fill: red;
-    color: red;
-  }
-  .svgdislike:hover {
-    cursor: pointer;
-    fill: #C0C0C0;
-    color: #C0C0C0;
-  }
+.svgreply:hover {
+  cursor: pointer;
+  fill: #1da1f2;
+  color: #1da1f2;
+}
+.svglike:hover {
+  cursor: pointer;
+  fill: red;
+  color: red;
+}
+.svgdislike {
+  fill: red;
+  color: red;
+}
+.svgdislike:hover {
+  cursor: pointer;
+  fill: #C0C0C0;
+  color: #C0C0C0;
+}
 
 .img-fullscreen {
   position: fixed;
@@ -295,7 +295,7 @@ export default {
 .tweet-head-time {
   font-size: 12px;
   text-align: right;
-  padding-right: 6px;
+  padding-right: 12px;
   color: #888;
 }
 

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "babel-preset-es2017": "^6.24.1",
+    "dayjs": "^1.9.7",
     "howler": "^2.2.0",
     "node-sass": "^4.13.0",
     "sass-loader": "^6.0.7",
