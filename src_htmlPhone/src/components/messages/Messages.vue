@@ -312,7 +312,8 @@ export default {
           }
         }
         this.ignoreControls = false
-      } catch (e) {
+      } catch (eeeUrr) {
+        console.log(eeeUrr)
       } finally {
         this.ignoreControls = false
       }
@@ -400,15 +401,15 @@ export default {
     padding-bottom: 8px;
 }
 
-  .name_other_sms_other{
-    margin-bottom: -9px;
-    margin-left: 42px;
-    font-size: 14px;
-    font-weight: 500;
-    color: lightgrey;
-  }
+.name_other_sms_other{
+  margin-bottom: -9px;
+  margin-left: 42px;
+  font-size: 14px;
+  font-weight: 500;
+  color: lightgrey;
+}
 
- .name_other_sms_me{
+.name_other_sms_me{
   display: none;
 }
 
@@ -456,19 +457,19 @@ export default {
 }
 
 .sms_other{
-    background-color: #d8d8d8;
-    color: #000;
-    float: left;
-    padding: 5px 20px;
-    max-width: 90%;
-    margin-left: 5%;
-    margin-top: 10px;
+  background-color: #d8d8d8;
+  color: #000;
+  float: left;
+  padding: 5px 20px;
+  max-width: 90%;
+  margin-left: 5%;
+  margin-top: 10px;
 }
 
 
 .sms_time{
-    display: block;
-    font-size: 12px;
+  display: block;
+  font-size: 12px;
 }
 
 .sms_me .sms_time{
@@ -502,31 +503,31 @@ export default {
 }
 
 #sms_write{
-    height: 56px;
-    margin: 10px;
-    width: 380px;
-    background-color: white;
-    border-radius: 56px;
+  height: 56px;
+  margin: 10px;
+  width: 380px;
+  background-color: white;
+  border-radius: 56px;
 }
 #sms_write input{
-    height: 56px;
-    border: none;
-    outline: none;
-    font-size: 18px;
-    margin-left: 14px;
-    padding: 12px 5px;
-    background-color: rgba(236, 236, 241, 0)
+  height: 56px;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  margin-left: 14px;
+  padding: 12px 5px;
+  background-color: rgba(236, 236, 241, 0)
 }
 
 .sms_send{
-    float: right;
-    margin-right: 10px;
+  float: right;
+  margin-right: 10px;
 }
 .sms_send svg{
-    margin: 10px; 
-    width: 36px;
-    height: 36px;
-    fill: #C0C0C0;
+  margin: 10px; 
+  width: 36px;
+  height: 36px;
+  fill: #C0C0C0;
 }
 .copyTextarea {
   height: 0;
