@@ -16,11 +16,11 @@
             <span class="bar"></span>
             <label>{{ IntlString('APP_CONTACT_LABEL_NUMBER') }}</label>
         </div>
-        <div style="margin-top: 56px;" class="group " data-type="button" data-action='save' @click.stop="save">      
-            <input type='button' class="btn btn-green" :value="IntlString('APP_CONTACT_SAVE')" @click.stop="save"/>
-        </div>
-        <div class="group" data-type="button" data-action='cancel' @click.stop="forceCancel">      
+        <div style='margin-top: 56px;' class="group" data-type="button" data-action='cancel' @click.stop="forceCancel">      
             <input type='button' class="btn btn-orange" :value="IntlString('APP_CONTACT_CANCEL')" @click.stop="forceCancel"/>
+        </div>
+        <div class="group " data-type="button" data-action='save' @click.stop="save">      
+            <input type='button' class="btn btn-green" :value="IntlString('APP_CONTACT_SAVE')" @click.stop="save"/>
         </div>
         <div class="group" data-type="button" data-action='deleteC' @click.stop="deleteC">      
             <input type='button' class="btn btn-red" :value="IntlString('APP_CONTACT_DELETE')" @click.stop="deleteC"/>
@@ -101,18 +101,35 @@ export default {
     },
     save () {
       if (this.id === -1 || this.id === 0) {
+        // Returns if number/display is undefined or blank
+        if (!this.contact.number || this.contact.number.trim() === '' || !this.contact.display || this.contact.display.trim() === '') return
+        // Checks existing contacts for number
+        for (const curContact of this.contacts) {
+          if (curContact.number === this.contact.number) {
+            return this.$phoneAPI.sendGenericError(`Cannot add contact. This number is already added as ${curContact.display}`)
+          }
+        }
+        // Saves new contact
         this.addContact({
           display: this.contact.display,
           number: this.contact.number
         })
+        history.back()
       } else {
+        // Same logic as above except for updating contact
+        if (!this.contact.number || this.contact.number.trim() === '' || !this.contact.display || this.contact.display.trim() === '') return
+        for (const curContact of this.contacts) {
+          if (curContact.number === this.contact.number) {
+            return this.$phoneAPI.sendGenericError(`Cannot save contact. This number is already added as ${curContact.display}`)
+          }
+        }
         this.updateContact({
           id: this.id,
           display: this.contact.display,
           number: this.contact.number
         })
+        history.back()
       }
-      history.back()
     },
     cancel () {
       if (this.ignoreControls === true) return
@@ -174,7 +191,7 @@ export default {
       }
     }
   },
-  beforeDestroy: function () {
+  beforeDestroy () {
     this.$bus.$off('keyUpArrowDown', this.onDown)
     this.$bus.$off('keyUpArrowUp', this.onUp)
     this.$bus.$off('keyUpEnter', this.onEnter)
@@ -221,7 +238,7 @@ input:focus {
 }
 
 input.inputText:focus {
-  border: 3px solid green;
+  box-shadow: inset 0px 0px 0px 2px #53a056;
 }
 
 /* LABEL ======================================= */
@@ -301,8 +318,8 @@ input:focus ~ .highlight {
   background-color: #edeeee;
 }
 .group.select .btn{
-    /* border: 6px solid #C0C0C0; */
-    line-height: 18px;
+  /* border: 6px solid #C0C0C0; */
+  line-height: 18px;
 }
 
 .group .btn.btn-green{
@@ -319,7 +336,7 @@ input:focus ~ .highlight {
 }
 .group .btn.btn-orange{
   border: 1px solid #B6B6B6;
-  color: #B6B6B6;
+  color: black;
   background-color: white;
   font-weight: 500;
   border-radius: 10px;
