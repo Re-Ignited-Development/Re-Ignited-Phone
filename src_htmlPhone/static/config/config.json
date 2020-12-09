@@ -93,7 +93,7 @@
 
   "serviceCall": [{
       "display": "Police",
-      "icon": "/html/static/img/contacts/police.png",
+      "icon": "/html/static/img/icons_app/police.png",
       "subMenu": [{
           "title": "Send Message",
           "action": "sendMessage",
@@ -116,7 +116,7 @@
     },
     {
       "display": "Ambulance",
-      "icon": "/html/static/img/contacts/ems.png",
+      "icon": "/html/static/img/icons_app/ems.png",
       "subMenu": [{
         "action": "sendMessage",
         "title": "Send Message",
@@ -132,12 +132,12 @@
   "defaultContacts": [{
       "number": "ambulance",
       "display": "Ambulance",
-      "icon": "/html/static/img/contacts/ems.png"
+      "icon": "/html/static/img/icons_app/ems.png"
     },
     {
       "number": "police",
       "display": "Police",
-      "icon": "/html/static/img/contacts/police.png"
+      "icon": "/html/static/img/icons_app/police.png"
     }
   ],
 
