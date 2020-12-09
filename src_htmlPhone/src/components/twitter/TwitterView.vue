@@ -116,12 +116,12 @@ export default {
         this.ignoreControls = true
         const rep = await Modal.CreateTextModal({
           title: 'Répondre',
-          text: `@${authorName} `
+          text: ``
         })
         if (rep !== undefined && rep.text !== undefined) {
           const message = rep.text.trim()
           if (message.length !== 0) {
-            this.twitterPostTweet({ message })
+            this.twitterPostTweet({ message: '@' + authorName + ' ' + message })
           }
         }
       } catch (e) {
