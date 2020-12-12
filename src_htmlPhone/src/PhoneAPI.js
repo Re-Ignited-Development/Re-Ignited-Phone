@@ -46,6 +46,15 @@ class PhoneAPI {
     return text
   }
 
+  sendGenericError (data) {
+    this.log(`Sending Error: ${data}`)
+    Vue.notify({
+      title: 'Error',
+      message: data,
+      backgroundColor: '#e0245e80'
+    })
+  }
+
   // === Gestion des messages
   async sendMessage (phoneNumber, message, gpsData) {
     return this.post('sendMessage', {phoneNumber, message, gpsData})
@@ -192,6 +201,7 @@ class PhoneAPI {
   }
   // Call
   async startCall (numero, extraData = undefined) {
+    if (numero.length > 10) return this.log('Err: This number is invalid')
     if (USE_VOICE_RTC === true) {
       const rtcOffer = await this.voiceRTC.prepareCall()
       return this.post('startCall', { numero, rtcOffer, extraData })
@@ -327,6 +337,7 @@ class PhoneAPI {
       icon: 'twitter'
     })
   }
+  // Generic Error Message Event
 
   onplaySound ({ sound, volume = 1 }) {
     var path = '/html/static/sound/' + sound
@@ -339,7 +350,8 @@ class PhoneAPI {
         volume: volume,
         loop: true,
         onend: function () {
-          console.log('Finished!')
+          // Changed to use log API
+          this.log('Finished!')
         }
       })
       this.soundList[sound].play()

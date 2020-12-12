@@ -52,6 +52,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import dayjs from 'dayjs'
 import Modal from '@/components/Modal/index.js'
 
 export default {
@@ -79,10 +80,11 @@ export default {
       let optionsChoix = [{
         id: 1,
         title: 'Like / Unlike',
-        icons: 'fa-heart'
+        icons: 'fa-heart',
+        color: 'red'
       }, {
         id: 2,
-        title: 'Reply',
+        title: this.IntlString('APP_TWITTER_VIEW_REPLY'),
         icons: 'fa-reply'
       }, {
         id: -1,
@@ -90,11 +92,11 @@ export default {
         icons: 'fa-undo'
       }]
       if (this.isImage(tweet.message)) {
-        optionsChoix = [{
+        optionsChoix = [...optionsChoix, {
           id: 3,
           title: this.IntlString('APP_MESSAGE_ZOOM_IMG'),
           icons: 'fa-search'
-        }, ...optionsChoix]
+        }]
       }
       const choix = await Modal.CreateModal({ choix: optionsChoix })
       this.ignoreControls = false
@@ -186,8 +188,7 @@ export default {
       }
     },
     formatTime (time) {
-      const d = new Date(time)
-      return d.toLocaleTimeString()
+      return dayjs(time).format('HH:mm A on DD/MM')
     }
   },
   created () {
@@ -211,25 +212,26 @@ export default {
 </script>
 
 <style scoped>
-  .svgreply:hover {
-    cursor: pointer;
-    fill: #1da1f2;
-    color: #1da1f2;
-  }
-  .svglike:hover {
-    cursor: pointer;
-    fill: red;
-    color: red;
-  }
-  .svgdislike {
-    fill: red;
-    color: red;
-  }
-  .svgdislike:hover {
-    cursor: pointer;
-    fill: #C0C0C0;
-    color: #C0C0C0;
-  }
+/* This CSS needs some major work */
+.svgreply:hover {
+  cursor: pointer;
+  fill: #1da1f2;
+  color: #1da1f2;
+}
+.svglike:hover {
+  cursor: pointer;
+  fill: red;
+  color: red;
+}
+.svgdislike {
+  fill: red;
+  color: red;
+}
+.svgdislike:hover {
+  cursor: pointer;
+  fill: #C0C0C0;
+  color: #C0C0C0;
+}
 
 .img-fullscreen {
   position: fixed;
@@ -282,6 +284,7 @@ export default {
 
 .tweet-content {
   width: 100%;
+  padding-right: 12px;
 }
 
 .tweet-head {
@@ -290,19 +293,21 @@ export default {
   display: flex;
   flex-direction: row;
   font-weight: 700;
+  height: 40px;
+  align-items: center;
 }
 
 .tweet-head-author {
-  width: 100%;
+  font-size: 18px;
 }
 .tweet-head-time {
   font-size: 12px;
   text-align: right;
-  padding-right: 6px;
   color: #888;
+  margin-left: auto;
 }
 
-.tweet-message{
+.tweet-message {
   font-size: 14px;
   color: 000;
   min-height: 36px;
@@ -310,7 +315,7 @@ export default {
 }
 
 .tweet-attachement-img {
-  width: 96%;
+  width: 100%;
 }
 
 .tweet-like {
@@ -326,54 +331,51 @@ export default {
   width: 80px;
 }
 
-.tweet_write{
-    height: 56px;
-    widows: 100%;
-    background: #c0deed;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.tweet_write {
+  height: 56px;
+  widows: 100%;
+  background: #c0deed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
-.tweet_write input{
-    width: 75%;
-    margin-left: 6%;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    padding: 3px 12px;
-    float: left;
-    height: 36px;
-    background-color: #ffffff;
-    color: white;
-    border-radius: 16px;
+.tweet_write input {
+  width: 75%;
+  margin-left: 6%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 3px 12px;
+  float: left;
+  height: 36px;
+  background-color: #ffffff;
+  color: white;
+  border-radius: 16px;
 }
 .tweet_write input::placeholder {
   color: #888;
 }
-.tweet_send{
-    width: 32px;
-    height: 32px;
-    float: right;
-    border-radius: 50%;
-    background-color: #0084b4;
-    margin-right: 12px;
-    margin-bottom: 2px;
-    color: white;
-    line-height: 32px;
-    text-align: center;
+.tweet_send {
+  width: 32px;
+  height: 32px;
+  float: right;
+  border-radius: 50%;
+  background-color: #0084b4;
+  margin-right: 12px;
+  margin-bottom: 2px;
+  color: white;
+  line-height: 32px;
+  text-align: center;
 }
-.elements::-webkit-scrollbar-track
-  {
-      box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-      background-color: #a6a28c;
-  }
-.elements::-webkit-scrollbar
-  {
-      width: 3px;
-      background-color: transparent;
-  }
-.elements::-webkit-scrollbar-thumb
-  {
-      background-color: #1da1f2;
-  }
+.elements::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #a6a28c;
+}
+.elements::-webkit-scrollbar {
+  width: 3px;
+  background-color: transparent;
+}
+.elements::-webkit-scrollbar-thumb {
+  background-color: #1da1f2;
+}
 </style>

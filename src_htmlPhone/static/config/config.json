@@ -96,14 +96,18 @@
       "icon": "/html/static/img/icons_app/police.png",
       "subMenu": [{
           "title": "Send Message",
+          "action": "sendMessage",
           "eventName": "esx_addons_gcphone:call",
+          "icons": "fa-comments",
           "type": {
             "number": "police"
           }
         },
         {
           "title": "Call Police Station",
+          "action": "call",
           "eventName": "gcphone:autoCallNumber",
+          "icons": "fa-phone",
           "type": {
             "number": "911"
           }
@@ -112,9 +116,11 @@
     },
     {
       "display": "Ambulance",
-      "backgroundColor": "red",
+      "icon": "/html/static/img/icons_app/ems.png",
       "subMenu": [{
+        "action": "sendMessage",
         "title": "Send Message",
+        "icons": "fa-comments",
         "eventName": "esx_addons_gcphone:call",
         "type": {
           "number": "ambulance"
@@ -126,13 +132,12 @@
   "defaultContacts": [{
       "number": "ambulance",
       "display": "Ambulance",
-      "icon": "/html/static/img/icons_app/bank.png"
+      "icon": "/html/static/img/icons_app/ems.png"
     },
     {
       "number": "police",
       "display": "Police",
-      "backgroundColor": "blue",
-      "letter": "P"
+      "icon": "/html/static/img/icons_app/police.png"
     }
   ],
 
@@ -421,7 +426,7 @@
       "PHONE_WARNING_MESSAGE": "WARNING",
       "PHONE_WARNING_MESSAGE_MESS": "Messages",
       "CONFIRM": "Accept",
-      "CANCEL": "Abort",
+      "CANCEL": "Cancel",
       "APP_CONFIG_TITLE": "Settings",
       "APP_MESSAGE_SAVE_CONTACT": "Save contact",
       "APP_CONFIG_MY_MUNBER": "My Number",
@@ -486,6 +491,7 @@
       "APP_TWITTER_VIEW_TWITTER": "Twitter",
       "APP_TWITTER_VIEW_TOP_TWEETS": "Top Tweets",
       "APP_TWITTER_VIEW_TWEETER": "Tweets",
+      "APP_TWITTER_VIEW_REPLY": "Reply",
       "APP_TWITTER_VIEW_SETTING": "Settings",
       "APP_TWITTER_NEW_ACCOUNT_USERNAME": "Username (>= 4)",
       "APP_TWITTER_NEW_ACCOUNT_PASSWORD": "Password (>= 6)",

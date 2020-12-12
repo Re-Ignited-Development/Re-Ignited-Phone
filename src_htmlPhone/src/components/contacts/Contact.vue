@@ -4,23 +4,23 @@
     <div class='phone_content content inputText'>
         
         <div class="group select" data-type="text" data-model='display' data-maxlength = '64'>      
-            <input type="text" v-model="contact.display" maxlength="64" v-autofocus>
+            <input type="text" v-model="contact.display" maxlength="64" v-autofocus class='inputText'>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>{{ IntlString('APP_CONTACT_LABEL_NAME') }}</label>
         </div>
         
-        <div class="group inputText" data-type="text" data-model='number' data-maxlength='10'>      
-            <input type="text" v-model="contact.number" maxlength="10">
+        <div class="group" data-type="text" data-model='number' data-maxlength='10'>      
+            <input type="text" v-model="contact.number" maxlength="10" class='inputText'>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>{{ IntlString('APP_CONTACT_LABEL_NUMBER') }}</label>
         </div>
-        <div style="margin-top: 56px;" class="group " data-type="button" data-action='save' @click.stop="save">      
-            <input type='button' class="btn btn-green" :value="IntlString('APP_CONTACT_SAVE')" @click.stop="save"/>
-        </div>
-        <div class="group" data-type="button" data-action='cancel' @click.stop="forceCancel">      
+        <div style='margin-top: 56px;' class="group" data-type="button" data-action='cancel' @click.stop="forceCancel">      
             <input type='button' class="btn btn-orange" :value="IntlString('APP_CONTACT_CANCEL')" @click.stop="forceCancel"/>
+        </div>
+        <div class="group " data-type="button" data-action='save' @click.stop="save">      
+            <input type='button' class="btn btn-green" :value="IntlString('APP_CONTACT_SAVE')" @click.stop="save"/>
         </div>
         <div class="group" data-type="button" data-action='deleteC' @click.stop="deleteC">      
             <input type='button' class="btn btn-red" :value="IntlString('APP_CONTACT_DELETE')" @click.stop="deleteC"/>
@@ -101,18 +101,35 @@ export default {
     },
     save () {
       if (this.id === -1 || this.id === 0) {
+        // Returns if number/display is undefined or blank
+        if (!this.contact.number || this.contact.number.trim() === '' || !this.contact.display || this.contact.display.trim() === '') return
+        // Checks existing contacts for number
+        for (const curContact of this.contacts) {
+          if (curContact.number === this.contact.number) {
+            return this.$phoneAPI.sendGenericError(`Cannot add contact. This number is already added as ${curContact.display}`)
+          }
+        }
+        // Saves new contact
         this.addContact({
           display: this.contact.display,
           number: this.contact.number
         })
+        history.back()
       } else {
+        // Same logic as above except for updating contact
+        if (!this.contact.number || this.contact.number.trim() === '' || !this.contact.display || this.contact.display.trim() === '') return
+        for (const curContact of this.contacts) {
+          if (curContact.number === this.contact.number) {
+            return this.$phoneAPI.sendGenericError(`Cannot save contact. This number is already added as ${curContact.display}`)
+          }
+        }
         this.updateContact({
           id: this.id,
           display: this.contact.display,
           number: this.contact.number
         })
+        history.back()
       }
-      history.back()
     },
     cancel () {
       if (this.ignoreControls === true) return
@@ -125,10 +142,23 @@ export default {
     deleteC () {
       if (this.id !== -1) {
         this.ignoreControls = true
-        let choix = [{title: 'Annuler'}, {title: 'Annuler'}, {title: 'Supprimer', color: 'red'}, {title: 'Annuler'}, {title: 'Annuler'}]
-        Modal.CreateModal({choix}).then(reponse => {
+        Modal.CreateModal({
+          choix: [
+            {
+              action: 'cancel',
+              title: this.IntlString('CANCEL'),
+              icons: 'fa-undo'
+            },
+            {
+              action: 'delete',
+              title: this.IntlString('APP_PHONE_DELETE'),
+              icons: 'fa-trash',
+              color: 'red'
+            }
+          ]
+        }).then(el => {
           this.ignoreControls = false
-          if (reponse.title === 'Supprimer') {
+          if (el.action === 'delete') {
             this.$phoneAPI.deleteContact(this.id)
             history.back()
           }
@@ -161,7 +191,7 @@ export default {
       }
     }
   },
-  beforeDestroy: function () {
+  beforeDestroy () {
     this.$bus.$off('keyUpArrowDown', this.onDown)
     this.$bus.$off('keyUpArrowUp', this.onUp)
     this.$bus.$off('keyUpEnter', this.onEnter)
@@ -179,33 +209,37 @@ export default {
   height: 100%;
 }
 .title{
-    padding-left: 16px;
-    height: 34px;
-    line-height: 34px;
-    font-weight: 700;
-    background-color: #5264AE;
-    color: white;
+  padding-left: 16px;
+  height: 34px;
+  line-height: 34px;
+  font-weight: 700;
+  background-color: #5264AE;
+  color: white;
 }
 .content{
-    margin: 6px 10px;
-    margin-top: 28px;
+  margin: 6px 10px;
+  margin-top: 28px;
 }
 .group { 
   position:relative; 
   margin-top:24px; 
 }
-.group.inputText { 
-  position:relative; 
-  margin-top:45px; 
-}
-input 				{
+
+input {
   font-size:24px;
   display:block;
   width:100%;
   border:none;
-  border-bottom:1px solid #757575;
+  border-bottom: 1px solid #757575;
 }
-input:focus 		{ outline:none; }
+
+input:focus { 
+  outline:none;
+}
+
+input.inputText:focus {
+  box-shadow: inset 0px 0px 0px 2px #53a056;
+}
 
 /* LABEL ======================================= */
 label 				 {
@@ -272,20 +306,20 @@ input:focus ~ .highlight {
 }
 
 .group .btn{
-    width: 100%;
-    padding: 0px 0px;
-    height: 48px;
-    color: #fff;
-    border: 0 none;
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 34px;
-    color: #202129;
-    background-color: #edeeee;
+  width: 100%;
+  padding: 0px 0px;
+  height: 48px;
+  color: #fff;
+  border: 0 none;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 34px;
+  color: #202129;
+  background-color: #edeeee;
 }
 .group.select .btn{
-    /* border: 6px solid #C0C0C0; */
-    line-height: 18px;
+  /* border: 6px solid #C0C0C0; */
+  line-height: 18px;
 }
 
 .group .btn.btn-green{
@@ -302,7 +336,7 @@ input:focus ~ .highlight {
 }
 .group .btn.btn-orange{
   border: 1px solid #B6B6B6;
-  color: #B6B6B6;
+  color: black;
   background-color: white;
   font-weight: 500;
   border-radius: 10px;

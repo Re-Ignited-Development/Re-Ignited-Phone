@@ -73,10 +73,13 @@ export default {
           this.postphoto()
           return
         }
-      } catch (e) {}
+      } catch (e) {
+        console.log(e)
+      }
     },
     async tweeter () {
-      if (this.message === '') return
+      if (this.message === '') return this.$phoneAPI.sendGenericError('Unable to Post! You cannot send a blank tweet')
+      if (this.message.length > 140) return this.$phoneAPI.sendGenericError('Unable to Post! Your tweet is too long!')
       await this.twitterPostTweet({ message: this.message })
       this.message = ''
       this.messageSent = true
@@ -136,7 +139,6 @@ export default {
 <style scoped>
 .phone_content {
   background: #DBF0F4;
-  
 }
 
 .tweet_write{

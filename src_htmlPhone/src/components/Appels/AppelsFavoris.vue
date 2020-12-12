@@ -18,7 +18,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['config']),
+    ...mapGetters(['IntlString', 'config']),
     callList () {
       return this.config.serviceCall || []
     }
@@ -27,11 +27,32 @@ export default {
     onSelect (itemSelect) {
       if (this.ignoreControls === true) return
       this.ignoreControls = true
-      Modal.CreateModal({choix: [...itemSelect.subMenu, {title: 'Cancel'}]}).then(rep => {
+      Modal.CreateModal(
+        {
+          choix: [
+            ...itemSelect.subMenu,
+            {
+              action: 'cancel',
+              title: this.IntlString('CANCEL'),
+              icons: 'fa-undo'
+            }
+          ]
+        }
+      ).then(rep => {
         this.ignoreControls = false
-        if (rep.title === 'Cancel') return
-        this.$phoneAPI.callEvent(rep.eventName, rep.type)
-        this.$router.push({name: 'home'})
+        switch (rep.action) {
+          case 'cancel':
+            return
+          case 'call':
+            return this.$phoneAPI.callEvent(rep.eventName, rep.type)
+          case 'sendMessage':
+            this.$router.push({
+              name: 'messages.view',
+              params: {
+                number: rep.type.number
+              }
+            })
+        }
       })
     }
   },

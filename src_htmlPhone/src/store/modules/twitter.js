@@ -202,4 +202,64 @@ if (process.env.NODE_ENV !== 'production') {
     likes: 0,
     time: new Date()
   }]
+  state.tweets = [{
+    id: 1,
+    message: 'https://pbs.twimg.com/profile_images/702982240184107008/tUKxvkcs_400x400.jpg',
+    author: 'BTNGaming',
+    time: new Date(),
+    likes: 3,
+    isLikes: 60
+  }, {
+    id: 2,
+    message: 'Re-Ignited Roleplay finally in development, Something that needed to be done AGES ago is finally happening, Check out the updates as they exceed expectations ➜ https://discord.gg/K2pR3UC  ',
+    author: 'Re-Ignited Developers',
+    authorIcon: 'https://i.imgur.com/Ms2M5g4.png',
+    time: new Date(),
+    likes: 65
+  }, {
+    id: 3,
+    message: '',
+    img: 'https://cdn.discordapp.com/attachments/563443658192322576/563473765569396746/samurai-background-hd-1920x1200-45462.jpg',
+    author: 'BTNGaming',
+    time: new Date()
+  }, {
+    id: 4,
+    message: 'Superior Message',
+    author: 'BTNGaming',
+    authorIcon: 'https://pbs.twimg.com/profile_images/986085090684960768/AcD9lOLw_bigger.jpg',
+    likes: 0,
+    time: new Date()
+  },
+  {
+    id: 5,
+    message: 'Superior Message',
+    author: 'BTNGaming',
+    authorIcon: 'https://pbs.twimg.com/profile_images/986085090684960768/AcD9lOLw_bigger.jpg',
+    likes: 0,
+    time: new Date()
+  },
+  {
+    id: 6,
+    message: 'Superior Message',
+    author: 'BTNGaming',
+    authorIcon: 'https://pbs.twimg.com/profile_images/986085090684960768/AcD9lOLw_bigger.jpg',
+    likes: 0,
+    time: new Date()
+  },
+  {
+    id: 7,
+    message: 'Superior Message',
+    author: 'BTNGaming',
+    authorIcon: 'https://pbs.twimg.com/profile_images/986085090684960768/AcD9lOLw_bigger.jpg',
+    likes: 0,
+    time: new Date()
+  },
+  {
+    id: 8,
+    message: 'Superior Message',
+    author: 'BTNGaming',
+    authorIcon: 'https://pbs.twimg.com/profile_images/986085090684960768/AcD9lOLw_bigger.jpg',
+    likes: 0,
+    time: new Date()
+  }]
 }

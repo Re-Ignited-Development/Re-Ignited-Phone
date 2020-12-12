@@ -106,6 +106,8 @@ export default {
       }
     },
     onPressKey (key) {
+      // If number is too long, don't allow more.
+      if (this.numero.length >= 9) return
       this.numero = this.numero + key.primary
     },
     onPressCall () {

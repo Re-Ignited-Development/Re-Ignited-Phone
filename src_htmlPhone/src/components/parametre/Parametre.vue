@@ -263,7 +263,7 @@ export default {
         this.ignoreControls = true
         const cancelStr = this.IntlString('CANCEL')
         const confirmResetStr = this.IntlString('APP_CONFIG_RESET_CONFIRM')
-        let choix = [{title: cancelStr}, {title: cancelStr}, {title: confirmResetStr, color: 'red', reset: true}, {title: cancelStr}, {title: cancelStr}]
+        let choix = [{title: cancelStr}, {title: confirmResetStr, color: 'red', reset: true}]
         Modal.CreateModal({choix}).then(reponse => {
           this.ignoreControls = false
           if (reponse.reset === true) {
