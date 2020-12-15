@@ -52,6 +52,13 @@ local ANIMS = {
 	}
 }
 
+function isDoingCall()
+	print(lastAnim)
+	if lastAnim == 'cellphone_text_to_call' then
+		return true
+	end
+end
+
 function newPhoneProp()
 	deletePhone()
 	RequestModel(phoneModel)

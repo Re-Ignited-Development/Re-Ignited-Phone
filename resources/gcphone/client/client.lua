@@ -510,7 +510,10 @@ AddEventHandler("gcPhone:rejectCall", function(infoCall)
       NetworkSetTalkerProximity(2.5)
     end
   end
-  --PhonePlayText()
+  local calling = isDoingCall()
+  if calling == true then
+    PhonePlayText()
+  end
   SendNUIMessage({event = 'rejectCall', infoCall = infoCall})
 end)
 
