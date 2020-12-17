@@ -991,7 +991,7 @@ function addMessage(source, identifier, phone_number, message, gps_data)
     local myPhone = getNumberPhone(identifier)
     local message = '' .. message ..''
     local isRealtimeGPS = false
-    local gpsTimeout = Config.ShareRealtimeGPSDefaultTimeInMs
+    local gpsTimeout = ServerConfig.ShareRealtimeGPSDefaultTimeInMs
 
     if (message == '%posrealtime%') then
         if (gps_data) then
