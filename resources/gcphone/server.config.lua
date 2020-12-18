@@ -2,6 +2,7 @@ ServerConfig = {}
 -- This is to be used only for config information used by the server, not client.
 
 ServerConfig.ShareRealtimeGPSDefaultTimeInMs = 1000 * 60 -- Set default realtime GPS sharing expiration time in milliseconds
+ServerConfig.newESX = false -- sets new esx
 ServerConfig.ShareRealtimeGPSJobTimer = 10 -- Default Job GPS Timer (Minutes)
 
 -- Optional Discord Logging
