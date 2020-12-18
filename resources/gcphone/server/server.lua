@@ -5,7 +5,7 @@
 -- Chip
 -- DmACK (f.sanllehiromero@uandresbello.edu)
 --====================================================================================
-if Config.newESX then
+if ServerConfig.newESX then
 	ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
