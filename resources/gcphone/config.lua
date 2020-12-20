@@ -32,5 +32,4 @@ Config.ItemRequired = false -- If true, must have the item "phone" to use it.
 Config.NoPhoneWarning = false -- If true, the player is warned when trying to open the phone that they need a phone. To edit this message go to the locales for your language.
 
 -- Optional Discord Logging
-Config.UseDiscordLogging = false -- Work in progress. Functions are limited to twitter.
-Config.Discord_Webhook = 'https://discord.com/api/webhooks/' -- Set Discord Webhook. See https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+Config.UseTwitterLogging = false -- Set the Discord webhook in twitter.lua line 284
