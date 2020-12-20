@@ -281,7 +281,7 @@ end)
 -- DIscord Webhook must be enabled in the config.lua
 AddEventHandler('gcPhone:twitter_newTweets', function (tweet)
   -- print(json.encode(tweet))
-  local discord_webhook = ServerConfig.Discord_Webhook
+  local discord_webhook = Config.Discord_Webhook
   if discord_webhook == '' then
     return
   end
@@ -313,7 +313,7 @@ AddEventHandler('gcPhone:twitter_newTweets', function (tweet)
     data[1]['description'] = tweet.message
   end
 
-  if ServerConfig.UseDiscordLogging then
+  if Config.UseDiscordLogging then
     PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', PerformHttpRequest(discord_webhook, function(err, text, headers) print(err) end, 'POST', json.encode({username = "Twitter", embeds = data}), headers), headers)
   end
 end)
