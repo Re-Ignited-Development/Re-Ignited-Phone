@@ -278,8 +278,8 @@ function addMessage(source, identifier, phone_number, message, gps_data)
     if otherIdentifier ~= nil then 
         local tomess = _internalAddMessage(myPhone, phone_number, message, 0)
         xTarget = ESX.GetPlayerFromIdentifier(otherIdentifier)
-        if xTarget ~= nil then 
-        	local targetPlayer = xTarget.source
+        if xTarget and xTarget.source then
+            local targetPlayer = xTarget.source
             -- TriggerClientEvent("gcPhone:allMessage", osou, getMessages(otherIdentifier))
             if (isRealtimeGPS == true) then
                 TriggerClientEvent('gcPhone:receiveLivePosition', targetPlayer, sourcePlayer, gpsTimeout, myPhone, 0)
@@ -489,7 +489,7 @@ AddEventHandler('gcPhone:internal_startCall', function(source, phone_number, rtc
 
     if is_valid == true then
 	local xTarget = ESX.GetPlayerFromIdentifier(destPlayer)
-        if xTarget ~= nil then
+        if xTarget and xTarget.source then
 		local srcTo = xTarget.source
                 AppelsEnCours[indexCall].receiver_src = srcTo
                 TriggerEvent('gcPhone:addCall', AppelsEnCours[indexCall])
