@@ -81,7 +81,7 @@ end)
 --====================================================================================
 --  Utils
 --====================================================================================
-function getSourceFromIdentifier(identifier, cb)
+--[[function getSourceFromIdentifier(identifier, cb)
 	local xPlayers = ESX.GetPlayers()
 	
 	for i=1, #xPlayers, 1 do
@@ -93,7 +93,7 @@ function getSourceFromIdentifier(identifier, cb)
 		end
 	end
 	cb(nil)
-end
+end]]
 
 function getNumberPhone(identifier)
     local result = MySQL.Sync.fetchAll("SELECT users.phone_number FROM users WHERE users.identifier = @identifier", {
@@ -277,16 +277,15 @@ function addMessage(source, identifier, phone_number, message, gps_data)
 
     if otherIdentifier ~= nil then 
         local tomess = _internalAddMessage(myPhone, phone_number, message, 0)
-        getSourceFromIdentifier(otherIdentifier, function (osou)
-            local targetPlayer = tonumber(osou)
-            if targetPlayer ~= nil then 
-                -- TriggerClientEvent("gcPhone:allMessage", osou, getMessages(otherIdentifier))
-                if (isRealtimeGPS == true) then
-                    TriggerClientEvent('gcPhone:receiveLivePosition', targetPlayer, sourcePlayer, gpsTimeout, myPhone, 0)
-                end
-                TriggerClientEvent("gcPhone:receiveMessage", targetPlayer, tomess)
+        xTarget = ESX.GetPlayerFromIdentifier(otherIdentifier)
+        if xTarget ~= nil then 
+        	local targetPlayer = xTarget.source
+            -- TriggerClientEvent("gcPhone:allMessage", osou, getMessages(otherIdentifier))
+            if (isRealtimeGPS == true) then
+                TriggerClientEvent('gcPhone:receiveLivePosition', targetPlayer, sourcePlayer, gpsTimeout, myPhone, 0)
             end
-        end) 
+            TriggerClientEvent("gcPhone:receiveMessage", targetPlayer, tomess)
+        end
     end
     local memess = _internalAddMessage(phone_number, myPhone, message, 1)
     TriggerClientEvent("gcPhone:receiveMessage", sourcePlayer, memess)
@@ -489,8 +488,9 @@ AddEventHandler('gcPhone:internal_startCall', function(source, phone_number, rtc
     }
 
     if is_valid == true then
-        getSourceFromIdentifier(destPlayer, function (srcTo)
-            if srcTo ~= nill then
+	local xTarget = ESX.GetPlayerFromIdentifier(destPlayer)
+        if xTarget ~= nil then
+		local srcTo = xTarget.source
                 AppelsEnCours[indexCall].receiver_src = srcTo
                 TriggerEvent('gcPhone:addCall', AppelsEnCours[indexCall])
                 TriggerClientEvent('gcPhone:waitingCall', sourcePlayer, AppelsEnCours[indexCall], true)
