@@ -508,7 +508,6 @@ AddEventHandler('gcPhone:internal_startCall', function(source, phone_number, rtc
                 TriggerEvent('gcPhone:addCall', AppelsEnCours[indexCall])
                 TriggerClientEvent('gcPhone:waitingCall', sourcePlayer, AppelsEnCours[indexCall], true)
             end
-        end)
     else
         TriggerEvent('gcPhone:addCall', AppelsEnCours[indexCall])
         TriggerClientEvent('gcPhone:waitingCall', sourcePlayer, AppelsEnCours[indexCall], true)
