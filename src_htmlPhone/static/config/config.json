@@ -40,18 +40,17 @@
   "fileUploadService_Field": "image",
 
   "background": {
-    "Re-Ignited ESX": "rrp.jpg",
+    "Re-Ignited": "Reignited.jpg",
     "Calvin & Hobbes": "back001.jpg",
     "Destiny": "back002.jpg",
     "Stormtrooper": "back003.jpg",
-    "Re-Ignited": "Reignited.jpg",
     "Hot vs Cold Fists": "fists.jpg",
     "Dragon": "dragon.jpg",
     "Custom URL": "URL"
   },
   "background_default": {
-    "label": "Re-Ignited ESX",
-    "value": "rrp.jpg"
+    "label": "Re-Ignited",
+    "value": "ReIgnited.jpg"
   },
   
   "coque": {

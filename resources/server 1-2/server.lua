@@ -499,7 +499,7 @@ AddEventHandler('gcPhone:internal_startCall', function(source, phone_number, rtc
                 print(hasPhone)
                 if hasPhone >= 1 and Config.ItemRequired then
                     TriggerClientEvent('gcPhone:waitingCall', srcTo, AppelsEnCours[indexCall], false)
-                elseif hasPhone == 0 then
+                elseif hasPhone == 0 and Config.ItemRequired then
                     print("no phone")
                 elseif not Config.ItemRequired then
                     TriggerClientEvent('gcPhone:waitingCall', srcTo, AppelsEnCours[indexCall], false)
