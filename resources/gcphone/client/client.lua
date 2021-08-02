@@ -237,6 +237,7 @@ end)
 --]]
 function showFixePhoneHelper (coords)
   for number, data in pairs(Config.FixePhone) do
+    local coords = GetEntityCoords(PlayerPedId())
     local dist = #(vector3(data.coords.x, data.coords.y, data.coords.z) - coords)
     if dist <= 2.5 then
       SetTextComponentFormat("STRING")
@@ -307,7 +308,7 @@ Citizen.CreateThread(function()
           end
           break
         else
-          Wait(200)
+          Wait(300)
         end
     end
     if inRangeToActivePhone == false then
