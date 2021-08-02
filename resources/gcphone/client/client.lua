@@ -237,9 +237,7 @@ end)
 --]]
 function showFixePhoneHelper (coords)
   for number, data in pairs(Config.FixePhone) do
-    local dist = GetDistanceBetweenCoords(
-      data.coords.x, data.coords.y, data.coords.z,
-      coords.x, coords.y, coords.z, 1)
+    local dist = #(vector3(data.coords.x, data.coords.y, data.coords.z) - coords)
     if dist <= 2.5 then
       SetTextComponentFormat("STRING")
       AddTextComponentString(_U('use_fixed', data.name, number))
@@ -248,6 +246,8 @@ function showFixePhoneHelper (coords)
         startFixeCall(number)
       end
       break
+    else
+      Wait(300)
     end
   end
 end
@@ -279,7 +279,7 @@ Citizen.CreateThread(function()
   end
 end)
 
-Citizen.CreateThread(function ()
+Citizen.CreateThread(function()
   local mod = 0
   while true do
      
@@ -288,9 +288,7 @@ Citizen.CreateThread(function ()
     local inRangeToActivePhone = false
     local inRangedist = 0
     for i, _ in pairs(PhoneInCall) do 
-        local dist = GetDistanceBetweenCoords(
-          PhoneInCall[i].coords.x, PhoneInCall[i].coords.y, PhoneInCall[i].coords.z,
-          coords.x, coords.y, coords.z, 1)
+        local dist = #(vector3(PhoneInCall[i].coords.x, PhoneInCall[i].coords.y, PhoneInCall[i].coords.z) - coords)
         if (dist <= soundDistanceMax) then
           DrawMarker(1, PhoneInCall[i].coords.x, PhoneInCall[i].coords.y, PhoneInCall[i].coords.z,
               0,0,0, 0,0,0, 0.1,0.1,0.1, 0,255,0,255, 0,0,0,0,0,0,0)
@@ -308,6 +306,8 @@ Citizen.CreateThread(function ()
             end
           end
           break
+        else
+          Wait(200)
         end
     end
     if inRangeToActivePhone == false then
