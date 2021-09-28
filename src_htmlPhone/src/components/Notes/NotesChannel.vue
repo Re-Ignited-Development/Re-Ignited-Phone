@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%; height: 742px; color: white" class="phone_app">
     <PhoneTitle :title="IntlString('APP_NOTES')" backgroundColor="#f8d344" color="white" @back="onBack" />
-    <div  style="backgroundColor: white;" class="elements" @contextmenu.prevent="addChannelOption">
+    <div  style="backgroundColor: white;" class="elements" @contextmenu.prevent="onEnter">
         <div  
           >
             <div v-for='(elem, key) in notesChannels' 
@@ -80,18 +80,25 @@ export default {
     },
     async onEnter () {
       if (this.ignoreControls === true) return
+      this.ignoreControls = true
+      let choix = [
+        {id: 1, title: this.IntlString('APP_DARKTCHAT_NEW_NOTE'), icons: 'fa-plus', color: 'dodgerblue'},
+        {id: 2, title: this.IntlString('APP_DARKTCHAT_DELETE_NOTE'), icons: 'fa-minus', color: 'tomato'},
+        {id: 3, title: this.IntlString('APP_DARKTCHAT_CANCEL'), icons: 'fa-undo'}
+      ]
       if (this.notesChannels.length === 0) {
-        this.ignoreControls = true
-        let choix = [
-          {id: 1, title: this.IntlString('APP_DARKTCHAT_NEW_CHANNEL'), icons: 'fa-plus', color: 'green'},
-          {id: 3, title: this.IntlString('APP_DARKTCHAT_CANCEL'), icons: 'fa-undo'}
-        ]
-        const rep = await Modal.CreateModal({ choix })
-        this.ignoreControls = false
-        if (rep.id === 1) {
+        choix.splice(1, 1)
+      }
+      const rep = await Modal.CreateModal({ choix })
+      this.ignoreControls = false
+      switch (rep.id) {
+        case 1:
           this.addChannelOption()
-        }
-      } else {
+          break
+        case 2:
+          this.removeChannelOption()
+          break
+        case 3 :
       }
     },
     showChannel (channel) {
@@ -103,7 +110,7 @@ export default {
     },
     async addChannelOption () {
       try {
-        const rep = await Modal.CreateTextModal({limit: 280, title: this.IntlString('APP_DARKTCHAT_NEW_CHANNEL')})
+        const rep = await Modal.CreateTextModal({limit: 280, title: this.IntlString('APP_DARKTCHAT_NEW_NOTE')})
         let channel = (rep || {}).text || ' '
         channel
         if (channel.length > 0) {

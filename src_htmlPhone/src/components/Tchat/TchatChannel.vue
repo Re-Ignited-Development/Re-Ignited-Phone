@@ -1,7 +1,7 @@
 <template>
   <div class="phone_app">
     <PhoneTitle :title="IntlString('APP_DARKTCHAT_TITLE')" backgroundColor="#2b2a2a" @back="onBack" /> <!-- HEADER -->
-    <div class="elements" @contextmenu.prevent="addChannelOption">
+    <div class="elements" @contextmenu.prevent="onEnter">
         <div class="element" v-for='(elem, key) in tchatChannels' 
           v-bind:key="elem.channel"
           v-bind:class="{ select: key === currentSelect}"
@@ -79,20 +79,25 @@ export default {
     },
     async onEnter () {
       if (this.ignoreControls === true) return
+      this.ignoreControls = true
+      let choix = [
+        {id: 1, title: this.IntlString('APP_DARKTCHAT_NEW_CHANNEL'), icons: 'fa-plus', color: 'green'}, /** New Channel Option Color */
+        {id: 2, title: this.IntlString('APP_DARKTCHAT_DELETE_CHANNEL'), icons: 'fa-minus', color: 'red'}, /** DeleteChannel Option Color */
+        {id: 3, title: this.IntlString('APP_DARKTCHAT_CANCEL'), icons: 'fa-undo'}
+      ]
       if (this.tchatChannels.length === 0) {
-        this.ignoreControls = true
-        let choix = [
-          {id: 1, title: this.IntlString('APP_DARKTCHAT_NEW_CHANNEL'), icons: 'fa-plus', color: 'green'}, /** New Channel Option Color */
-          {id: 3, title: this.IntlString('APP_DARKTCHAT_CANCEL'), icons: 'fa-undo'}
-        ]
-        const rep = await Modal.CreateModal({ choix })
-        this.ignoreControls = false
-        if (rep.id === 1) {
+        choix.splice(1, 1)
+      }
+      const rep = await Modal.CreateModal({ choix })
+      this.ignoreControls = false
+      switch (rep.id) {
+        case 1:
           this.addChannelOption()
-        }
-      } else {
-        const channel = this.tchatChannels[this.currentSelect].channel
-        this.showChannel(channel)
+          break
+        case 2:
+          this.removeChannelOption()
+          break
+        case 3 :
       }
     },
     showChannel (channel) {
