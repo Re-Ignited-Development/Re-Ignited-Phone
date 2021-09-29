@@ -22,6 +22,7 @@ Config.KeyTakeCall  = 38  -- E
 Config.UseMumbleVoIP = false -- Use Frazzle's Mumble-VoIP Resource (Recommended!) https://github.com/FrazzIe/mumble-voip
 Config.UseTokoVoIP   = false
 Config.UseSaltyChat  = false
+Config.UsePMAVoice   = false
 
 Config.ShowNumberNotification = false -- Show Number or Contact Name when you receive new SMS
 
