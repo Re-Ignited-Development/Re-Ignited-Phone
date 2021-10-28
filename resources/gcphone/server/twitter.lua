@@ -197,7 +197,6 @@ AddEventHandler('gcPhone:twitter_changePassword', function(username, password, n
   end)
 end)
 
-
 RegisterServerEvent('gcPhone:twitter_createAccount')
 AddEventHandler('gcPhone:twitter_createAccount', function(username, password, avatarUrl)
   local sourcePlayer = tonumber(source)
@@ -259,7 +258,6 @@ AddEventHandler('gcPhone:twitter_toogleLikeTweet', function(username, password, 
   TwitterToogleLike(username, password, tweetId, sourcePlayer)
 end)
 
-
 RegisterServerEvent('gcPhone:twitter_setAvatarUrl')
 AddEventHandler('gcPhone:twitter_setAvatarUrl', function(username, password, avatarUrl)
   local sourcePlayer = tonumber(source)
@@ -277,7 +275,6 @@ AddEventHandler('gcPhone:twitter_setAvatarUrl', function(username, password, ava
   end)
 end)
 
-
 -- DIscord Webhook must be enabled in the config.lua
 AddEventHandler('gcPhone:twitter_newTweets', function (tweet)
   -- print(json.encode(tweet))
@@ -288,7 +285,6 @@ AddEventHandler('gcPhone:twitter_newTweets', function (tweet)
   local headers = {
     ['Content-Type'] = 'application/json'
   }
-
 
   -- print(json.encode(tweet))
   local isHttp = string.sub(tweet.message, 0, 7) == 'http://' or string.sub(tweet.message, 0, 8) == 'https://'
