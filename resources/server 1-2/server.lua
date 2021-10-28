@@ -377,8 +377,7 @@ end)
 --====================================================================================
 --  Gestion des appels
 --====================================================================================
-local AppelsEnCours = {}
-local PhoneFixeInfo = {}
+local AppelsEnCours, PhoneFixeInfo = {}, {}
 local lastIndexCall = 10
 
 function getHistoriqueCall (num)
@@ -679,7 +678,6 @@ function getBourse()
     }
     return result
 end
-
 
 --====================================================================================
 --  App banking
