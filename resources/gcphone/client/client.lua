@@ -460,12 +460,6 @@ AddEventHandler("gcPhone:acceptCall", function(infoCall, initiator)
     inCall = true
     if Config.UseMumbleVoIP then
       exports["mumble-voip"]:SetCallChannel(infoCall.id+1)
-    elseif Config.UseSaltyChat then
-      exports['saltychat']:EstablishCall(AppelsEnCours[id].receiver_src, AppelsEnCours[id].transmitter_src) --Assign Channel
-      exports['saltychat']:EstablishCall(AppelsEnCours[id].transmitter_src, AppelsEnCours[id].receiver_src) --Assign Channel
-    elseif Config.UsePMAVoice then
-      SaltyID = infoCall.id + 450
-      exports['pma-voice']:setCallChannel(SaltyID)
     elseif Config.UseTokoVoIP then
       exports.tokovoip_script:addPlayerToRadio(infoCall.id + 120)
       TokoVoipID = infoCall.id + 120
@@ -487,11 +481,6 @@ AddEventHandler("gcPhone:rejectCall", function(infoCall)
     inCall = false
     if Config.UseMumbleVoIP then
       exports["mumble-voip"]:SetCallChannel(0)
-    elseif Config.UseSaltyChat then
-      exports['saltychat']:EndCall(AppelsEnCours[id].receiver_src, AppelsEnCours[id].transmitter_src) --Assign Channel
-      exports['saltychat']:EndCall(AppelsEnCours[id].transmitter_src, AppelsEnCours[id].receiver_src) --Assign Channel
-    elseif Config.UsePMAVoice then
-      exports['pma-voice']:removePlayerFromCall(infoCall)
     elseif Config.UseTokoVoIP then
       exports.tokovoip_script:removePlayerFromRadio(TokoVoipID)
       TokoVoipID = nil
@@ -574,11 +563,6 @@ RegisterNUICallback('notififyUseRTC', function (use, cb)
     if Config.UseTokoVoIP then
       exports.tokovoip_script:removePlayerFromRadio(TokoVoipID)
       TokoVoipID = nil
-    elseif Config.UseSaltyChat then
-      exports['saltychat']:SetRadioChannel('', true)
-    elseif Config.UsePMAVoice then
-      exports['pma-voice']:removePlayerFromRadio()
-      exports["pma-voice"]:setVoiceProperty("radioEnabled", false)
     else
       NetworkSetTalkerProximity(2.5)
     end
