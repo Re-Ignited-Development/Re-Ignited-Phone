@@ -4,7 +4,7 @@
 
 -- JUST TESTING THAT IT ACTUALLY WORKS
 
-local myPedId = nil
+local myPedId, lastDict, lastAnim = nil, nil, nil
 
 local phoneProp = 0
 local phoneModel = -1038739674
@@ -13,8 +13,6 @@ local phoneModel = -1038739674
 -- OR "prop_cs_phone_01"
 
 local currentStatus = 'out'
-local lastDict = nil
-local lastAnim = nil
 local lastIsFreeze = false
 
 local ANIMS = {
@@ -91,7 +89,7 @@ function PhonePlayAnim (status, freeze, force)
 		return
 	end
 
-	myPedId = GetPlayerPed(-1)
+	myPedId = PlayerPedId()
 	local freeze = freeze or false
 
 	local dict = "cellphone@"
@@ -125,7 +123,6 @@ function PhonePlayAnim (status, freeze, force)
 		deletePhone()
 		StopAnimTask(myPedId, lastDict, lastAnim, 1.0)
 	end
-
 end
 
 function PhonePlayOut ()
