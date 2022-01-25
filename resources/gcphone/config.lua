@@ -35,3 +35,4 @@ Config.NoPhoneWarning = false -- If true, the player is warned when trying to op
 
 -- Optional Discord Logging
 Config.UseTwitterLogging = false -- Set the Discord webhook in twitter.lua line 284
+Config.TwitterDiscordWebhook = ''
