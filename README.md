@@ -11,6 +11,7 @@
 <h2  align="center">GCPhone Redesign for FiveM</h2>
 
 ## Latest Release
+* BTNGaming#7728
 * You must download from the release tab or the phone WILL NOT work.
 * ESX 1.1 & ESX 1.2 Download from [Releases](https://github.com/Re-Ignited-Development/Re-Ignited-Phone/releases)
 * Install instructions [Here](https://github.com/Re-Ignited-Development/Re-Ignited-Phone/blob/master/Instructions.md)
