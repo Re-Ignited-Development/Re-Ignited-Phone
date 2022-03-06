@@ -49,8 +49,6 @@ AddEventHandler('es:displayBank', function(bank)
       setBankBalance(bank)
 end)
 
-
-
 --===============================================
 --==         Transfer Event                    ==
 --===============================================

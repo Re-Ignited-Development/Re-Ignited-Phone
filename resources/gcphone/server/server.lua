@@ -105,6 +105,7 @@ function getNumberPhone(identifier)
     end
     return nil
 end
+
 function getIdentifierByPhoneNumber(phone_number) 
     local result = MySQL.Sync.fetchAll("SELECT users.identifier FROM users WHERE users.phone_number = @phone_number", {
         ['@phone_number'] = phone_number
@@ -355,8 +356,7 @@ end)
 --====================================================================================
 --  Gestion des appels
 --====================================================================================
-local AppelsEnCours = {}
-local PhoneFixeInfo = {}
+local AppelsEnCours, PhoneFixeInfo = {}, {}
 local lastIndexCall = 10
 
 function getHistoriqueCall (num)
@@ -844,7 +844,6 @@ function getIdentifierByPhoneNumber(phone_number)
     return nil
 end
 
-
 function getPlayerID(source)
     local identifiers = GetPlayerIdentifiers(source)
     local player = getIdentifiant(identifiers)
@@ -855,7 +854,6 @@ function getIdentifiant(id)
         return v
     end
 end
-
 
 function getOrGeneratePhoneNumber (sourcePlayer, identifier, cb)
     local sourcePlayer = sourcePlayer
@@ -1100,8 +1098,7 @@ end)
 --====================================================================================
 --  Gestion des appels
 --====================================================================================
-local AppelsEnCours = {}
-local PhoneFixeInfo = {}
+local AppelsEnCours, PhoneFixeInfo = {}, {}
 local lastIndexCall = 10
 
 function getHistoriqueCall (num)
@@ -1224,7 +1221,6 @@ AddEventHandler('gcPhone:internal_startCall', function(source, phone_number, rtc
         TriggerEvent('gcPhone:addCall', AppelsEnCours[indexCall])
         TriggerClientEvent('gcPhone:waitingCall', sourcePlayer, AppelsEnCours[indexCall], true)
     end
-
 end)
 
 RegisterServerEvent('gcPhone:startCall')
@@ -1344,7 +1340,6 @@ AddEventHandler('gcPhone:allUpdate', function()
     TriggerClientEvent('gcPhone:getBourse', sourcePlayer, getBourse())
     sendHistoriqueCall(sourcePlayer, num)
 end)
-
 
 AddEventHandler('onMySQLReady', function ()
     -- MySQL.Async.fetchAll("DELETE FROM phone_messages WHERE (DATEDIFF(CURRENT_DATE,time) > 10)")

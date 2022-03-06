@@ -16,23 +16,13 @@ local KeyToucheCloseEvent = {
   { code = 177, event = 'Backspace' },
 }
 
-local menuIsOpen = false
-local contacts = {}
-local messages = {}
-local gpsBlips = {}
+local menuIsOpen, isDead, USE_RTC, useMouse, ignoreFocus, takePhoto, hasFocus, currentPlaySound, gpsActive = false, false, false, false, false, false, false, false, false
+local aminCall, inCall = false, false
+local contacts, messages, gpsBlips, PhoneInCall, registeredPhones = {}, {}, {}, {}, {}
 local myPhoneNumber = ''
-local isDead = false
-local USE_RTC = false
-local useMouse = false
-local ignoreFocus = false
-local takePhoto = false
-local hasFocus = false
 local TokoVoipID = nil
-
-local PhoneInCall = {}
-local currentPlaySound = false
 local soundDistanceMax = 8.0
-
+local checkRate = 5000 -- every 5 seconds
 ESX = nil
 
 Citizen.CreateThread(function()
@@ -156,8 +146,6 @@ function styleBlip(blip, type, number, player)
   SetBlipScale(blip, 0.9)
 end
 
-local checkRate = 5000 -- every 5 seconds
-local gpsActive = false
 RegisterNetEvent('gcPhone:receiveLivePosition')
 AddEventHandler('gcPhone:receiveLivePosition', function(sourcePlayerServerId, timeoutInMilliseconds, sourceNumber, type)
   if (sourcePlayerServerId ~= nil and sourceNumber ~= nil) then
@@ -237,9 +225,7 @@ end)
 --]]
 function showFixePhoneHelper (coords)
   for number, data in pairs(Config.FixePhone) do
-    local dist = GetDistanceBetweenCoords(
-      data.coords.x, data.coords.y, data.coords.z,
-      coords.x, coords.y, coords.z, 1)
+    local dist = GetDistanceBetweenCoords(data.coords.x, data.coords.y, data.coords.z, coords.x, coords.y, coords.z, 1)
     if dist <= 2.5 then
       SetTextComponentFormat("STRING")
       AddTextComponentString(_U('use_fixed', data.name, number))
@@ -257,12 +243,11 @@ AddEventHandler('gcPhone:register_FixePhone', function(phone_number, data)
   Config.FixePhone[phone_number] = data
 end)
 
-local registeredPhones = {}
 Citizen.CreateThread(function()
   if not Config.AutoFindFixePhones then return end
   while not ESX do Citizen.Wait(0) end
   while true do
-    local playerPed = GetPlayerPed(-1)
+    local playerPed = PlayerPedId()
     local coords = GetEntityCoords(playerPed)
     for _, key in pairs({'p_phonebox_01b_s', 'p_phonebox_02_s', 'prop_phonebox_01a', 'prop_phonebox_01b', 'prop_phonebox_01c', 'prop_phonebox_02', 'prop_phonebox_03', 'prop_phonebox_04'}) do
       local closestPhone = GetClosestObjectOfType(coords.x, coords.y, coords.z, 25.0, key, false)
@@ -288,12 +273,9 @@ Citizen.CreateThread(function ()
     local inRangeToActivePhone = false
     local inRangedist = 0
     for i, _ in pairs(PhoneInCall) do 
-        local dist = GetDistanceBetweenCoords(
-          PhoneInCall[i].coords.x, PhoneInCall[i].coords.y, PhoneInCall[i].coords.z,
-          coords.x, coords.y, coords.z, 1)
+        local dist = GetDistanceBetweenCoords(PhoneInCall[i].coords.x, PhoneInCall[i].coords.y, PhoneInCall[i].coords.z, coords.x, coords.y, coords.z, 1)
         if (dist <= soundDistanceMax) then
-          DrawMarker(1, PhoneInCall[i].coords.x, PhoneInCall[i].coords.y, PhoneInCall[i].coords.z,
-              0,0,0, 0,0,0, 0.1,0.1,0.1, 0,255,0,255, 0,0,0,0,0,0,0)
+          DrawMarker(1, PhoneInCall[i].coords.x, PhoneInCall[i].coords.y, PhoneInCall[i].coords.z, 0,0,0, 0,0,0, 0.1,0.1,0.1, 0,255,0,255, 0,0,0,0,0,0,0)
           inRangeToActivePhone = true
           inRangedist = dist
           if (dist <= 1.5) then 
@@ -461,9 +443,6 @@ end
 --====================================================================================
 --  Function client | Appels
 --====================================================================================
-local aminCall = false
-local inCall = false
-
 RegisterNetEvent("gcPhone:waitingCall")
 AddEventHandler("gcPhone:waitingCall", function(infoCall, initiator)
   SendNUIMessage({event = 'waitingCall', infoCall = infoCall, initiator = initiator})
@@ -528,12 +507,10 @@ AddEventHandler("gcPhone:rejectCall", function(infoCall)
   SendNUIMessage({event = 'rejectCall', infoCall = infoCall})
 end)
 
-
 RegisterNetEvent("gcPhone:historiqueCall")
 AddEventHandler("gcPhone:historiqueCall", function(historique)
   SendNUIMessage({event = 'historiqueCall', historique = historique})
 end)
-
 
 function startCall (phone_number, rtcOffer, extraData)
   if rtcOffer == nil then
@@ -565,7 +542,6 @@ end
 function appelsDeleteAllHistorique ()
   TriggerServerEvent('gcPhone:appelsDeleteAllHistorique')
 end
-  
 
 --====================================================================================
 --  Event NUI - Appels
@@ -610,7 +586,6 @@ RegisterNUICallback('notififyUseRTC', function (use, cb)
   cb()
 end)
 
-
 RegisterNUICallback('onCandidates', function (data, cb)
   TriggerServerEvent('gcPhone:candidates', data.id, data.candidates)
   cb()
@@ -620,8 +595,6 @@ RegisterNetEvent("gcPhone:candidates")
 AddEventHandler("gcPhone:candidates", function(candidates)
   SendNUIMessage({event = 'candidatesAvailable', candidates = candidates})
 end)
-
-
 
 RegisterNetEvent('gcphone:autoCall')
 AddEventHandler('gcphone:autoCall', function(number, extraData)
@@ -669,6 +642,7 @@ RegisterNUICallback('reponseText', function(data, cb)
     menu.close()
   end)
 end)
+
 --====================================================================================
 --  Event - Messages
 --====================================================================================
@@ -699,6 +673,7 @@ RegisterNUICallback('setReadMessageNumber', function (data, cb)
   setReadMessageNumber(data.number)
   cb()
 end)
+
 --====================================================================================
 --  Event - Contacts
 --====================================================================================
