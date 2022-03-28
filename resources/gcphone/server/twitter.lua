@@ -281,7 +281,7 @@ end)
 -- DIscord Webhook must be enabled in the config.lua
 AddEventHandler('gcPhone:twitter_newTweets', function (tweet)
   -- print(json.encode(tweet))
-  local discord_webhook = 'https://discord.com/api/webhooks/' -- Set Discord Webhook. See https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+  local discord_webhook = Config.TwitterDiscordWebhook
   if discord_webhook == '' then
     return
   end
